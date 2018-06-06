@@ -27,7 +27,7 @@ export class Header extends Component<any, any> {
             <div>
                 <AppBar position="sticky" color="default" style={{ flexGrow: 1 }}>
                     <Toolbar style={{ display: "flex" }}>
-                        <Typography variant="title" color="inherit" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans" }} onClick={this.props.homePage}>
+                        <Typography variant="title" color="inherit" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }} onClick={this.props.homePage}>
                             hyconpool.com
                         </Typography>
                         <FormControl style={{ flexBasis: 200 }}>

@@ -48,6 +48,9 @@ export class PoolDetails extends Component<any, any> {
                         backgroundColor: "#000",
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
+                        <Typography gutterBottom style={{ fontSize: "4em", color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            pool details
+                        </Typography>
                         <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
                             Hashrate | <code> 10000 Th/s </code>
                         </Typography>
