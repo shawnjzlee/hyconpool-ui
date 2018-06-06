@@ -4,6 +4,7 @@ import { MinerDetails } from './components/minerDetails';
 import { PoolDetails } from './components/poolDetails';
 import { CssBaseline } from '@material-ui/core';
 import { Footer } from './components/footer';
+// import { RestClient } from './restClient';
 
 class App extends React.Component<any, any> {
     constructor(props: any) {
@@ -14,8 +15,14 @@ class App extends React.Component<any, any> {
     }
 
     public searchAddress() {
-        let result = false
-        // let result = sqlquery
+        let result: any
+        result = fetch('/getAddress', {
+            method: 'GET'
+        }).then((response) => {
+            return response;
+        })
+        console.log(result)
+
         console.log("searchAddress triggered")
         if (result) {
             this.setState({ validAddress: 2 })

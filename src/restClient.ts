@@ -1,7 +1,8 @@
 import { IRest } from "./rest";
 
-class RestClient implements IRest {
+export class RestClient implements IRest {
     public async getAddress(address: string): Promise<boolean> {
+        console.log("Called getAddress()")
         const headers = new Headers();
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
