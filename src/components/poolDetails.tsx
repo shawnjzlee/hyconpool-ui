@@ -31,7 +31,7 @@ export class PoolDetails extends Component<any, any> {
                 <Grid container
                     style={{ 
                         height: "60vh",
-                        backgroundColor: "#00d7ee"
+                        background: "linear-gradient(45deg, #484fc1 0%,#01a6ea 57%,#00e9ed 100%)"
                     }}>                    
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <Typography gutterBottom style={{ fontSize: "6em", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
@@ -66,8 +66,8 @@ export class PoolDetails extends Component<any, any> {
                     style={{
                         minHeight: "50vh",
                     }}>
-                    <Card style={{ margin: "auto auto", minWidth: "90%" }}>
-                        <CardContent style={{ minHeight: "6vh", backgroundColor: "#fb155e", paddingBottom: 0 }}>
+                    <Card style={{ margin: "auto auto", minWidth: "50%" }}>
+                        <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #8f44a1 0%,#4a34b2 42%,#99459a 100%)", paddingBottom: 0 }}>
                             <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600, margin: "auto 0" }}>
                                 How to Connect
                             </Typography>
