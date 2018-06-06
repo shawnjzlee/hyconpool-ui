@@ -9,7 +9,7 @@ class App extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            validAddress: 1,
+            validAddress: 0,
         }
     }
 
