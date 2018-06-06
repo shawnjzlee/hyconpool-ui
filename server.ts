@@ -19,6 +19,10 @@ function restRoutes(expressApp: express.Express, dbIn: mysql.Connection) {
         res.json(await rest.getAddress(req.body.address))
     })
 
+    router.get("/payout", async (req: express.Request, res: express.Response) => {
+        res.json(await rest.getPayout(req.body.address))
+    })
+
     expressApp.use(router)
 }
 

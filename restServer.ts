@@ -11,7 +11,7 @@ export class RestServer implements IRest {
     public async getAddress(address: string): Promise<boolean> {
         try {
 
-            const strsql = "SELECT 1 FROM 'TABLE' WHERE address = ?"
+            const strsql = "SELECT 1 FROM shares WHERE address = ?"
             const insert = [address]
             const sql = mysql.format(strsql, insert)
 
@@ -30,5 +30,24 @@ export class RestServer implements IRest {
         }
     }
 
+    public async getPayout(address: string): Promise<any[] | boolean> {
+        try {
+            const strsql = "SELECT address, hashes, txid FROM shares WHERE address = ?"
+            const insert = [address]
+            const sql = mysql.format(strsql, insert)
 
+            return new Promise<any[]>((resolve, reject) => {
+                this.db.query(sql, (err, results, fields) => {
+                    if (err) {
+                        reject()
+                    } else {
+                        resolve(results)
+                    }
+                })
+            })
+        } catch (e) {
+            console.log("Faled to get payout list")
+            return false
+        }
+    }
 }
