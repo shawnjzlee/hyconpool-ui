@@ -9,7 +9,7 @@ class App extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            validAddress: 0,
+            validAddress: 1,
         }
     }
 
@@ -32,10 +32,14 @@ class App extends React.Component<any, any> {
         let component: any;
         switch (this.state.validAddress) {
             case 0:
+                // should just change search bar to red
                 component = <MinerDetails />
                 break;
             case 1:
                 component = <PoolDetails />
+                break;
+            case 2:
+                component = <MinerDetails />
                 break;
         }
 
