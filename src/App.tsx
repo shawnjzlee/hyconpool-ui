@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Header } from "./components/header";
 import { MinerDetails } from './components/minerDetails';
 import { PoolDetails } from './components/poolDetails';
+import { CssBaseline } from '@material-ui/core';
+import { Footer } from './components/footer';
 
 class App extends React.Component<any, any> {
     constructor(props: any) {
@@ -38,13 +40,15 @@ class App extends React.Component<any, any> {
         }
 
         return (
-            <div className="App">
+            <div>
                 <Header 
                     validAddress={this.state.validAddress}
                     homePage={this.homePage.bind(this)}
                     searchAddress={this.searchAddress.bind(this)}
                 />
+                <CssBaseline />
                 {component}
+                <Footer />
             </div>
         );
     }
