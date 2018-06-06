@@ -1,22 +1,53 @@
 import * as React from 'react';
-import './App.css';
+import { Header } from "./components/header";
+import { MinerDetails } from './components/minerDetails';
+import { PoolDetails } from './components/poolDetails';
 
-import logo from './logo.svg';
+class App extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            validAddress: 1,
+        }
+    }
 
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    public searchAddress() {
+        let result = false
+        // let result = sqlquery
+        console.log("searchAddress triggered")
+        if (result) {
+            this.setState({ validAddress: 2 })
+        } else {
+            this.setState({ validAddress: 0 })
+        }
+    }
+
+    public homePage() {
+        this.setState({ validAddress: 1 })
+    }
+
+    public render() {
+        let component: any;
+        switch (this.state.validAddress) {
+            case 0:
+                component = <MinerDetails />
+                break;
+            case 1:
+                component = <PoolDetails />
+                break;
+        }
+
+        return (
+            <div className="App">
+                <Header 
+                    validAddress={this.state.validAddress}
+                    homePage={this.homePage.bind(this)}
+                    searchAddress={this.searchAddress.bind(this)}
+                />
+                {component}
+            </div>
+        );
+    }
 }
 
 export default App;
