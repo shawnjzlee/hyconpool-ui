@@ -8,7 +8,8 @@
     "mysql": "^2.15.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts-ts": "2.16.0"
+    "react-scripts-ts": "2.16.0",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts-ts start",

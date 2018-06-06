@@ -26,10 +26,10 @@ export class Header extends Component<any, any> {
     public render() {
         return (
             <div>
-                <AppBar position="static" color="default" style={{ flexGrow: 1 }}>
+                <AppBar position="sticky" color="default" style={{ flexGrow: 1 }}>
                     <Toolbar style={{ display: "flex" }}>
-                        <Typography variant="title" color="inherit" style={{ flex: 1, textAlign: "left" }} onClick={this.props.homePage}>
-                            HyconPool
+                        <Typography variant="title" color="inherit" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans" }} onClick={this.props.homePage}>
+                            hyconpool.com
                         </Typography>
                         <FormControl style={{ flexBasis: 200 }}>
                             {this.props.validAddress ? 
