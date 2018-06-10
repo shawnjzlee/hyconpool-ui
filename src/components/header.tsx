@@ -3,10 +3,10 @@ import * as React from 'react';
 import { Component } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import SearchIcon from '@material-ui/icons/Search';
+// import IconButton from '@material-ui/core/IconButton';
+// import Input from '@material-ui/core/Input';
+// import FormControl from '@material-ui/core/FormControl';
+// import SearchIcon from '@material-ui/icons/Search';
 
 export class Header extends Component<any, any> {
     constructor(props: any) {
@@ -28,9 +28,9 @@ export class Header extends Component<any, any> {
                 <AppBar position="sticky" color="default" style={{ flexGrow: 1 }}>
                     <Toolbar style={{ display: "flex" }}>
                         <Typography variant="title" color="inherit" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }} onClick={this.props.homePage}>
-                            hyconpool.com
+                            minehycon.com
                         </Typography>
-                        <FormControl style={{ flexBasis: 200 }}>
+                        {/* <FormControl style={{ flexBasis: 200 }}>
                             {this.props.validAddress ? 
                                 <Input
                                     id="address"
@@ -51,7 +51,7 @@ export class Header extends Component<any, any> {
                         </FormControl>
                         <IconButton onClick={this.props.searchAddress}>
                             <SearchIcon />
-                        </IconButton>
+                        </IconButton> */}
                     </Toolbar>
                 </AppBar>
             </div>
