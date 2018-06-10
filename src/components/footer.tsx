@@ -16,7 +16,7 @@ export class Footer extends Component<any, any> {
             <div>
                 <Paper style={{ position: "fixed", bottom: 0, height: "5vh", width: "100%" }}>
                     <Typography style={{ textAlign: "center", marginTop: "12px" }}>
-                        © hyconpool 2018 | hycon-core release version: 0.0.4-latest
+                        © hyconpool 2018 | hycon-core release version: 0.0.5-diligent dodo
                     </Typography>
                 </Paper>
             </div>

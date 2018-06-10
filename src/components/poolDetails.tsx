@@ -42,7 +42,7 @@ export class PoolDetails extends Component<any, any> {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container
+                {/* <Grid container
                     style={{
                         minHeight: "30vh",
                         backgroundColor: "#000",
@@ -64,7 +64,7 @@ export class PoolDetails extends Component<any, any> {
                             Last Mined Block | <code> 11983 (2 min ago) </code>
                         </Typography>
                     </Grid>
-                </Grid>
+                </Grid> */}
                 <Grid container
                     style={{
                         minHeight: "50vh",
@@ -82,7 +82,7 @@ export class PoolDetails extends Component<any, any> {
                                         Server
                                     </TableCell>
                                     <TableCell numeric>
-                                        <code>testnet</code>
+                                        <code>hyconpool.com</code>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -90,7 +90,7 @@ export class PoolDetails extends Component<any, any> {
                                         Stratum Port
                                     </TableCell>
                                     <TableCell numeric>
-                                        <code>8041</code>
+                                        <code>9081</code>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -106,7 +106,7 @@ export class PoolDetails extends Component<any, any> {
                                         Password
                                     </TableCell>
                                     <TableCell numeric>
-                                        <code>Leave Empty</code>
+                                        <code>Leave Empty / Any Value</code>
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
