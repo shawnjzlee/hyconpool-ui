@@ -124,58 +124,16 @@ export class MinerDetails extends Component<any, any> {
                             <TableBody>
                                 <TableRow>
                                     <TableCell style={{ fontWeight: 600 }}>
-                                        11231
+                                        Info coming soon!
                                     </TableCell>
                                     <TableCell numeric>
-                                        <code>testnet</code>
+                                        <code></code>
                                     </TableCell>                                    
                                     <TableCell numeric>
-                                        <code>testnet</code>
+                                        <code></code>
                                     </TableCell>                                    
                                     <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ fontWeight: 600 }}>
-                                        11230
-                                    </TableCell>
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>                                    
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>                                    
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ fontWeight: 600 }}>
-                                        11229
-                                    </TableCell>
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>                                    
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>                                    
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ fontWeight: 600 }}>
-                                        11228
-                                    </TableCell>
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>                                    
-                                    <TableCell numeric>
-                                        <code>testnet</code>
-                                    </TableCell>                                    
-                                    <TableCell numeric>
-                                        <code>testnet</code>
+                                        <code></code>
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
