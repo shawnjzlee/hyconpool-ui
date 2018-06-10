@@ -3,62 +3,42 @@ import { Header } from "./components/header";
 import { MinerDetails } from './components/minerDetails';
 import { PoolDetails } from './components/poolDetails';
 import { CssBaseline } from '@material-ui/core';
+import { Link, Route, Switch, RouteComponentProps } from "react-router-dom";
+import { RouteConfig } from "react-router-config";
 import { Footer } from './components/footer';
+import { IRest } from './rest';
 // import { RestClient } from './restClient';
 
-class App extends React.Component<any, any> {
+export const routes: RouteConfig[] = [
+    { exact: true, path: "/" },
+    { exact: true, path: "/minerView/:address"}
+]
+class App extends React.Component<{ rest: IRest }, any> {
+    public rest: IRest
+    public poolDetails: ({ match }: RouteComponentProps<{}>) => JSX.Element
+    public minerDetails: ({ match }: RouteComponentProps<{}>) => JSX.Element
+    public notFound: boolean
+
     constructor(props: any) {
         super(props)
         this.state = {
-            validAddress: 1,
+            name: "hyconpool.",
         }
-    }
-
-    public searchAddress() {
-        let result: any
-        result = fetch('/getAddress', {
-            method: 'GET'
-        }).then((response) => {
-            return response;
-        })
-        console.log(result)
-
-        console.log("searchAddress triggered")
-        if (result) {
-            this.setState({ validAddress: 2 })
-        } else {
-            this.setState({ validAddress: 0 })
-        }
-    }
-
-    public homePage() {
-        this.setState({ validAddress: 1 })
+        this.rest = props.rest
+        this.poolDetails = ({ match }: RouteComponentProps<{}>) => ( <PoolDetails rest={this.rest} /> )
+        this.minerDetails = ({ match }: RouteComponentProps<{ address: string }>) => ( <MinerDetails address={match.params.address} rest={this.rest} />)
     }
 
     public render() {
-        let component: any;
-        switch (this.state.validAddress) {
-            case 0:
-                // should just change search bar to red
-                component = <MinerDetails />
-                break;
-            case 1:
-                component = <PoolDetails />
-                break;
-            case 2:
-                component = <MinerDetails />
-                break;
-        }
-
         return (
             <div>
-                <Header 
-                    validAddress={this.state.validAddress}
-                    homePage={this.homePage.bind(this)}
-                    searchAddress={this.searchAddress.bind(this)}
-                />
-                <CssBaseline />
-                {component}
+                <Header />
+                <CssBaseline />                     
+                <Switch>
+                    {/* <Route exact path='/' component={() => { return <Home name={this.state.name} /> }} /> */}
+                    <Route exact path="/" component={this.poolDetails} />
+                    <Route exact path="/minerDetails" component={this.minerDetails} />
+                </Switch>
                 <Footer />
             </div>
         );

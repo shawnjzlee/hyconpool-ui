@@ -48,12 +48,17 @@ export class MinerDetails extends Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
+            rest: props.rest,
             value: 0
         }
     }
     
-    public handleChangeTab = (event: any, value: any) => {
-        this.setState({ value })
+    // public handleChangeTab = (event: any, value: any) => {
+    //     this.setState({ value })
+    // }
+
+    public getRecentPayout() {
+        
     }
 
     public render() {

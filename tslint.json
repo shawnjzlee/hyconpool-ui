@@ -1,9 +1,23 @@
 {
-  "extends": [],
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts"
     ]
-  }
+  },
+  "jsRules": {},
+  "rules": {
+    "semicolon": [
+      true,
+      "never"
+    ],
+    "no-empty": false,
+    "max-line-length": false,
+    "no-console": false,
+  },
+  "rulesDirectory": []
 }

@@ -7,15 +7,28 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import SearchIcon from '@material-ui/icons/Search';
+import { RestClient } from '../restClient';
 
 export class Header extends Component<any, any> {
+    private rest: RestClient
     constructor(props: any) {
         super(props)
         this.state = {
             address: "",
+            isAddress: false,
+            rest: props.rest,
         }
     }
 
+    public async componentWillMount() {
+    }
+
+    public async submitAddress() {
+        this.setState({ isAddress: await this.state.rest.getAddress(this.state.address) })
+        if (this.state.isAddress) {
+            
+        }
+    }
     public handleChange = (prop: any) => (event: any) => {
         console.log(prop)
         console.log(event.target.value)
@@ -49,7 +62,7 @@ export class Header extends Component<any, any> {
                                 />
                             }
                         </FormControl>
-                        <IconButton onClick={this.props.searchAddress}>
+                        <IconButton onClick={ this.submitAddress }>
                             <SearchIcon />
                         </IconButton>
                     </Toolbar>

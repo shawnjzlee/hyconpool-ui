@@ -18,7 +18,7 @@ export class RestClient implements IRest {
         const headers = new Headers();
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
-        return await fetch(`/address`, {
+        return await fetch(`/payout`, {
             body: JSON.stringify({ address }),
             headers,
             method: "GET",
