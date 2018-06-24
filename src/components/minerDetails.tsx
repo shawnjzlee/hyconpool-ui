@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 // import Tab from '@material-ui/core/Tab/Tab';
 import TableHead from '@material-ui/core/TableHead';
 // import Paper from '@material-ui/core/Paper';
+import MediaQuery from 'react-responsive';
 const WebFont = require('webfontloader');
 
 WebFont.load({
@@ -68,7 +69,7 @@ export class MinerDetails extends Component<any, any> {
                             Hello...
                         </Typography>
                         <Tooltip id="payout-addr" title="Your Payout Address" placement="bottom-start">
-                            <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 700, wordWrap: "break-word" }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 700, wordWrap: "break-word" }}>
                                 H4FPn4X1RfR9RQtmFzY6BRozUAfoR3Ejp
                             </Typography>
                         </Tooltip>
@@ -80,15 +81,28 @@ export class MinerDetails extends Component<any, any> {
                         backgroundColor: "#000",
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Your Hashrate | <code> 10000 Th/s </code>
-                        </Typography>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Unpaid Balance | <code> 1234 HYC </code>
-                        </Typography>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Total Shares | <code> 1,647 (2%) </code>
-                        </Typography>
+                        <MediaQuery query="(min-device-width: 800px)">
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Your Hashrate | <code> 10000 Th/s </code>
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Unpaid Balance | <code> 1234 HYC </code>
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Total Shares | <code> 1,647 (2%) </code>
+                            </Typography>
+                        </MediaQuery>
+                        <MediaQuery query="(max-device-width: 799px)">
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Your Hashrate | <code> 10000 Th/s </code>
+                            </Typography>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Unpaid Balance | <code> 1234 HYC </code>
+                            </Typography>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Total Shares | <code> 1,647 (2%) </code>
+                            </Typography>
+                        </MediaQuery>
                     </Grid>
                 </Grid>
                 <Grid container style={{ paddingBottom: "5vh" }}>

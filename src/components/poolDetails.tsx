@@ -8,6 +8,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import MediaQuery from 'react-responsive';
 // import Paper from '@material-ui/core/Paper';
 const WebFont = require('webfontloader');
 
@@ -30,16 +31,27 @@ export class PoolDetails extends Component<any, any> {
             <div style={{overflow: "hidden" }}>
                 <Grid container
                     style={{ 
-                        height: "60vh",
+                        // height: "60vh",
+                        padding: "16% 0",
                         background: "linear-gradient(45deg, #484fc1 0%,#01a6ea 57%,#00e9ed 100%)"
                     }}>                    
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
-                        <Typography gutterBottom style={{ fontSize: "6em", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
-                            welcome to hyconpool.
-                        </Typography>
-                        <Typography style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
-                            The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
-                        </Typography>
+                        <MediaQuery query="(min-device-width: 800px)">
+                            <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
+                                welcome to hyconpool.
+                            </Typography>
+                            <Typography gutterBottom variant="subheading" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
+                                The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
+                            </Typography>
+                        </MediaQuery>
+                        <MediaQuery query="(max-device-width: 799px)">
+                            <Typography gutterBottom variant="display3" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
+                                welcome to hyconpool.
+                            </Typography>
+                            <Typography gutterBottom variant="body2" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
+                                The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
+                            </Typography>
+                        </MediaQuery>
                     </Grid>
                 </Grid>
                 <Grid container
@@ -48,21 +60,40 @@ export class PoolDetails extends Component<any, any> {
                         backgroundColor: "#000",
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
-                        <Typography gutterBottom style={{ fontSize: "4em", color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            pool details
-                        </Typography>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Hashrate | <code> 10000 Th/s </code>
-                        </Typography>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Active Miners | <code> 53423 </code>
-                        </Typography>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Blocks / Hour | <code> 38 </code>
-                        </Typography>
-                        <Typography gutterBottom style={{ fontSize: "2em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Last Mined Block | <code> 11983 (2 min ago) </code>
-                        </Typography>
+                        <MediaQuery query="(min-device-width: 800px)">
+                            <Typography gutterBottom variant="display4" style={{ color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                pool details
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Hashrate | <code> 10000 Th/s </code>
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Active Miners | <code> 53423 </code>
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Blocks / Hour | <code> 38 </code>
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Last Mined Block | <code> 11983 (2 min ago) </code>
+                            </Typography>
+                        </MediaQuery>
+                        <MediaQuery query="(max-device-width: 799px)">
+                            <Typography gutterBottom variant="display3" style={{ color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                pool details
+                            </Typography>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Hashrate | <code> 10000 Th/s </code>
+                            </Typography>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Active Miners | <code> 53423 </code>
+                            </Typography>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Blocks / Hour | <code> 38 </code>
+                            </Typography>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                                Last Mined Block | <code> 11983 (2 min ago) </code>
+                            </Typography>
+                        </MediaQuery>
                     </Grid>
                 </Grid>
                 <Grid container
