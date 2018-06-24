@@ -9,7 +9,7 @@
     "express": "^4.16.3",
     "log4js": "^2.8.0",
     "mysql": "^2.15.0",
-    "react": "^16.4.0",
+    "react": "^16.4.1",
     "react-dom": "^16.4.0",
     "react-responsive": "^4.1.0",
     "react-scripts-ts": "2.16.0",

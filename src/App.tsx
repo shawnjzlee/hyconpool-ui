@@ -7,6 +7,7 @@ import { Link, Route, Switch, RouteComponentProps } from "react-router-dom";
 import { RouteConfig } from "react-router-config";
 import { Footer } from './components/footer';
 import { IRest } from './rest';
+import { NotFound } from "./components/notFound"
 // import { RestClient } from './restClient';
 
 export const routes: RouteConfig[] = [
@@ -16,7 +17,7 @@ export const routes: RouteConfig[] = [
 class App extends React.Component<{ rest: IRest }, any> {
     public rest: IRest
     public poolDetails: ({ match }: RouteComponentProps<{}>) => JSX.Element
-    public minerDetails: ({ match }: RouteComponentProps<{}>) => JSX.Element
+    public minerDetails: ({ match }: RouteComponentProps<{ address: string }>) => JSX.Element
     public notFound: boolean
 
     constructor(props: any) {
@@ -26,7 +27,7 @@ class App extends React.Component<{ rest: IRest }, any> {
         }
         this.rest = props.rest
         this.poolDetails = ({ match }: RouteComponentProps<{}>) => ( <PoolDetails rest={this.rest} /> )
-        this.minerDetails = ({ match }: RouteComponentProps<{ address: string }>) => ( <MinerDetails address={match.params.address} rest={this.rest} />)
+        this.minerDetails = ({ match }: RouteComponentProps<{ address: string }>) => ( <MinerDetails address={match.params.address} rest={this.rest} notFound={this.notFound} />)
     }
 
     public render() {
@@ -37,7 +38,7 @@ class App extends React.Component<{ rest: IRest }, any> {
                 <Switch>
                     {/* <Route exact path='/' component={() => { return <Home name={this.state.name} /> }} /> */}
                     <Route exact path="/" component={this.poolDetails} />
-                    <Route exact path="/minerDetails" component={this.minerDetails} />
+                    <Route exact path="/miner/:address" component={this.minerDetails} />
                 </Switch>
                 <Footer />
             </div>
