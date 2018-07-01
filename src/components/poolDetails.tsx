@@ -38,7 +38,7 @@ export class PoolDetails extends Component<any, any> {
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
                             <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
-                                welcome to hyconpool.
+                                welcome to minehycon.
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
                                 The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
@@ -46,7 +46,7 @@ export class PoolDetails extends Component<any, any> {
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
                             <Typography gutterBottom variant="display3" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
-                                welcome to hyconpool.
+                                welcome to minehycon.
                             </Typography>
                             <Typography gutterBottom variant="body2" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
                                 The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
@@ -54,7 +54,7 @@ export class PoolDetails extends Component<any, any> {
                         </MediaQuery>
                     </Grid>
                 </Grid>
-                {/* <Grid container
+                <Grid container
                     style={{
                         minHeight: "30vh",
                         backgroundColor: "#000",
@@ -95,7 +95,7 @@ export class PoolDetails extends Component<any, any> {
                             </Typography>
                         </MediaQuery>
                     </Grid>
-                </Grid> */}
+                </Grid>
                 <Grid container
                     style={{
                         minHeight: "50vh",
