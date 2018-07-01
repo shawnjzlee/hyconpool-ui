@@ -1,0 +1,49 @@
+{
+    "users": [
+        {
+            "id": "H4FPn4X1RfR9RQtmFzY6BRozUAfoR3Ejp",
+            "pw": "pw",
+            "shares": 23412234,
+            "payouts": [
+                {
+                    "block": 41234,
+                    "amount": 2134
+                }, {
+                    "block": 41233,
+                    "amount": 1234
+                }, {
+                    "block": 41232,
+                    "amount": 4356
+                }, {
+                    "block": 41231,
+                    "amount": 565
+                }, {
+                    "block": 41230,
+                    "amount": 456
+                }
+            ]
+        }, {
+            "id": "HcdzJwMqiqSKi1V78oPc6dPTBc8A68uE",
+            "pw": "pw",
+            "shares": 2342342,
+            "payouts": [
+                {
+                    "block": 41234,
+                    "amount": 2131
+                }, {
+                    "block": 41233,
+                    "amount": 5435
+                }, {
+                    "block": 41232,
+                    "amount": 5673
+                }, {
+                    "block": 41231,
+                    "amount": 1243
+                }, {
+                    "block": 41230,
+                    "amount": 3654
+                }
+            ]
+        }
+    ]
+}

@@ -9,9 +9,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Tooltip from '@material-ui/core/Tooltip';
-// import AppBar from '@material-ui/core/AppBar';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab/Tab';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab/Tab';
 import TableHead from '@material-ui/core/TableHead';
 // import Paper from '@material-ui/core/Paper';
 import MediaQuery from 'react-responsive';
@@ -23,26 +23,26 @@ WebFont.load({
     }
 });
 
-// const styles = {
-//     grid: {
-//         padding: {
-//             margin: "2em 1em",
-//             width: "96%",
-//         },
-//     },
-//     tabs: {
-//         maxWidth: 9999,
-//         background: "#fff",
-//     }
-// }
+const styles = {
+    grid: {
+        padding: {
+            margin: "2em 1em",
+            width: "96%",
+        },
+    },
+    tabs: {
+        maxWidth: 9999,
+        background: "#fff",
+    }
+}
 
-// function TabContainer(props: any) {
-//     return (
-//         <Typography component="div" style={{ padding: 8 * 3 }}>
-//             {props.children}
-//         </Typography>
-//     )
-// }
+function TabContainer(props: any) {
+    return (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+            {props.children}
+        </Typography>
+    )
+}
 
 export class MinerDetails extends Component<any, any> {
     constructor(props: any) {
@@ -182,8 +182,8 @@ export class MinerDetails extends Component<any, any> {
                         </Table>
                     </Card>
                 </Grid>
-                {/* <Grid container> */}
-                    {/* <AppBar position="static">
+                <Grid container>
+                    <AppBar position="static">
                         <Tabs
                             value={this.state.value}
                             onChange={this.handleChangeTab}
@@ -208,8 +208,8 @@ export class MinerDetails extends Component<any, any> {
                         <TabContainer>
                             Item Two
 
-                        </TabContainer>} */}
-                {/* </Grid> */}
+                        </TabContainer>}
+                </Grid>
             </div>
         )
     }
