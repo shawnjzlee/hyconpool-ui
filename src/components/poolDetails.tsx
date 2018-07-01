@@ -1,23 +1,23 @@
-import * as React from 'react';
-import { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import MediaQuery from 'react-responsive';
+import Card from "@material-ui/core/Card"
+import CardContent from "@material-ui/core/CardContent"
+import Grid from "@material-ui/core/Grid"
+import Table from "@material-ui/core/Table"
+import TableBody from "@material-ui/core/TableBody"
+import TableCell from "@material-ui/core/TableCell"
+import TableRow from "@material-ui/core/TableRow"
+import Typography from "@material-ui/core/Typography"
+import * as React from "react"
+import { Component } from "react"
+import MediaQuery from "react-responsive"
 // import Paper from '@material-ui/core/Paper';
-const WebFont = require('webfontloader');
-
+// tslint:disable-next-line:no-var-requires
+const WebFont = require("webfontloader")
 
 WebFont.load({
     google: {
-      families: ['Open Sans:400,600,700,800']
-    }
-});
+      families: ["Open Sans:400,600,700,800"],
+    },
+})
 
 export class PoolDetails extends Component<any, any> {
     constructor(props: any) {
@@ -30,11 +30,11 @@ export class PoolDetails extends Component<any, any> {
         return(
             <div style={{overflow: "hidden" }}>
                 <Grid container
-                    style={{ 
+                    style={{
                         // height: "60vh",
                         padding: "16% 0",
-                        background: "linear-gradient(45deg, #484fc1 0%,#01a6ea 57%,#00e9ed 100%)"
-                    }}>                    
+                        background: "linear-gradient(45deg, #484fc1 0%,#01a6ea 57%,#00e9ed 100%)",
+                    }}>
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
                             <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>

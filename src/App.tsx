@@ -1,19 +1,35 @@
-import * as React from 'react';
+import { CssBaseline, Snackbar } from "@material-ui/core"
+import AppBar from "@material-ui/core/AppBar"
+import FormControl from "@material-ui/core/FormControl"
+import IconButton from "@material-ui/core/IconButton"
+import Input from "@material-ui/core/Input"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import CloseIcon from "@material-ui/icons/Close"
+import SearchIcon from "@material-ui/icons/Search"
+import * as React from "react"
+import { Redirect, RouteComponentProps } from "react-router"
+import { RouteConfig } from "react-router-config"
+import { Link, Route, Switch } from "react-router-dom"
+import { Footer } from "./components/footer"
 // import { Header } from "./components/header";
-import { MinerDetails } from './components/minerDetails';
-import { PoolDetails } from './components/poolDetails';
-import { CssBaseline, Snackbar } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import { Footer } from './components/footer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import SearchIcon from '@material-ui/icons/Search';
+import { MinerDetails } from "./components/minerDetails"
+import { PoolDetails } from "./components/poolDetails"
 
-class App extends React.Component<any, any> {
+// tslint:disable:no-shadowed-variable
+export const routes: RouteConfig[] = [
+    { exact: true, path: "/" },
+    { exact: true, path: "/miner/:hash" },
+]
+export class App extends React.Component<any, any> {
+    public home: (
+        { match }: RouteComponentProps<{}>,
+    ) => JSX.Element
+
+    public minerDetails: (
+        { match }: RouteComponentProps<{ hash: string }>,
+    ) => JSX.Element
+
     constructor(props: any) {
         super(props)
         this.state = {
@@ -21,24 +37,30 @@ class App extends React.Component<any, any> {
             address: undefined,
             open: false,
             validAddress: 1,
+            redirect: false,
         }
+        this.home = ({ match }: RouteComponentProps<{}>) => (
+            <PoolDetails />
+        )
+        this.minerDetails = ({ match }: RouteComponentProps<{ hash: string }>) => (
+            <MinerDetails hash={match.params.hash} />
+        )
     }
 
-    componentDidMount() {
-        fetch('http://localhost:3004/users')
-            .then(res => res.json())
-            .then(users => this.setState((users)))
+    public componentDidMount() {
+        fetch("http://localhost:3004/users")
+            .then((res) => res.json())
+            .then((users) => this.setState((users)))
     }
 
     public searchAddress(event: any) {
         if (this.state.address === undefined) {
             this.setState({ validAddress: 0 })
-        }
-        else if (!/^[a-zA-Z0-9]+$/.test(this.state.address)) {
+        } else if (!/^[a-zA-Z0-9]+$/.test(this.state.address)) {
             event.preventDefault()
             this.setState({ validAddress: 0, open: true })
         } else {
-            this.setState({ validAddress: 2 })
+            this.setState({ validAddress: 2, redirect: true })
         }
     }
 
@@ -57,36 +79,30 @@ class App extends React.Component<any, any> {
     }
 
     public render() {
-        let component: any;
-        switch (this.state.validAddress) {
-            case 0:
-                // should just change search bar to red
-                // component = <MinerDetails />
-                component = <PoolDetails />
-                break;
-            case 1:
-                component = <PoolDetails />
-                break;
-            case 2:
-                component = <MinerDetails />
-                break;
+        if (this.state.redirect) {
+            return <Redirect to={`/miner/${this.state.address}`} />
         }
-
         return (
             <div>
                 <AppBar position="sticky" color="default" style={{ flexGrow: 1 }}>
                     <Toolbar style={{ display: "flex" }}>
-                        <Typography variant="title" color="inherit" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }} onClick={this.props.homePage}>
-                            minehycon.com
-                        </Typography>
+                        <Link to="/" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", textDecoration: "none" }}>
+                            <Typography
+                                variant="title"
+                                color="primary"
+                                style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }}
+                            >
+                                minehycon.com
+                            </Typography>
+                        </Link>
                         <FormControl style={{ flexBasis: 200 }}>
-                            {this.state.validAddress ? 
+                            {this.state.validAddress ?
                                 <Input
                                     id="address"
                                     type="text"
                                     placeholder="Address"
                                     value={this.state.address}
-                                    onChange={this.handleChange('address')}
+                                    onChange={this.handleChange("address")}
                                 /> :
                                 <Input
                                     error
@@ -94,7 +110,7 @@ class App extends React.Component<any, any> {
                                     type="text"
                                     placeholder="Address"
                                     value={this.state.address}
-                                    onChange={this.handleChange('address')}
+                                    onChange={this.handleChange("address")}
                                 />
                             }
                         </FormControl>
@@ -104,11 +120,16 @@ class App extends React.Component<any, any> {
                     </Toolbar>
                 </AppBar>
                 <CssBaseline />
-                {component}
+                <div>
+                    <Switch>
+                        <Route exact path="/" component={this.home}/>
+                        <Route exact path="/miner/:hash" component={this.minerDetails}/>
+                    </Switch>
+                </div>
                 <Snackbar
                     anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
+                        vertical: "bottom",
+                        horizontal: "left",
                     }}
                     open={this.state.open}
                     autoHideDuration={2000}
@@ -121,8 +142,8 @@ class App extends React.Component<any, any> {
                     }/>
                 <Footer />
             </div>
-        );
+        )
     }
 }
 
-export default App;
+export default App
