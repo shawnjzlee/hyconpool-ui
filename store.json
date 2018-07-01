@@ -3,44 +3,58 @@
         {
             "id": "H4FPn4X1RfR9RQtmFzY6BRozUAfoR3Ejp",
             "pw": "pw",
+            "hashrate": 345324,
             "shares": 23412234,
+            "unpaid_bal": 342,
             "payouts": [
                 {
                     "block": 41234,
+                    "txHash": "testnet",
                     "amount": 2134
                 }, {
                     "block": 41233,
+                    "txHash": "testnet",
                     "amount": 1234
                 }, {
                     "block": 41232,
+                    "txHash": "testnet",
                     "amount": 4356
                 }, {
                     "block": 41231,
+                    "txHash": "testnet",
                     "amount": 565
                 }, {
                     "block": 41230,
+                    "txHash": "testnet",
                     "amount": 456
                 }
             ]
         }, {
             "id": "HcdzJwMqiqSKi1V78oPc6dPTBc8A68uE",
             "pw": "pw",
+            "hashrate": 3453,
             "shares": 2342342,
+            "unpaid_bal": 2344,
             "payouts": [
                 {
-                    "block": 41234,
+                    "block": 21243,
+                    "txHash": "testnet",
                     "amount": 2131
                 }, {
-                    "block": 41233,
+                    "block": 21242,
+                    "txHash": "testnet",
                     "amount": 5435
                 }, {
-                    "block": 41232,
+                    "block": 21241,
+                    "txHash": "testnet",
                     "amount": 5673
                 }, {
-                    "block": 41231,
+                    "block": 21240,
+                    "txHash": "testnet",
                     "amount": 1243
                 }, {
-                    "block": 41230,
+                    "block": 21239,
+                    "txHash": "testnet",
                     "amount": 3654
                 }
             ]
