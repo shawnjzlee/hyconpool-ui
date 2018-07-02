@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar"
 import FormControl from "@material-ui/core/FormControl"
 import IconButton from "@material-ui/core/IconButton"
 import Input from "@material-ui/core/Input"
+import InputAdornment from "@material-ui/core/InputAdornment"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import CloseIcon from "@material-ui/icons/Close"
@@ -45,6 +46,7 @@ export class App extends React.Component<any, any> {
         this.minerDetails = ({ match }: RouteComponentProps<{ hash: string }>) => (
             <MinerDetails hash={match.params.hash} />
         )
+
     }
 
     public componentDidMount() {
@@ -54,14 +56,22 @@ export class App extends React.Component<any, any> {
     }
 
     public searchAddress(event: any) {
+        const url = "http://localhost:3004/users/" + this.state.address
         if (this.state.address === undefined) {
             this.setState({ validAddress: 0 })
         } else if (!/^[a-zA-Z0-9]+$/.test(this.state.address)) {
             event.preventDefault()
             this.setState({ validAddress: 0, open: true })
-        } else {
-            this.setState({ validAddress: 2, redirect: true })
         }
+
+        fetch(url).then((res: any) => {
+            if (res.status !== 404) {
+                this.setState({ validAddress: 2, redirect: true })
+            } else {
+                event.preventDefault()
+                this.setState({ validAddress: 0, open: true })
+            }
+        })
     }
 
     public handleChange = (prop: any) => (event: any) => {
@@ -84,18 +94,18 @@ export class App extends React.Component<any, any> {
         }
         return (
             <div>
-                <AppBar position="sticky" color="default" style={{ flexGrow: 1 }}>
+                <AppBar position="sticky" color="default" style={{ flexGrow: 1, justifyContent: "space-between" }}>
                     <Toolbar style={{ display: "flex" }}>
                         <Link to="/" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", textDecoration: "none" }}>
                             <Typography
                                 variant="title"
                                 color="primary"
-                                style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }}
+                                style={{ flexBasis: 165, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }}
                             >
                                 minehycon.com
                             </Typography>
                         </Link>
-                        <FormControl style={{ flexBasis: 200 }}>
+                        <FormControl style={{ flexBasis: "50%" }}>
                             {this.state.validAddress ?
                                 <Input
                                     id="address"
@@ -103,6 +113,14 @@ export class App extends React.Component<any, any> {
                                     placeholder="Address"
                                     value={this.state.address}
                                     onChange={this.handleChange("address")}
+                                    fullWidth
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={this.searchAddress.bind(this)}>
+                                                <SearchIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
                                 /> :
                                 <Input
                                     error
@@ -111,12 +129,17 @@ export class App extends React.Component<any, any> {
                                     placeholder="Address"
                                     value={this.state.address}
                                     onChange={this.handleChange("address")}
+                                    fullWidth
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={this.searchAddress.bind(this)}>
+                                                <SearchIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
                                 />
                             }
                         </FormControl>
-                        <IconButton onClick={this.searchAddress.bind(this)}>
-                            <SearchIcon />
-                        </IconButton>
                     </Toolbar>
                 </AppBar>
                 <CssBaseline />
@@ -132,7 +155,7 @@ export class App extends React.Component<any, any> {
                         horizontal: "left",
                     }}
                     open={this.state.open}
-                    autoHideDuration={2000}
+                    autoHideDuration={6000}
                     onClose={this.handleClose}
                     message={<span id="message-id">Could not find that address</span>}
                     action={
@@ -141,7 +164,7 @@ export class App extends React.Component<any, any> {
                         </IconButton>
                     }/>
                 <Footer />
-            </div>
+            </div >
         )
     }
 }
