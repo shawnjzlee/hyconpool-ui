@@ -38,18 +38,18 @@ export class PoolDetails extends Component<any, any> {
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
                             <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
-                                welcome to minehycon.
+                                { this.props.locale["welcome-title"] }
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
-                                The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
+                                { this.props.locale["welcome-sub"] }
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
                             <Typography gutterBottom variant="display3" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
-                                welcome to minehycon.
+                                { this.props.locale["welcome-title"] }
                             </Typography>
                             <Typography gutterBottom variant="body2" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
-                                The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.
+                                { this.props.locale["welcome-sub"] }
                             </Typography>
                         </MediaQuery>
                     </Grid>
@@ -62,36 +62,36 @@ export class PoolDetails extends Component<any, any> {
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
                             <Typography gutterBottom variant="display4" style={{ color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                pool details
+                                { this.props.locale["pool-details-title"] }
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Hashrate | <code> 10000 Th/s </code>
+                                { this.props.locale.hashrate } | <code> 10000 Th/s </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Active Miners | <code> 53423 </code>
+                                { this.props.locale["active-miners"] } | <code> 53423 </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Blocks / Hour | <code> 38 </code>
+                                { this.props.locale["blocks-hour"] } | <code> 38 </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Last Mined Block | <code> 11983 (2 min ago) </code>
+                                { this.props.locale["last-mined"] } | <code> 11983 (2 min ago) </code>
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
                             <Typography gutterBottom variant="display3" style={{ color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                pool details
+                                { this.props.locale["pool-details-title"] }
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Hashrate | <code> 10000 Th/s </code>
+                                { this.props.locale.hashrate } | <code> 10000 Th/s </code>
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Active Miners | <code> 53423 </code>
+                                { this.props.locale["active-miners"] } | <code> 53423 </code>
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Blocks / Hour | <code> 38 </code>
+                                { this.props.locale["blocks-hour"] } | <code> 38 </code>
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Last Mined Block | <code> 11983 (2 min ago) </code>
+                                { this.props.locale["last-mined"] } | <code> 11983 (2 min ago) </code>
                             </Typography>
                         </MediaQuery>
                     </Grid>
@@ -103,14 +103,14 @@ export class PoolDetails extends Component<any, any> {
                     <Card style={{ margin: "auto auto", minWidth: "50%" }}>
                         <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #8f44a1 0%,#4a34b2 42%,#99459a 100%)", paddingBottom: 0 }}>
                             <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600, margin: "auto 0" }}>
-                                How to Connect
+                                { this.props.locale["instructions-title"] }
                             </Typography>
                         </CardContent>
                         <Table>
                             <TableBody>
                                 <TableRow>
                                     <TableCell style={{ fontWeight: 600 }}>
-                                        Server
+                                        { this.props.locale.server }
                                     </TableCell>
                                     <TableCell numeric>
                                         <code>minehycon.com</code>
@@ -118,7 +118,7 @@ export class PoolDetails extends Component<any, any> {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell style={{ fontWeight: 600 }}>
-                                        Stratum Port
+                                        { this.props.locale["stratum-port"] }
                                     </TableCell>
                                     <TableCell numeric>
                                         <code>9081</code>
@@ -126,18 +126,18 @@ export class PoolDetails extends Component<any, any> {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell style={{ fontWeight: 600 }}>
-                                        Username
+                                        { this.props.locale.username }
                                     </TableCell>
                                     <TableCell numeric>
-                                        <code>Your Hycon Wallet Address</code>
+                                        <code>{ this.props.locale["your-wallet"] }</code>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell style={{ fontWeight: 600 }}>
-                                        Password
+                                        { this.props.locale.password }
                                     </TableCell>
                                     <TableCell numeric>
-                                        <code>Leave Empty / Any Value</code>
+                                        <code>{ this.props.locale["your-password"] }</code>
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
