@@ -33,7 +33,7 @@ interface IMinerDetailsState {
     hashrate: number,
     unpaid: number,
     shares: number,
-    payouts: [{ block: string, txHash: string, amount: number }],
+    payouts: [{ id: number, block: string, txHash: string, amount: number }],
 }
 
 export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
@@ -46,7 +46,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             hashrate: 0,
             unpaid: 0,
             shares: 0,
-            payouts: [{ block: "", txHash: "", amount: 0 }],
+            payouts: [{ id: 0, block: "", txHash: "", amount: 0 }],
         }
     }
     public componentWillMount() {
@@ -137,9 +137,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             </TableHead>
                             <TableBody>
                                 {
-                                    this.state.payouts.map( (payout) => {
+                                    this.state.payouts.slice(0, 25).map( (payout) => {
                                     return (
-                                        <TableRow>
+                                        <TableRow key={payout.block}>
                                             <TableCell style={{ fontWeight: 600 }}>
                                                 {payout.block}
                                             </TableCell>
