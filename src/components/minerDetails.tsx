@@ -12,6 +12,7 @@ import * as React from "react"
 import { Component } from "react"
 // import Paper from '@material-ui/core/Paper';
 import MediaQuery from "react-responsive"
+import { IText } from "../locales/locales"
 // tslint:disable-next-line:no-var-requires
 const WebFont = require("webfontloader")
 
@@ -23,6 +24,7 @@ WebFont.load({
 
 interface IMinerProps {
     hash: string
+    locale: IText
 }
 
 interface IMinerDetailsState {
@@ -77,7 +79,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     }}>
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <Typography style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
-                            Hello...
+                            { this.props.locale["miner-title"] }
                         </Typography>
                         <Tooltip id="payout-addr" title="Your Payout Address" placement="bottom-start">
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 700, wordWrap: "break-word" }}>
@@ -94,24 +96,24 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Your Hashrate | <code> {this.state.hashrate} H/s </code>
+                                { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Unpaid Balance | <code> {this.state.unpaid} HYC </code>
+                                { this.props.locale["unpaid-balance"] } | <code> {this.state.unpaid} HYC </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Total Shares | <code> {this.state.shares} </code>
+                                { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Your Hashrate | <code> {this.state.hashrate} H/s </code>
+                                { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Unpaid Balance | <code> {this.state.unpaid} HYC </code>
+                                { this.props.locale["unpaid-balance"] } | <code> {this.state.unpaid} HYC </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
-                                Total Shares | <code> {this.state.shares} </code>
+                                { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
                             </Typography>
                         </MediaQuery>
                     </Grid>
@@ -120,17 +122,17 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
                         <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
                             <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600, margin: "auto 0" }}>
-                                Shares
+                                { this.props.locale["table-shares"] }
                             </Typography>
                         </CardContent>
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Block</TableCell>
+                                    <TableCell>{ this.props.locale["table-block"] }</TableCell>
                                     {/* <TableCell numeric>Address</TableCell>
                                     <TableCell numeric>Hashes</TableCell> */}
-                                    <TableCell numeric>Transaction ID</TableCell>
-                                    <TableCell numeric>Amount</TableCell>
+                                    <TableCell numeric>{ this.props.locale["table-txid"] }</TableCell>
+                                    <TableCell numeric>{ this.props.locale["table-amount"] }</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

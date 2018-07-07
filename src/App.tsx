@@ -16,6 +16,7 @@ import { Footer } from "./components/footer"
 // import { Header } from "./components/header";
 import { MinerDetails } from "./components/minerDetails"
 import { PoolDetails } from "./components/poolDetails"
+import { getLocale, IText } from "./locales/locales"
 
 // tslint:disable:no-shadowed-variable
 export const routes: RouteConfig[] = [
@@ -31,6 +32,8 @@ export class App extends React.Component<any, any> {
         { match }: RouteComponentProps<{ hash: string }>,
     ) => JSX.Element
 
+    private locale: IText
+
     constructor(props: any) {
         super(props)
         this.state = {
@@ -39,14 +42,17 @@ export class App extends React.Component<any, any> {
             open: false,
             validAddress: 1,
             redirect: false,
+            language: "",
         }
         this.home = ({ match }: RouteComponentProps<{}>) => (
-            <PoolDetails />
+            <PoolDetails locale={this.locale} />
         )
         this.minerDetails = ({ match }: RouteComponentProps<{ hash: string }>) => (
-            <MinerDetails hash={match.params.hash} />
+            <MinerDetails hash={match.params.hash} locale={this.locale} />
         )
 
+        this.locale = getLocale(navigator.language)
+        this.setState({ language: navigator.language.split("-")[0] })
     }
 
     public componentDidMount() {
@@ -75,8 +81,6 @@ export class App extends React.Component<any, any> {
     }
 
     public handleChange = (prop: any) => (event: any) => {
-        console.log(prop)
-        console.log(event.target.value)
         this.setState({ [prop]: event.target.value })
     }
 
@@ -157,7 +161,7 @@ export class App extends React.Component<any, any> {
                     open={this.state.open}
                     autoHideDuration={6000}
                     onClose={this.handleClose}
-                    message={<span id="message-id">Could not find that address</span>}
+                    message={<span id="message-id">{ this.locale["error-no-address"] }</span>}
                     action={
                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleClose}>
                             <CloseIcon/>
