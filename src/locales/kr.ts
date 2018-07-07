@@ -1,36 +1,36 @@
 export default {
     // tslint:disable:object-literal-sort-keys
     // header ---
-    "address": "Address",
+    "address": "주소",
 
     // poolDetails ---
-    "welcome-title": "welcome to minehycon.",
-    "welcome-sub": "The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.",
-    "pool-details-title": "pool details",
-    "hashrate": "Hashrate",
-    "active-miners": "Active Miners",
-    "blocks-hour": "Blocks / Hour",
-    "last-mined": "Last Mined Block",
-    "instructions-title": "how to connect",
-    "server": "Server",
-    "stratum-port": "Stratum Port",
-    "username": "Username",
-    "your-wallet": "Your Hycon Wallet Address",
-    "password": "password",
-    "your-password": "Leave Empty / Any Value",
+    "welcome-title": "minehycon에 오신것을 환영합니다.",
+    "welcome-sub": "최초의, 높은 퍼포먼스의 HYCON Pool, 채굴(마이닝) 즉시 지급되는 보상, 익명의 채굴, 정확한 해쉬레이트 리포팅, 모든 과정에 효율적인 채굴(마이닝) 엔진.",
+    "pool-details-title": "pool 세부정보",
+    "hashrate": "해쉬레이트",
+    "active-miners": "활동중인 채굴자들",
+    "blocks-hour": "블록수 / 시간",
+    "last-mined": "마지막으로 채굴된 블록",
+    "instructions-title": "접속 방법",
+    "server": "서버",
+    "stratum-port": "스트라텀 포트",
+    "username": "유저이름",
+    "your-wallet": "당신의 Hycon 지갑 주소",
+    "password": "비밀번호",
+    "your-password": "빈칸으로 남겨두세요 / 어떤 값도 상관없습니다",
 
     // minerDetails ---
-    "miner-title": "hello...",
-    "your-hashrate": "Your Hashrate",
-    "unpaid-balance": "Unpaid Balance",
-    "total-shares": "Total Shares",
-    "table-shares": "Shares",
-    "table-block": "Block",
-    "table-txid": "Transaction ID",
-    "table-amount": "Amount",
+    "miner-title": "반갑습니다...",
+    "your-hashrate": "당신의 해쉬레이트",
+    "unpaid-balance": "지급되지 않은 하이콘",
+    "total-shares": "전체 지분",
+    "table-shares": "블록당 지분",
+    "table-block": "블록",
+    "table-txid": "거래(트랜잭션) ID",
+    "table-amount": "개수",
 
     // footer ---
     // misc ---
-    "error-no-address": "Could not find that address",
+    "error-no-address": "주소를 찾을 수 없습니다.",
 
 }

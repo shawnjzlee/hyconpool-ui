@@ -1,9 +1,11 @@
-import { CssBaseline, Snackbar } from "@material-ui/core"
+import { CssBaseline, MenuItem, Select, Snackbar } from "@material-ui/core"
 import AppBar from "@material-ui/core/AppBar"
 import FormControl from "@material-ui/core/FormControl"
+import Grid from "@material-ui/core/Grid"
 import IconButton from "@material-ui/core/IconButton"
 import Input from "@material-ui/core/Input"
 import InputAdornment from "@material-ui/core/InputAdornment"
+import Paper from "@material-ui/core/Paper"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import CloseIcon from "@material-ui/icons/Close"
@@ -12,8 +14,6 @@ import * as React from "react"
 import { Redirect, RouteComponentProps } from "react-router"
 import { RouteConfig } from "react-router-config"
 import { Link, Route, Switch } from "react-router-dom"
-import { Footer } from "./components/footer"
-// import { Header } from "./components/header";
 import { MinerDetails } from "./components/minerDetails"
 import { PoolDetails } from "./components/poolDetails"
 import { getLocale, IText } from "./locales/locales"
@@ -32,17 +32,17 @@ export class App extends React.Component<any, any> {
         { match }: RouteComponentProps<{ hash: string }>,
     ) => JSX.Element
 
-    private locale: IText
+    public locale: IText
 
     constructor(props: any) {
         super(props)
         this.state = {
             users: [],
-            address: undefined,
+            address: "",
             open: false,
             validAddress: 1,
             redirect: false,
-            language: "",
+            language: navigator.language.split("-")[0],
         }
         this.home = ({ match }: RouteComponentProps<{}>) => (
             <PoolDetails locale={this.locale} />
@@ -52,7 +52,6 @@ export class App extends React.Component<any, any> {
         )
 
         this.locale = getLocale(navigator.language)
-        this.setState({ language: navigator.language.split("-")[0] })
     }
 
     public componentDidMount() {
@@ -63,11 +62,13 @@ export class App extends React.Component<any, any> {
 
     public searchAddress(event: any) {
         const url = "http://localhost:3004/users/" + this.state.address
-        if (this.state.address === undefined) {
+        if (this.state.address === "") {
             this.setState({ validAddress: 0 })
+            return
         } else if (!/^[a-zA-Z0-9]+$/.test(this.state.address)) {
             event.preventDefault()
             this.setState({ validAddress: 0, open: true })
+            return
         }
 
         fetch(url).then((res: any) => {
@@ -92,6 +93,12 @@ export class App extends React.Component<any, any> {
         this.setState({ validAddress: 1 })
     }
 
+    public languageChange = (event: any) => {
+        this.locale = getLocale(event.target.value)
+        this.setState({ [event.target.name]: event.target.value })
+        console.log(this.locale)
+        console.log(this.state.language)
+    }
     public render() {
         if (this.state.redirect) {
             return <Redirect to={`/miner/${this.state.address}`} />
@@ -167,7 +174,30 @@ export class App extends React.Component<any, any> {
                             <CloseIcon/>
                         </IconButton>
                     }/>
-                <Footer />
+                <div>
+                    <Paper style={{ position: "fixed", bottom: 0, height: "5vh", width: "100%" }}>
+                        <Grid container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Typography style={{ textAlign: "center", marginTop: "12px", marginRight: "12px" }}>
+                                © minehycon 2018 | hycon-core release version: 0.0.6-eccentric emu
+                        </Typography>
+                            <FormControl style={{ marginTop: "1.5vh" }}>
+                                <Select
+                                    value={this.state.language}
+                                    onChange={this.languageChange.bind(event)}
+                                    inputProps={{
+                                        id: "lang_select",
+                                        name: "language",
+                                    }}
+                                    style={{ fontSize: 10, cursor: "pointer" }}
+                                    autoWidth
+                                >
+                                    <MenuItem value={"en"}>EN</MenuItem>
+                                    <MenuItem value={"ko"}>KR</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Paper>
+                </div >
             </div >
         )
     }
