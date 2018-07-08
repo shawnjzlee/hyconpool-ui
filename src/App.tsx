@@ -32,7 +32,8 @@ export class App extends React.Component<any, any> {
         { match }: RouteComponentProps<{ hash: string }>,
     ) => JSX.Element
 
-    public locale: IText
+    private locale: IText
+    private font: string
 
     constructor(props: any) {
         super(props)
@@ -45,13 +46,13 @@ export class App extends React.Component<any, any> {
             language: navigator.language.split("-")[0],
         }
         this.home = ({ match }: RouteComponentProps<{}>) => (
-            <PoolDetails locale={this.locale} />
+            <PoolDetails locale={this.locale} font={this.font} />
         )
         this.minerDetails = ({ match }: RouteComponentProps<{ hash: string }>) => (
-            <MinerDetails hash={match.params.hash} locale={this.locale} />
+            <MinerDetails hash={match.params.hash} locale={this.locale} font={this.font} />
         )
-
         this.locale = getLocale(navigator.language)
+        this.font = (this.state.language === "en" ? "Open Sans" : "Nanum Gothic")
     }
 
     public componentDidMount() {
@@ -100,6 +101,11 @@ export class App extends React.Component<any, any> {
         console.log(this.state.language)
     }
     public render() {
+        if (this.state.language === "en") {
+            this.font = "Open Sans"
+        } else {
+            this.font = "Nanum Gothic"
+        }
         if (this.state.redirect) {
             return <Redirect to={`/miner/${this.state.address}`} />
         }
@@ -107,11 +113,11 @@ export class App extends React.Component<any, any> {
             <div>
                 <AppBar position="sticky" color="default" style={{ flexGrow: 1, justifyContent: "space-between" }}>
                     <Toolbar style={{ display: "flex" }}>
-                        <Link to="/" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", textDecoration: "none" }}>
+                        <Link to="/" style={{ flex: 1, textAlign: "left", fontFamily: this.font, textDecoration: "none" }}>
                             <Typography
                                 variant="title"
                                 color="primary"
-                                style={{ flexBasis: 165, textAlign: "left", fontFamily: "Open Sans", cursor: "pointer" }}
+                                style={{ flexBasis: 165, textAlign: "left", fontFamily: this.font, cursor: "pointer" }}
                             >
                                 minehycon.com
                             </Typography>
@@ -178,11 +184,11 @@ export class App extends React.Component<any, any> {
                 <Paper style={{ position: "fixed", bottom: 0, height: "40px", paddingTop: 10, width: "100%" }}>
                     <Grid container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                         <Grid item>
-                            <a href="https://t.me/minehycon" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", textDecoration: "none" }}>
+                            <a href="https://t.me/minehycon" style={{ flex: 1, textAlign: "left", fontFamily: this.font, textDecoration: "none" }}>
                                 <Typography
                                     variant="caption"
                                     color="primary"
-                                    style={{ flexBasis: 165, textAlign: "center", fontFamily: "Open Sans", cursor: "pointer" }}
+                                    style={{ flexBasis: 165, textAlign: "center", fontFamily: this.font, cursor: "pointer" }}
                                 >
                                     telegram |
                                 </Typography>
@@ -191,13 +197,13 @@ export class App extends React.Component<any, any> {
                         <Grid item>
                             <Typography
                                 variant="caption"
-                                style={{ flexBasis: 165, textAlign: "center", fontFamily: "Open Sans" }}
+                                style={{ flexBasis: 165, marginLeft: 5, textAlign: "center", fontFamily: this.font }}
                             >
                                 © minehycon 2018 | hycon-core release version: 0.0.6-eccentric emu
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <FormControl style={{ flexBasis: 165, marginLeft: 10, textAlign: "center", fontFamily: "Open Sans" }}>
+                            <FormControl style={{ flexBasis: 165, marginLeft: 10, textAlign: "center", fontFamily: this.font }}>
                                 <Select
                                     value={this.state.language}
                                     onChange={this.languageChange.bind(event)}
