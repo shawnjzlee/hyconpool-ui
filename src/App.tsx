@@ -173,14 +173,31 @@ export class App extends React.Component<any, any> {
                         <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleClose}>
                             <CloseIcon/>
                         </IconButton>
-                    }/>
-                <div>
-                    <Paper style={{ position: "fixed", bottom: 0, height: "5vh", width: "100%" }}>
-                        <Grid container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Typography style={{ textAlign: "center", marginTop: "12px", marginRight: "12px" }}>
+                    }
+                />
+                <Paper style={{ position: "fixed", bottom: 0, height: "40px", paddingTop: 10, width: "100%" }}>
+                    <Grid container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <Grid item>
+                            <a href="https://t.me/minehycon" style={{ flex: 1, textAlign: "left", fontFamily: "Open Sans", textDecoration: "none" }}>
+                                <Typography
+                                    variant="caption"
+                                    color="primary"
+                                    style={{ flexBasis: 165, textAlign: "center", fontFamily: "Open Sans", cursor: "pointer" }}
+                                >
+                                    telegram |
+                                </Typography>
+                            </a>
+                        </Grid>
+                        <Grid item>
+                            <Typography
+                                variant="caption"
+                                style={{ flexBasis: 165, textAlign: "center", fontFamily: "Open Sans" }}
+                            >
                                 © minehycon 2018 | hycon-core release version: 0.0.6-eccentric emu
-                        </Typography>
-                            <FormControl style={{ marginTop: "1.5vh" }}>
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <FormControl style={{ flexBasis: 165, marginLeft: 10, textAlign: "center", fontFamily: "Open Sans" }}>
                                 <Select
                                     value={this.state.language}
                                     onChange={this.languageChange.bind(event)}
@@ -196,8 +213,8 @@ export class App extends React.Component<any, any> {
                                 </Select>
                             </FormControl>
                         </Grid>
-                    </Paper>
-                </div >
+                    </Grid>
+                </Paper>
             </div >
         )
     }

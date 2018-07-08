@@ -101,7 +101,7 @@ export class PoolDetails extends Component<any, any> {
                         minHeight: "50vh",
                     }}>
                     <Card style={{ margin: "auto auto", minWidth: "50%" }}>
-                        <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #8f44a1 0%,#4a34b2 42%,#99459a 100%)", paddingBottom: 0 }}>
+                        <CardContent style={{ minHeight: "50px", background: "linear-gradient(45deg, #8f44a1 0%,#4a34b2 42%,#99459a 100%)", paddingBottom: 0 }}>
                             <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600, margin: "auto 0" }}>
                                 { this.props.locale["instructions-title"] }
                             </Typography>
