@@ -37,18 +37,18 @@ export class PoolDetails extends Component<any, any> {
                     }}>
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
-                            <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
+                            <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: this.props.font, fontWeight: 700 }}>
                                 { this.props.locale["welcome-title"] }
                             </Typography>
-                            <Typography gutterBottom variant="subheading" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="subheading" style={{ fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["welcome-sub"] }
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="display3" style={{ wordWrap: "break-word", color: "#fff", fontFamily: "Open Sans", fontWeight: 700 }}>
+                            <Typography gutterBottom variant="display3" style={{ wordWrap: "break-word", color: "#fff", fontFamily: this.props.font, fontWeight: 700 }}>
                                 { this.props.locale["welcome-title"] }
                             </Typography>
-                            <Typography gutterBottom variant="body2" style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="body2" style={{ fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["welcome-sub"] }
                             </Typography>
                         </MediaQuery>
@@ -61,36 +61,36 @@ export class PoolDetails extends Component<any, any> {
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
-                            <Typography gutterBottom variant="display4" style={{ color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display4" style={{ color: "#5a5a5a", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["pool-details-title"] }
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale.hashrate } | <code> 10000 Th/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["active-miners"] } | <code> 53423 </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["blocks-hour"] } | <code> 38 </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["last-mined"] } | <code> 11983 (2 min ago) </code>
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="display3" style={{ color: "#5a5a5a", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display3" style={{ color: "#5a5a5a", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["pool-details-title"] }
                             </Typography>
-                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale.hashrate } | <code> 10000 Th/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["active-miners"] } | <code> 53423 </code>
                             </Typography>
-                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["blocks-hour"] } | <code> 38 </code>
                             </Typography>
-                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["last-mined"] } | <code> 11983 (2 min ago) </code>
                             </Typography>
                         </MediaQuery>
@@ -102,7 +102,7 @@ export class PoolDetails extends Component<any, any> {
                     }}>
                     <Card style={{ margin: "auto auto", minWidth: "50%" }}>
                         <CardContent style={{ minHeight: "50px", background: "linear-gradient(45deg, #8f44a1 0%,#4a34b2 42%,#99459a 100%)", paddingBottom: 0 }}>
-                            <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600, margin: "auto 0" }}>
+                            <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: this.props.font, fontWeight: 600, margin: "auto 0" }}>
                                 { this.props.locale["instructions-title"] }
                             </Typography>
                         </CardContent>

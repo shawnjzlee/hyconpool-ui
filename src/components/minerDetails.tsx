@@ -25,6 +25,7 @@ WebFont.load({
 interface IMinerProps {
     hash: string
     locale: IText
+    font: string
 }
 
 interface IMinerDetailsState {
@@ -78,11 +79,11 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                         background: "linear-gradient(122deg, #e5676b 0%,#fac84d 39%,#f6ac4b 100%)",
                     }}>
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
-                        <Typography style={{ fontFamily: "Open Sans", fontWeight: 600 }}>
+                        <Typography style={{ fontFamily: this.props.font, fontWeight: 600 }}>
                             { this.props.locale["miner-title"] }
                         </Typography>
                         <Tooltip id="payout-addr" title="Your Payout Address" placement="bottom-start">
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 700, wordWrap: "break-word" }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 700, wordWrap: "break-word" }}>
                                 {this.state.hash}
                             </Typography>
                         </Tooltip>
@@ -95,24 +96,24 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["unpaid-balance"] } | <code> {this.state.unpaid} HYC </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["unpaid-balance"] } | <code> {this.state.unpaid} HYC </code>
                             </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: "Open Sans", fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
                             </Typography>
                         </MediaQuery>
@@ -121,7 +122,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                 <Grid container style={{ paddingBottom: "5vh" }}>
                     <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
                         <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
-                            <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: "Open Sans", fontWeight: 600, margin: "auto 0" }}>
+                            <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: this.props.font, fontWeight: 600, margin: "auto 0" }}>
                                 { this.props.locale["table-shares"] }
                             </Typography>
                         </CardContent>
