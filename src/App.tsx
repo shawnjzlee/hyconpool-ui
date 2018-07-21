@@ -113,7 +113,7 @@ export class App extends React.Component<any, any> {
         }
         return (
             <div>
-                <AppBar position="sticky" color="default" style={{ flexGrow: 1, justifyContent: "space-between" }}>
+                <AppBar position="static" color="default" style={{ flexGrow: 1, justifyContent: "space-between" }}>
                     <Toolbar style={{ display: "flex" }}>
                         <Link to="/" style={{ flex: 1, textAlign: "left", fontFamily: this.font, textDecoration: "none" }}>
                             <Typography
@@ -130,7 +130,7 @@ export class App extends React.Component<any, any> {
                                 <Input
                                     id="address"
                                     type="text"
-                                    placeholder="Address"
+                                    placeholder={this.locale.address}
                                     value={this.state.address}
                                     onChange={this.handleChange("address")}
                                     fullWidth
@@ -146,7 +146,7 @@ export class App extends React.Component<any, any> {
                                     error
                                     id="address"
                                     type="text"
-                                    placeholder="Address"
+                                    placeholder={this.locale.address}
                                     value={this.state.address}
                                     onChange={this.handleChange("address")}
                                     fullWidth
