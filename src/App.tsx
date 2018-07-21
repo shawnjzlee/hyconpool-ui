@@ -83,11 +83,16 @@ export class App extends React.Component<any, any> {
     }
 
     public handleChange = (prop: any) => (event: any) => {
+        event.preventDefault()
         this.setState({ [prop]: event.target.value })
     }
 
     public handleClose = (event: any) => {
         this.setState({ open: false })
+    }
+
+    public handleRedirect() {
+        this.setState({ redirect: false })
     }
 
     public homePage() {
@@ -106,9 +111,6 @@ export class App extends React.Component<any, any> {
         } else {
             this.font = "Nanum Gothic"
         }
-        if (this.state.redirect) {
-            return <Redirect to={`/miner/${this.state.address}`} />
-        }
         return (
             <div>
                 <AppBar position="sticky" color="default" style={{ flexGrow: 1, justifyContent: "space-between" }}>
@@ -118,6 +120,7 @@ export class App extends React.Component<any, any> {
                                 variant="title"
                                 color="primary"
                                 style={{ flexBasis: 165, textAlign: "left", fontFamily: this.font, cursor: "pointer" }}
+                                onClick={this.handleRedirect.bind(this)}
                             >
                                 minehycon.com
                             </Typography>
@@ -160,12 +163,14 @@ export class App extends React.Component<any, any> {
                     </Toolbar>
                 </AppBar>
                 <CssBaseline />
-                <div>
-                    <Switch>
-                        <Route exact path="/" component={this.home}/>
-                        <Route exact path="/miner/:hash" component={this.minerDetails}/>
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route exact path="/" render={() => (
+                        this.state.redirect ?
+                            (<Redirect to={`/miner/${this.state.address}`} />) :
+                            (<PoolDetails locale={this.locale} font={this.font} />)
+                    )}/>
+                    <Route exact path="/miner/:hash" component={this.minerDetails}/>
+                </Switch>
                 <Snackbar
                     anchorOrigin={{
                         vertical: "bottom",
