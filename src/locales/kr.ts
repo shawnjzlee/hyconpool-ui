@@ -17,7 +17,7 @@ export default {
     "username": "유저이름",
     "your-wallet": "당신의 Hycon 지갑 주소",
     "password": "비밀번호",
-    "your-password": "빈칸으로 남겨두세요 / 어떤 값도 상관없습니다",
+    "your-password": "Your Worker Label (up to 16 characters)",
 
     // minerDetails ---
     "miner-title": "반갑습니다...",
