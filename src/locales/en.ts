@@ -24,6 +24,7 @@ export default {
     "your-hashrate": "Your Hashrate",
     "your-workers": "Your Workers",
     "unpaid-balance": "Unpaid Balance",
+    "table-timestamp": "Timestamp",
     "total-shares": "Total Shares",
     "table-shares": "Shares",
     "table-block": "Block",
