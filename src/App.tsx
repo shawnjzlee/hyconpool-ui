@@ -60,7 +60,7 @@ export class App extends React.Component<any, any> {
     }
 
     public async searchAddress(event: any) {
-        const url = "http://localhost:3004/" + this.state.address
+        const url = "http://localhost:8080/miner/" + this.state.address
         if (this.state.address === "") {
             this.setState({ validAddress: 0 })
             return

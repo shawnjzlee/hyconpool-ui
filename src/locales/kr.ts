@@ -24,12 +24,13 @@ export default {
     "your-hashrate": "당신의 해쉬레이트",
     "your-workers": "Your Workers",
     "unpaid-balance": "지급되지 않은 하이콘",
-    "total-shares": "전체 지분",
+    "current-fee": "Current Fee Rate",
     "table-timestamp": "Timestamp",
     "table-shares": "블록당 지분",
     "table-block": "블록",
     "table-txid": "거래(트랜잭션) ID",
     "table-amount": "개수",
+    "table-fee": "Fee (%)",
 
     // footer ---
     // misc ---
