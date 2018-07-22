@@ -25,6 +25,7 @@ export default {
     "your-workers": "Your Workers",
     "unpaid-balance": "지급되지 않은 하이콘",
     "total-shares": "전체 지분",
+    "table-timestamp": "Timestamp",
     "table-shares": "블록당 지분",
     "table-block": "블록",
     "table-txid": "거래(트랜잭션) ID",

@@ -5,7 +5,9 @@ import Grid from "@material-ui/core/Grid"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
+import TableFooter from "@material-ui/core/TableFooter"
 import TableHead from "@material-ui/core/TableHead"
+import TablePagination from "@material-ui/core/TablePagination"
 import TableRow from "@material-ui/core/TableRow"
 import TooltipUI from "@material-ui/core/Tooltip"
 import Typography from "@material-ui/core/Typography"
@@ -19,22 +21,6 @@ import { IText } from "../locales/locales"
 const WebFont = require("webfontloader")
 // tslint:disable-next-line:no-var-requires
 const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
-
-// // TODO: step through and find/fix missing data in fetch
-// const info = [
-//     {name: "04:00", uv: 4000, pv: 2400},
-//     {name: "05:00", uv: 3000, pv: 1398},
-//     {name: "06:00", uv: 2000, pv: 9800},
-//     {name: "07:00", uv: 50000, pv: 1000},
-//     {name: "08:00", uv: 0, pv: 0},
-//     {name: "09:00", uv: 2390, pv: 3800},
-//     {name: "10:00", uv: 3490, pv: 4300},
-//     {name: "11:00", uv: 3490, pv: 4300},
-//     {name: "13:00", uv: 15000, pv: 4300},
-//     {name: "14:00", uv: 3490, pv: 4300},
-//     {name: "15:00", uv: 3490, pv: 4300},
-//     {name: "16:00", uv: 3490, pv: 4300},
-// ]
 
 WebFont.load({
     google: {
@@ -54,11 +40,13 @@ interface IMinerDetailsState {
     hashrate: number,
     shares: number,
     mounted: boolean,
-    payouts: [{ id: number, block: string, txHash: string, amount: number }],
+    page: number,
+    rowsPerPage: number,
 }
 
 export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
-    private data: any = []
+    private hashStats: any = []
+    private payouts: any = []
     constructor(props: any) {
         super(props)
         this.state = {
@@ -67,29 +55,45 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             hashrate: 0,
             shares: 0,
             mounted: false,
-            payouts: [{ id: 0, block: "", txHash: "", amount: 0 }],
+            page: 0,
+            rowsPerPage: 10,
         }
     }
 
     public async componentWillMount() {
         const url = "http://localhost:3004/" + this.state.hash
         const response = await fetch(url)
-        const stats = await response.json()
+        const result = await response.json()
 
-        for (const stat of stats.minerData) {
+        for (const stat of result.minerData) {
             stat.timestamp = stat.timestamp.split("T")[1].slice(0, 5)
             stat.workers = +stat.workers
             stat.valid_hashes = +stat.valid_hashes
             stat.stale_hashes = +stat.stale_hashes
             stat.pending_hashes = +stat.pending_hashes
-            this.data.push(stat)
+            this.hashStats.push(stat)
         }
-
-        // console.log(stats)
+        for (const payout of result.minerPayouts) {
+            payout.timestamp = payout.timestamp.replace("T", " ").substring(0, 19)
+            payout.paidAmount = +payout.paidAmount / 1000000000
+            this.payouts.push(payout)
+        }
+        console.log(result.minerPayouts)
         this.setState({ mounted: true })
     }
 
+    public handleChangePage = (event: any, page: number) => {
+        this.setState({ page })
+    }
+
+    public handleChangeRowsPerPage = (event: any) => {
+        this.setState({ rowsPerPage: event.target.value })
+    }
+
     public render() {
+        const { rowsPerPage, page } = this.state
+        const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.payouts.length - page * rowsPerPage)
+
         return(
             <div style={{overflow: "hidden" }}>
                 <Grid container
@@ -141,7 +145,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF", fontFamily: this.props.font }}>
                         { this.state.mounted ?
                             <ResponsiveContainer width="95%" height={300}>
-                                <LineChart data={this.data}
+                                <LineChart data={this.hashStats}
                                     margin={{ bottom: 5 }}>
                                     <CartesianGrid strokeDasharray="3 3"/>
                                     <XAxis dataKey="timestamp" />
@@ -179,29 +183,45 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>{ this.props.locale["table-block"] }</TableCell>
+                                    <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
                                     <TableCell numeric>{ this.props.locale["table-txid"] }</TableCell>
                                     <TableCell numeric>{ this.props.locale["table-amount"] }</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {
-                                    this.state.payouts.slice(0, 25).map( (payout) => {
+                                { this.payouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((payout: any) => {
                                     return (
                                         <TableRow key={payout.block}>
                                             <TableCell style={{ fontWeight: 600 }}>
-                                                {payout.block}
+                                                {payout.timestamp}
                                             </TableCell>
                                             <TableCell numeric>
-                                                <code>{payout.txHash}</code>
+                                                <code>{payout.txid}</code>
                                             </TableCell>
                                             <TableCell numeric>
-                                                <code>{payout.amount}</code>
+                                                <code>{payout.paidAmount}</code>
                                             </TableCell>
                                         </TableRow>
                                     )})
                                 }
+                                { emptyRows > 0 && (
+                                    <TableRow style={{ height: 48 * emptyRows }}>
+                                        <TableCell colSpan={3}/>
+                                    </TableRow>
+                                )}
                             </TableBody>
+                            <TableFooter>
+                                <TableRow>
+                                    <TablePagination
+                                        colSpan={3}
+                                        count={this.payouts.length}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        onChangePage={this.handleChangePage}
+                                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                    />
+                                </TableRow>
+                            </TableFooter>
                         </Table>
                     </Card>
                 </Grid>
