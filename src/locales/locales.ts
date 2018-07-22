@@ -19,6 +19,7 @@ export interface IText {
     "address": string,
 
     // poolDetails ---
+    "welcome-feature": string,
     "welcome-title": string,
     "welcome-sub": string,
     "pool-details-title": string,
@@ -38,8 +39,11 @@ export interface IText {
     "miner-title": string,
     "your-hashrate": string,
     "your-workers": string,
+    "worker": string,
+    "workers": string,
     "unpaid-balance": string,
     "current-fee": string,
+    "whats-this": string,
     "fee-info": string,
     "table-timestamp": string,
     "table-shares": string,

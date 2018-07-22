@@ -46,6 +46,9 @@ export class PoolDetails extends Component<any, any> {
                     }}>
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
                         <MediaQuery query="(min-device-width: 800px)">
+                            <Typography gutterBottom variant="display1" style={{ wordWrap: "break-word", color: "#FFEA00", fontFamily: this.props.font, fontWeight: 700 }}>
+                                {this.props.locale["welcome-feature"]}
+                            </Typography>
                             <Typography gutterBottom variant="display4" style={{ wordWrap: "break-word", color: "#fff", fontFamily: this.props.font, fontWeight: 700 }}>
                                 { this.props.locale["welcome-title"] }
                             </Typography>
@@ -54,7 +57,10 @@ export class PoolDetails extends Component<any, any> {
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="display3" style={{ wordWrap: "break-word", color: "#fff", fontFamily: this.props.font, fontWeight: 700 }}>
+                            <Typography gutterBottom variant="display1" style={{ wordWrap: "break-word", color: "#FFEA00", fontFamily: this.props.font, fontWeight: 700 }}>
+                                {this.props.locale["welcome-feature"]}
+                            </Typography>
+                            <Typography gutterBottom variant="display2" style={{ wordWrap: "break-word", color: "#fff", fontFamily: this.props.font, fontWeight: 700 }}>
                                 { this.props.locale["welcome-title"] }
                             </Typography>
                             <Typography gutterBottom variant="body2" style={{ fontFamily: this.props.font, fontWeight: 600 }}>
