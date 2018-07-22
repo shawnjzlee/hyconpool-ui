@@ -12,27 +12,28 @@ import * as React from "react"
 import { Component } from "react"
 // import Paper from '@material-ui/core/Paper';
 import MediaQuery from "react-responsive"
+import { ResponsiveContainer } from "recharts"
 import { IText } from "../locales/locales"
 // tslint:disable-next-line:no-var-requires
 const WebFont = require("webfontloader")
 // tslint:disable-next-line:no-var-requires
 const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
 
-// TODO: step through and find/fix missing data in fetch
-const data = [
-    {name: "04:00", uv: 4000, pv: 2400, amt: 2400},
-    {name: "05:00", uv: 3000, pv: 1398, amt: 2210},
-    {name: "06:00", uv: 2000, pv: 9800, amt: 2290},
-    {name: "07:00", uv: 50000, pv: 100, amt: 50000},
-    {name: "08:00", uv: 0, pv: 0, amt: 0},
-    {name: "09:00", uv: 2390, pv: 3800, amt: 2500},
-    {name: "10:00", uv: 3490, pv: 4300, amt: 2100},
-    {name: "11:00", uv: 3490, pv: 4300, amt: 2100},
-    {name: "13:00", uv: 15000, pv: 4300, amt: 15023},
-    {name: "14:00", uv: 3490, pv: 4300, amt: 2100},
-    {name: "15:00", uv: 3490, pv: 4300, amt: 2100},
-    {name: "16:00", uv: 3490, pv: 4300, amt: 2100},
-]
+// // TODO: step through and find/fix missing data in fetch
+// const info = [
+//     {name: "04:00", uv: 4000, pv: 2400},
+//     {name: "05:00", uv: 3000, pv: 1398},
+//     {name: "06:00", uv: 2000, pv: 9800},
+//     {name: "07:00", uv: 50000, pv: 1000},
+//     {name: "08:00", uv: 0, pv: 0},
+//     {name: "09:00", uv: 2390, pv: 3800},
+//     {name: "10:00", uv: 3490, pv: 4300},
+//     {name: "11:00", uv: 3490, pv: 4300},
+//     {name: "13:00", uv: 15000, pv: 4300},
+//     {name: "14:00", uv: 3490, pv: 4300},
+//     {name: "15:00", uv: 3490, pv: 4300},
+//     {name: "16:00", uv: 3490, pv: 4300},
+// ]
 
 WebFont.load({
     google: {
@@ -56,7 +57,7 @@ interface IMinerDetailsState {
 }
 
 export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
-    public mounted: boolean = false
+    private data: any = []
     constructor(props: any) {
         super(props)
         this.state = {
@@ -68,21 +69,19 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             payouts: [{ id: 0, block: "", txHash: "", amount: 0 }],
         }
     }
-    public componentWillMount() {
-        this.mounted = false
-    }
 
-    public componentDidMount() {
-        this.mounted = true
-        const url = "http://localhost:3004/users/" + this.state.hash
-        fetch(url).then((res) => res.json()).then((user) => {
-            console.log(this.state.hash)
-            console.log(user)
-            this.setState({ id: user.id })
-            this.setState({ hashrate: user.hashrate })
-            this.setState({ unpaid: user.unpaid_bal })
-            this.setState({ shares: user.shares })
-            this.setState({ payouts: user.payouts })
+    public componentWillMount() {
+        const url = "http://localhost:3004/minerData" // + this.state.hash
+        fetch(url).then((res) => res.json()).then((stats) => {
+            for (const stat of stats) {
+                stat.timestamp = stat.timestamp.split("T")[1].slice(0, 5)
+                stat.workers = +stat.workers
+                stat.valid_hashes = +stat.valid_hashes
+                stat.stale_hashes = +stat.stale_hashes
+                stat.pending_hashes = +stat.pending_hashes
+                this.data.push(stat)
+            }
+            console.log(this.data)
         }).catch((e: Error) => {
             alert(e)
         })
@@ -137,17 +136,32 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             </Typography>
                         </MediaQuery>
                     </Grid>
-                    <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%" }}>
-                        <LineChart  width={730} height={250} data={data}
-                            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                      </LineChart>
+                    <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF", fontFamily: this.props.font }}>
+                        <ResponsiveContainer width="95%" height={300}>
+                            <LineChart data={this.data}
+                                margin={{ bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="timestamp" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Line type="monotone" dataKey="valid_hashes" stroke="#18FFFF" />
+                                <Line type="monotone" dataKey="stale_hashes" stroke="#E0E0E0" />
+                                <Line type="monotone" dataKey="pending_hashes" stroke="#FFF176" />
+                            </LineChart>
+                        </ResponsiveContainer>
+                        {/* <ResponsiveContainer width="95%" height={300}>
+                            <LineChart data={info}
+                                margin={{ top: 30, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                            </LineChart>
+                        </ResponsiveContainer> */}
                     </Grid>
                 </Grid >
                 <Grid container style={{ paddingBottom: "5vh" }}>
