@@ -137,12 +137,12 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? "workers" : "worker"} </code>
+                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
                                 <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleChange}>
-                                    <TooltipUI title="What's This?" placement="right">
+                                    <TooltipUI title={this.props.locale["whats-this"]} placement="right">
                                         <InfoIcon/>
                                     </TooltipUI>
                                 </IconButton>
@@ -153,7 +153,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? "workers" : "worker"} </code>
+                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>

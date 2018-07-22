@@ -5,7 +5,8 @@ export default {
 
     // poolDetails ---
     "welcome-title": "welcome to minehycon.",
-    "welcome-sub": "The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, all on an efficient mining engine.",
+    "welcome-feature": "New Feature: Fee decreases while you're mining in this pool!",
+    "welcome-sub": "The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, sliding fees, all on an extremely-efficient mining engine.",
     "pool-details-title": "pool details",
     "hashrate": "Hashrate",
     "active-miners": "Active Miners",
@@ -16,15 +17,18 @@ export default {
     "stratum-port": "Stratum Port",
     "username": "Username",
     "your-wallet": "Your Hycon Wallet Address",
-    "password": "password",
+    "password": "Password",
     "your-password": "Your Worker Label (up to 16 characters)",
 
     // minerDetails ---
     "miner-title": "Hello...",
     "your-hashrate": "Your Hashrate",
     "your-workers": "Your Workers",
+    "worker": "worker",
+    "workers": "workers",
     "unpaid-balance": "Unpaid Balance",
     "current-fee": "Current Fee Rate",
+    "whats-this": "What's This?",
     "fee-info": "Your fee decreases while you're mining in this pool! The fee starts at 3.5% and slides down to 0.25%. Your rate decreases by 0.1% every 12 hours until you reach 0.25%. If you aren't mining in the pool for an extended period of time, the fee will reset to 3.5%.",
     "table-timestamp": "Timestamp (UTC)",
     "table-shares": "Shares",
