@@ -25,11 +25,12 @@ export default {
     "your-workers": "Your Workers",
     "unpaid-balance": "Unpaid Balance",
     "table-timestamp": "Timestamp",
-    "total-shares": "Total Shares",
+    "current-fee": "Current Fee Rate",
     "table-shares": "Shares",
     "table-block": "Block",
     "table-txid": "Transaction ID",
     "table-amount": "Amount",
+    "table-fee": "Fee (%)",
 
     // footer ---
     // misc ---
