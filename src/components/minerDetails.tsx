@@ -16,14 +16,13 @@ import Typography from "@material-ui/core/Typography"
 import InfoIcon from "@material-ui/icons/Info"
 import * as React from "react"
 import { Component } from "react"
-// import Paper from '@material-ui/core/Paper';
 import MediaQuery from "react-responsive"
 import { ResponsiveContainer } from "recharts"
 import { IText } from "../locales/locales"
-// tslint:disable-next-line:no-var-requires
+// tslint:disable:no-var-requires
 const WebFont = require("webfontloader")
-// tslint:disable-next-line:no-var-requires
 const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
+const endpoint = require("../data/endpoints.json")
 
 WebFont.load({
     google: {
@@ -246,7 +245,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     }
 
     private async loadData(hash: string): Promise<IMinerInfo> {
-        const url = "http://localhost:8080/miner/" + this.state.hash
+        const url = endpoint.miner + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
         const minerData: IMinerData[] = []
         for (const row of response.minerData) {
