@@ -95,7 +95,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     }
 
     public handleChange = () => {
-        console.log(this.state.opened)
         this.setState((state) => ({ opened: !state.opened }))
     }
     public handleChangePage = (event: any, page: number) => {
@@ -167,8 +166,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
 
                         <Collapse in={this.state.opened}>
                             <Typography gutterBottom style={{ color: "#fff", fontFamily: this.props.font }}>
-                                Your fee decreases while you're mining in this pool! The fee starts at 3.5% and slides down to 0.25%. Your rate decreases by 0.1% every 12 hours until you reach 0.25%.
-                                If you aren't mining in the pool for an extended period of time, the fee will slowly increase, up to 3.5%.
+                                {this.props.locale["fee-info"]}
                             </Typography>
                         </Collapse>
                     </Grid>

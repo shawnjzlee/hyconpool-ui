@@ -37,12 +37,16 @@ export interface IText {
     // minerDetails ---
     "miner-title": string,
     "your-hashrate": string,
+    "your-workers": string,
     "unpaid-balance": string,
-    "total-shares": string,
+    "current-fee": string,
+    "fee-info": string,
+    "table-timestamp": string,
     "table-shares": string,
     "table-block": string,
     "table-txid": string,
     "table-amount": string,
+    "table-fee": string,
 
     // footer ---
     // misc ---
