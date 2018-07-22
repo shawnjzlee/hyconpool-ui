@@ -1,7 +1,9 @@
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CircularProgress from "@material-ui/core/CircularProgress"
+import Collapse from "@material-ui/core/Collapse"
 import Grid from "@material-ui/core/Grid"
+import IconButton from "@material-ui/core/IconButton"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -11,6 +13,7 @@ import TablePagination from "@material-ui/core/TablePagination"
 import TableRow from "@material-ui/core/TableRow"
 import TooltipUI from "@material-ui/core/Tooltip"
 import Typography from "@material-ui/core/Typography"
+import InfoIcon from "@material-ui/icons/Info"
 import * as React from "react"
 import { Component } from "react"
 // import Paper from '@material-ui/core/Paper';
@@ -59,10 +62,11 @@ interface IMinerDetailsState {
     hash: string
     workers: number,
     hashrate: string,
-    shares: number,
+    currentFee: string,
     mounted: boolean,
     page: number,
     rowsPerPage: number,
+    opened: boolean
 }
 
 export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
@@ -74,10 +78,11 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             hash: props.hash,
             workers: 0,
             hashrate: "",
-            shares: 0,
+            currentFee: "",
             mounted: false,
             page: 0,
             rowsPerPage: 10,
+            opened: false,
         }
     }
 
@@ -89,6 +94,10 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         this.setState({ mounted: true })
     }
 
+    public handleChange = () => {
+        console.log(this.state.opened)
+        this.setState((state) => ({ opened: !state.opened }))
+    }
     public handleChangePage = (event: any, page: number) => {
         this.setState({ page })
     }
@@ -126,28 +135,42 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%" }}>
                         <MediaQuery query="(min-device-width: 800px)">
-                            // TODO: hashrate, workers, shares, payout
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["your-workers"]} | <code> {this.state.workers} </code>
+                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? "workers" : "worker"} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
+                                {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
+                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleChange}>
+                                    <TooltipUI title="What's This?" placement="right">
+                                        <InfoIcon/>
+                                    </TooltipUI>
+                                </IconButton>
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["your-workers"]} | <code> {this.state.workers} </code>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? "workers" : "worker"} </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
+                                {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
+                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleChange}>
+                                    <InfoIcon />
+                                </IconButton>
                             </Typography>
                         </MediaQuery>
+
+                        <Collapse in={this.state.opened}>
+                            <Typography gutterBottom style={{ color: "#fff", fontFamily: this.props.font }}>
+                                Your fee decreases while you're mining in this pool! The fee starts at 3.5% and slides down to 0.25%. Your rate decreases by 0.1% every 12 hours until you reach 0.25%.
+                                If you aren't mining in the pool for an extended period of time, the fee will slowly increase, up to 3.5%.
+                            </Typography>
+                        </Collapse>
                     </Grid>
                     <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF", fontFamily: this.props.font }}>
                         { this.state.mounted ?
@@ -166,18 +189,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             </ResponsiveContainer> :
                             <CircularProgress />
                         }
-                        {/* <ResponsiveContainer width="95%" height={300}>
-                            <LineChart data={info}
-                                margin={{ top: 30, bottom: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                            </LineChart>
-                        </ResponsiveContainer> */}
                     </Grid>
                 </Grid >
                 <Grid container style={{ paddingBottom: "5vh" }}>
@@ -191,18 +202,18 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
-                                    <TableCell numeric>{ this.props.locale["table-txid"] }</TableCell>
-                                    <TableCell numeric>{ this.props.locale["table-amount"] }</TableCell>
+                                    <TableCell numeric>{this.props.locale["table-txid"]}</TableCell>
+                                    <TableCell numeric>{this.props.locale["table-amount"]}</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 { this.payouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((payout: any) => {
                                     return (
-                                        <TableRow key={payout.txid}>
+                                        <TableRow key={payout.txid} hover>
                                             <TableCell style={{ fontWeight: 600 }}>
                                                 {payout.timestamp}
                                             </TableCell>
-                                            <TableCell numeric>
+                                            <TableCell numeric style={{ textOverflow: "ellipsis" }}>
                                                 <code>{payout.txid}</code>
                                             </TableCell>
                                             <TableCell numeric>
@@ -240,7 +251,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         const url = "http://localhost:8080/miner/" + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
         const minerData: IMinerData[] = []
-        let totalHash = 0
         for (const row of response.minerData) {
             const stat: IMinerData = {
                 timestamp: row.timestamp.split("T")[1].slice(0, 5),
@@ -249,8 +259,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                 stale_hashes: Number(row.stale_hashes),
                 pending_hashes: Number(row.pending_hashes),
             }
-
-            totalHash = totalHash + stat.valid_hashes + stat.stale_hashes + stat.pending_hashes
             minerData.push(stat)
         }
         const minerPayouts: IMinerPayout[] = []
@@ -259,22 +267,18 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                 address: row.address,
                 txid: row.txid,
                 timestamp: row.timestamp.replace("T", " ").substring(0, 19),
-                paidFee: Number(row.paidFee),
+                paidFee: Number(row.paidFee * 100),
                 paidAmount: Number(row.paidAmount / 1000000000),
             }
-
             minerPayouts.push(payout)
         }
 
-        const timeBegin = this.timestampToSeconds(response.minerData[0].timestamp)
-        const timeEnd = this.timestampToSeconds(response.minerData[response.minerData.length - 1].timestamp)
+        const lastData = response.minerData[response.minerData.length - 1]
+        const totalHash = lastData.valid_hashes + lastData.pending_hashes + lastData.stale_hashes
 
-        this.setState({ hashrate: (totalHash / Math.abs(timeBegin - timeEnd)).toFixed(4) })
+        this.setState({ hashrate: (totalHash / 600).toFixed(4) })
+        this.setState({ currentFee: (response.minerPayouts[response.minerData.length - 1].paidFee * 100).toFixed(3) })
         this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
         return {minerData, minerPayouts}
-    }
-    private timestampToSeconds(timestamp: string) {
-        const timeComponents: any = timestamp.split("T")[1].slice(0, 5).split(":")
-        return ((timeComponents[0] * 60 * 60) + (timeComponents[1] * 60))
     }
 }
