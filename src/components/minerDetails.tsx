@@ -28,6 +28,27 @@ WebFont.load({
     },
 })
 
+interface IMinerData {
+    timestamp: string,
+    workers: number,
+    valid_hashes: number,
+    stale_hashes: number,
+    pending_hashes: number
+}
+
+interface IMinerPayout {
+    address: string,
+    txid: string,
+    timestamp: string,
+    paidFee: number,
+    paidAmount: number
+}
+
+interface IMinerInfo {
+    minerData: IMinerData[],
+    minerPayouts: IMinerPayout[]
+}
+
 interface IMinerProps {
     hash: string
     locale: IText
@@ -60,25 +81,10 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         }
     }
 
-    public async componentWillMount() {
-        const url = "http://localhost:3004/" + this.state.hash
-        const response = await fetch(url)
-        const result = await response.json()
-
-        for (const stat of result.minerData) {
-            stat.timestamp = stat.timestamp.split("T")[1].slice(0, 5)
-            stat.workers = +stat.workers
-            stat.valid_hashes = +stat.valid_hashes
-            stat.stale_hashes = +stat.stale_hashes
-            stat.pending_hashes = +stat.pending_hashes
-            this.hashStats.push(stat)
-        }
-        for (const payout of result.minerPayouts) {
-            payout.timestamp = payout.timestamp.replace("T", " ").substring(0, 19)
-            payout.paidAmount = +payout.paidAmount / 1000000000
-            this.payouts.push(payout)
-        }
-        console.log(result.minerPayouts)
+    public async componentDidMount() {
+        const {minerData, minerPayouts} = await this.loadData(this.state.hash)
+        this.hashStats = minerData
+        this.payouts = minerPayouts
         this.setState({ mounted: true })
     }
 
@@ -227,5 +233,35 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                 </Grid>
             </div >
         )
+    }
+
+    private async loadData(hash: string): Promise<IMinerInfo> {
+        const url = "http://localhost:8080/miner/" + this.state.hash
+        const response: IMinerInfo = await (await fetch(url)).json()
+        const minerData: IMinerData[] = []
+        for (const row of response.minerData) {
+            const stat: IMinerData = {
+                timestamp: row.timestamp.split("T")[1].slice(0, 5),
+                workers: Number(row.workers),
+                valid_hashes: Number(row.valid_hashes),
+                stale_hashes: Number(row.stale_hashes),
+                pending_hashes: Number(row.pending_hashes),
+            }
+
+            minerData.push(stat)
+        }
+        const minerPayouts: IMinerPayout[] = []
+        for (const row of response.minerPayouts) {
+            const payout: IMinerPayout = {
+                address: row.address,
+                txid: row.txid,
+                timestamp: row.timestamp.replace("T", " ").substring(0, 19),
+                paidFee: Number(row.paidFee),
+                paidAmount: Number(row.paidAmount / 1000000000),
+            }
+
+            minerPayouts.push(payout)
+        }
+        return {minerData, minerPayouts}
     }
 }
