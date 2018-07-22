@@ -270,12 +270,27 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             minerPayouts.push(payout)
         }
 
-        const lastData = response.minerData[response.minerData.length - 1]
-        const totalHash = lastData.valid_hashes + lastData.pending_hashes + lastData.stale_hashes
+        const dataSample = response.minerData.slice(response.minerData.length - 7, response.minerData.length - 1)
+        let totalHashes = 0
+        for (const row of dataSample) {
+            totalHashes = totalHashes + Number(row.valid_hashes) + Number(row.pending_hashes) + Number(row.stale_hashes)
+        }
 
-        this.setState({ hashrate: (totalHash / 600).toFixed(4) })
+        const timeBegin = this.timestampToSeconds(response.minerData[response.minerData.length - 7].timestamp)
+        const timeEnd = this.timestampToSeconds(response.minerData[response.minerData.length - 1].timestamp)
+
+        // console.log(timeBegin)
+        // console.log(timeEnd)
+        // console.log(totalHashes)
+
+        this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
         this.setState({ currentFee: (response.minerPayouts[response.minerData.length - 1].paidFee * 100).toFixed(3) })
         this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
         return {minerData, minerPayouts}
+    }
+
+    private timestampToSeconds(timestamp: string) {
+        const timeComponents: any = timestamp.split("T")[1].slice(0, 5).split(":")
+        return ((timeComponents[0] * 60 * 60) + (timeComponents[1] * 60))
     }
 }
