@@ -61,13 +61,12 @@ export class App extends React.Component<any, any> {
     public componentDidMount() {
     }
 
-    public async searchAddress(event: any) {
+    public async searchAddress() {
         const url = endpoint.miner + this.state.address
         if (this.state.address === "") {
             this.setState({ validAddress: 0 })
             return
         } else if (!/^[a-zA-Z0-9]+$/.test(this.state.address)) {
-            event.preventDefault()
             this.setState({ validAddress: 0, open: true })
             return
         }
@@ -130,6 +129,7 @@ export class App extends React.Component<any, any> {
                                     value={this.state.address}
                                     onChange={this.handleChange("address")}
                                     fullWidth
+                                    onKeyPress={(e: any) => { if (e.key === "Enter") { e.preventDefault(); this.searchAddress() } }}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton onClick={this.searchAddress.bind(this)}>
@@ -146,6 +146,7 @@ export class App extends React.Component<any, any> {
                                     value={this.state.address}
                                     onChange={this.handleChange("address")}
                                     fullWidth
+                                    onKeyPress={(e: any) => { if (e.key === "Enter") { e.preventDefault(); this.searchAddress() } }}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton onClick={this.searchAddress.bind(this)}>
