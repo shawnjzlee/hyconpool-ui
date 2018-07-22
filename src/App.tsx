@@ -18,6 +18,8 @@ import { Link, Route, Switch } from "react-router-dom"
 import { MinerDetails } from "./components/minerDetails"
 import { PoolDetails } from "./components/poolDetails"
 import { getLocale, IText } from "./locales/locales"
+// tslint:disable-next-line:no-var-requires
+const endpoint = require("./data/endpoints.json")
 
 // tslint:disable:no-shadowed-variable
 export const routes: RouteConfig[] = [
@@ -60,7 +62,7 @@ export class App extends React.Component<any, any> {
     }
 
     public async searchAddress(event: any) {
-        const url = "http://localhost:8080/miner/" + this.state.address
+        const url = endpoint.miner + this.state.address
         if (this.state.address === "") {
             this.setState({ validAddress: 0 })
             return
