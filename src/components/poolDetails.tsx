@@ -11,18 +11,13 @@ import { Component } from "react"
 import MediaQuery from "react-responsive"
 // tslint:disable:no-var-requires
 const WebFont = require("webfontloader")
-const endpoint = require("./data/endpoints.json")
+const endpoint = require("../data/endpoints.json")
 
 WebFont.load({
     google: {
       families: ["Open Sans:400,600,700,800"],
     },
 })
-
-interface IPoolInfo {
-    poolData: [{ hashrate: number, miners: number, blocks: number }],
-    lastblock: string,
-}
 
 export class PoolDetails extends Component<any, any> {
     constructor(props: any) {
@@ -37,7 +32,6 @@ export class PoolDetails extends Component<any, any> {
 
     public async componentDidMount() {
         await this.loadData()
-
         this.setState({ mounted: true })
     }
 
@@ -80,16 +74,16 @@ export class PoolDetails extends Component<any, any> {
                                 { this.props.locale["pool-details-title"] }
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale.hashrate } | <code> 10000 Th/s </code>
+                                { this.props.locale.hashrate } | <code> {this.state.hashrate} H/s</code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["active-miners"] } | <code> 53423 </code>
+                                { this.props.locale["active-miners"] } | <code> {this.state.miners} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["blocks-hour"] } | <code> 38 </code>
+                                { this.props.locale["blocks-hour"] } | <code> {this.state.blocks} blocks/hr</code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["last-mined"] } | <code> 11983 (2 min ago) </code>
+                                {this.props.locale["last-mined"]} | <code>{this.state.lastblock.substring(0, 22)}...</code>
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
@@ -97,16 +91,16 @@ export class PoolDetails extends Component<any, any> {
                                 { this.props.locale["pool-details-title"] }
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale.hashrate } | <code> 10000 Th/s </code>
+                                {this.props.locale.hashrate} | <code> {this.state.hashrate} H/s</code>
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["active-miners"] } | <code> 53423 </code>
+                                {this.props.locale["active-miners"]} | <code> {this.state.miners} </code>
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["blocks-hour"] } | <code> 38 </code>
+                                {this.props.locale["blocks-hour"]} | <code style={{ overflow: "none" }}> {this.state.blocks} blocks/hr</code>
                             </Typography>
-                            <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["last-mined"] } | <code> 11983 (2 min ago) </code>
+                            <Typography gutterBottom noWrap variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                                {this.props.locale["last-mined"]} | <code>{this.state.lastblock.substring(0, 10)}...</code>
                             </Typography>
                         </MediaQuery>
                     </Grid>
@@ -165,7 +159,10 @@ export class PoolDetails extends Component<any, any> {
 
     private async loadData() {
         const url = endpoint.pool
-        const response: IPoolInfo = await (await fetch(url)).json()
+        const response = await (await fetch(url)).json()
+        this.setState({ hashrate: response.poolData[0].hashrate })
+        this.setState({ miners: response.poolData[0].miners })
+        this.setState({ blocks: response.poolData[0].blocks })
         this.setState({ lastblock: response.lastblock })
     }
 
