@@ -58,7 +58,7 @@ interface IMinerProps {
 interface IMinerDetailsState {
     hash: string
     workers: number,
-    hashrate: number,
+    hashrate: string,
     shares: number,
     mounted: boolean,
     page: number,
@@ -73,7 +73,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         this.state = {
             hash: props.hash,
             workers: 0,
-            hashrate: 0,
+            hashrate: "",
             shares: 0,
             mounted: false,
             page: 0,
@@ -85,6 +85,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         const {minerData, minerPayouts} = await this.loadData(this.state.hash)
         this.hashStats = minerData
         this.payouts = minerPayouts
+
         this.setState({ mounted: true })
     }
 
@@ -197,7 +198,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             <TableBody>
                                 { this.payouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((payout: any) => {
                                     return (
-                                        <TableRow key={payout.block}>
+                                        <TableRow key={payout.txid}>
                                             <TableCell style={{ fontWeight: 600 }}>
                                                 {payout.timestamp}
                                             </TableCell>
@@ -239,6 +240,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         const url = "http://localhost:8080/miner/" + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
         const minerData: IMinerData[] = []
+        let totalHash = 0
         for (const row of response.minerData) {
             const stat: IMinerData = {
                 timestamp: row.timestamp.split("T")[1].slice(0, 5),
@@ -248,6 +250,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                 pending_hashes: Number(row.pending_hashes),
             }
 
+            totalHash = totalHash + stat.valid_hashes + stat.stale_hashes + stat.pending_hashes
             minerData.push(stat)
         }
         const minerPayouts: IMinerPayout[] = []
@@ -262,6 +265,16 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
 
             minerPayouts.push(payout)
         }
+
+        const timeBegin = this.timestampToSeconds(response.minerData[0].timestamp)
+        const timeEnd = this.timestampToSeconds(response.minerData[response.minerData.length - 1].timestamp)
+
+        this.setState({ hashrate: (totalHash / Math.abs(timeBegin - timeEnd)).toFixed(4) })
+        this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
         return {minerData, minerPayouts}
+    }
+    private timestampToSeconds(timestamp: string) {
+        const timeComponents: any = timestamp.split("T")[1].slice(0, 5).split(":")
+        return ((timeComponents[0] * 60 * 60) + (timeComponents[1] * 60))
     }
 }
