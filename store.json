@@ -613,5 +613,13 @@
                 "paidAmount": "231602400000"
             }
         ]
-    }
+    },
+    "poolData": [
+        {
+            "hashrate": 189.165,
+            "miners": 1,
+            "blocks": 43
+        }
+    ],
+    "lastblock": "AShqXuxwX5PfQPDGFNJXtuAu4ZbAH8YSD3hfJtfqvJcb"
 }

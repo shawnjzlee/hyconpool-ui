@@ -26,7 +26,7 @@ export default {
     "unpaid-balance": "지급되지 않은 하이콘",
     "current-fee": "Current Fee Rate",
     "fee-info": "Your fee decreases while you're mining in this pool! The fee starts at 3.5% and slides down to 0.25%. Your rate decreases by 0.1% every 12 hours until you reach 0.25%. If you aren't mining in the pool for an extended period of time, the fee will reset to 3.5%.",
-    "table-timestamp": "Timestamp",
+    "table-timestamp": "Timestamp (UTC)",
     "table-shares": "블록당 지분",
     "table-block": "블록",
     "table-txid": "거래(트랜잭션) ID",

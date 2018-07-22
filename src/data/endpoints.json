@@ -1,3 +1,4 @@
 {
-    "miner": "http://localhost:8080/"
+    "pool": "http://localhost:8080/pool",
+    "miner": "http://localhost:8080/miner/"
 }
