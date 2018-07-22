@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography"
 import CloseIcon from "@material-ui/icons/Close"
 import SearchIcon from "@material-ui/icons/Search"
 import * as React from "react"
+import MediaQuery from "react-responsive"
 import { Redirect, RouteComponentProps } from "react-router"
 import { RouteConfig } from "react-router-config"
 import { Link, Route, Switch } from "react-router-dom"
@@ -56,13 +57,10 @@ export class App extends React.Component<any, any> {
     }
 
     public componentDidMount() {
-        fetch("http://localhost:3004/users")
-            .then((res) => res.json())
-            .then((users) => this.setState((users)))
     }
 
     public searchAddress(event: any) {
-        const url = "http://localhost:3004/users/" + this.state.address
+        const url = "http://localhost:3004/" + this.state.address
         if (this.state.address === "") {
             this.setState({ validAddress: 0 })
             return
@@ -199,14 +197,16 @@ export class App extends React.Component<any, any> {
                                 </Typography>
                             </a>
                         </Grid>
-                        <Grid item>
-                            <Typography
-                                variant="caption"
-                                style={{ flexBasis: 165, marginLeft: 5, textAlign: "center", fontFamily: this.font }}
-                            >
-                                © minehycon 2018 | hycon-core release version: 0.0.6-eccentric emu
-                            </Typography>
-                        </Grid>
+                        <MediaQuery query="(min-device-width: 800px)">
+                            <Grid item>
+                                <Typography
+                                    variant="caption"
+                                    style={{ flexBasis: 165, marginLeft: 5, textAlign: "center", fontFamily: this.font }}
+                                >
+                                    © minehycon 2018 | hycon-core release version: 0.0.6-eccentric emu
+                                </Typography>
+                            </Grid>
+                        </MediaQuery>
                         <Grid item>
                             <FormControl style={{ flexBasis: 165, marginLeft: 10, textAlign: "center", fontFamily: this.font }}>
                                 <Select
