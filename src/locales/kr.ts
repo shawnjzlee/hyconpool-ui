@@ -22,6 +22,7 @@ export default {
     // minerDetails ---
     "miner-title": "반갑습니다...",
     "your-hashrate": "당신의 해쉬레이트",
+    "your-workers": "Your Workers",
     "unpaid-balance": "지급되지 않은 하이콘",
     "total-shares": "전체 지분",
     "table-shares": "블록당 지분",

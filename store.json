@@ -1,615 +1,617 @@
 {
-    "minerData": [
-        {
-            "timestamp": "2018-07-21T13:29:00.000Z",
-            "workers": "1",
-            "valid_hashes": "20675",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T13:35:01.000Z",
-            "workers": "2",
-            "valid_hashes": "39509",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T13:40:41.000Z",
-            "workers": "1",
-            "valid_hashes": "10000",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T14:07:28.000Z",
-            "workers": "1",
-            "valid_hashes": "40368",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T17:57:26.000Z",
-            "workers": "1",
-            "valid_hashes": "6017",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T18:25:09.000Z",
-            "workers": "1",
-            "valid_hashes": "3075",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T19:31:59.000Z",
-            "workers": "1",
-            "valid_hashes": "20238",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T20:59:28.000Z",
-            "workers": "1",
-            "valid_hashes": "30881",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T21:00:06.000Z",
-            "workers": "1",
-            "valid_hashes": "10741",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-21T21:48:57.000Z",
-            "workers": "1",
-            "valid_hashes": "34856",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T07:48:32.000Z",
-            "workers": "1",
-            "valid_hashes": "167489",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T07:51:20.000Z",
-            "workers": "1",
-            "valid_hashes": "117249",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T08:04:44.000Z",
-            "workers": "1",
-            "valid_hashes": "162662",
-            "stale_hashes": "0",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T08:10:03.000Z",
-            "workers": "1",
-            "valid_hashes": "20814",
-            "stale_hashes": "117773",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T08:27:05.000Z",
-            "workers": "1",
-            "valid_hashes": "0",
-            "stale_hashes": "96881",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T08:30:10.000Z",
-            "workers": "1",
-            "valid_hashes": "0",
-            "stale_hashes": "136942",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T08:44:21.000Z",
-            "workers": "1",
-            "valid_hashes": "0",
-            "stale_hashes": "97256",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T08:51:43.000Z",
-            "workers": "1",
-            "valid_hashes": "0",
-            "stale_hashes": "153097",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T09:01:32.000Z",
-            "workers": "1",
-            "valid_hashes": "0",
-            "stale_hashes": "232085",
-            "pending_hashes": "0"
-        },
-        {
-            "timestamp": "2018-07-22T09:11:10.000Z",
-            "workers": "1",
-            "valid_hashes": "0",
-            "stale_hashes": "55230",
-            "pending_hashes": "0"
-        }
-    ],
-    "minerPayouts": [
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "FYiDtQFkkAeuC8mG1j8uYsCWcERPR1rnzQgmHP1BgKdB",
-            "timestamp": "2018-07-20T15:39:06.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DLUuqUHnSzWGWNwSUtkknwBgjPM9pZk6fXF7BaFVQGgg",
-            "timestamp": "2018-07-20T15:39:14.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DFEsw4MevYsHvqwjbtV2oNrefHeQQUvfDZdfb4T9UGrM",
-            "timestamp": "2018-07-20T15:40:08.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "32dVrdESHTeXP6S6CrUiendmiFTWtYjQhasBK5DN4vjP",
-            "timestamp": "2018-07-20T15:40:28.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2CWqWHxhneGzk6Cy2Z64Zo7w2XYwSSABvy2HeFZw28cq",
-            "timestamp": "2018-07-20T15:40:50.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "8JfcvTG2wWb3oaFe6E5GVEWTz9EFnXZ86AftqmohNf3a",
-            "timestamp": "2018-07-20T15:42:14.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "GNyAJjCFVXDkoSKExaZ9qbGgkQJCMzjxjpoTcd1UzMRU",
-            "timestamp": "2018-07-20T15:42:39.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "A6xmoqQPcYsaXDHEe8h7Cyfe16aQkz6owLAknqA7BAyc",
-            "timestamp": "2018-07-20T15:43:30.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "CGkGPypUmJTJcAVGEtm5asN4cNvVhAm9pFHgEbvauzWK",
-            "timestamp": "2018-07-20T15:44:02.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DrDGAdL6pCk6sAp2TRagkx4Xm41BiYSvQJkn75Qio5XJ",
-            "timestamp": "2018-07-20T15:44:54.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "BH9fGBfhsUtqZgUpG92VmNSyt7hxZGAMsHWgPg1fvumm",
-            "timestamp": "2018-07-20T15:44:57.000Z",
-            "paidFee": 0.03,
-            "paidAmount": "232800000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "9KcRwLkBCcMobtHMeqtYbNbukVx6m6x4Ar5NqoUsWXaQ",
-            "timestamp": "2018-07-20T15:45:03.000Z",
-            "paidFee": 0.02999,
-            "paidAmount": "232802400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "Hib5YHYyHLHLCQriMFtySRUakCGAbUH7DDSj8qbY669e",
-            "timestamp": "2018-07-20T15:45:48.000Z",
-            "paidFee": 0.02999,
-            "paidAmount": "232802400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2QmbRuq6nfYCoWJjqa2D8mfVb7EQYUq5WaveshWpsjrb",
-            "timestamp": "2018-07-20T15:45:54.000Z",
-            "paidFee": 0.02999,
-            "paidAmount": "232802400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "J5dPc1SsjipkdngY2Swg5DFy8nbeuNUhoUx4y2immoAG",
-            "timestamp": "2018-07-20T15:47:32.000Z",
-            "paidFee": 0.02999,
-            "paidAmount": "232802400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "Cr1RbLRX5Qq7jqqdygfLVhnsjFzfyrNut7hTjTovFUZK",
-            "timestamp": "2018-07-20T15:48:11.000Z",
-            "paidFee": 0.02999,
-            "paidAmount": "232802400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "6Fj6QmB29iNW6CxS4nPnZ6YdeTtfy6qMMQrpNDfQL99h",
-            "timestamp": "2018-07-20T15:48:26.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "C98aeMPs7HsoS6CEYW4kudMXKtFVsSyyhSzby2ntaKfU",
-            "timestamp": "2018-07-21T13:28:28.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "8oZFvMfgRCWYngSjD5jJ8Quv2z5HZm9mRWSD64qELdNN",
-            "timestamp": "2018-07-21T13:29:00.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DMEWuLjxiePGFytRJk2jqFRNub4cNWKbhgmfLjFYeNnr",
-            "timestamp": "2018-07-21T13:30:48.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "GHU3hoa5NS6LMT8rBF7EYreu6jY9hyGVrnj1PFCDuXB2",
-            "timestamp": "2018-07-21T13:35:01.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "6fUExtuabNBj4kLZLtBtvb7kMoM3pkBXznC6tDBj1yK4",
-            "timestamp": "2018-07-21T13:37:09.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "GiTQEtCDcjKzd798NgjDBN5dyt3rAiGuXRMESfThQACQ",
-            "timestamp": "2018-07-21T13:37:19.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2pQxgborbguqh72QWzp4YVg83DFaJjpvLqnFbJ74bExy",
-            "timestamp": "2018-07-21T13:40:41.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "GpwibAQ6uWLpRJMkeS7ZjHgDRFFEudp6orohPAgCzzK",
-            "timestamp": "2018-07-21T14:07:28.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "EWfgPV68rMF1RLSsfjtisLyK9PVv6SehppvRUXmVDACh",
-            "timestamp": "2018-07-21T14:08:00.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "Gqfgo8sksa1D1aUV8gD7VFdFe929AbDEcw63T2hp17jX",
-            "timestamp": "2018-07-21T14:09:12.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DQtrWMnucdq9bE3AfizgA8b3uas3LW8QzDsqNV1uVE53",
-            "timestamp": "2018-07-21T14:09:25.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "EkEkYBGW3UB6QUoQ1qXho9GEqNm6kzRjosUPEDkNJJKC",
-            "timestamp": "2018-07-21T17:57:22.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "6ke85dSUNCQKH9ifa3G8eg6j83556w5VaDkqY9H6GLPs",
-            "timestamp": "2018-07-21T17:57:26.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "6gg4pjwEsY43Fch3hjUvibfw6gTe5dCoQL46bEeoceHv",
-            "timestamp": "2018-07-21T17:57:29.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "4EyW1xGAs8foNFBFREoynsU3nEYCTufgu7kWQHEBEJz5",
-            "timestamp": "2018-07-21T17:57:30.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "9k22StG8gXQkzRRJXejVmdviWvsvcLQ2iH3pxNQhXRze",
-            "timestamp": "2018-07-21T18:25:09.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "93NTsNQXoYaQA7Qu2FgnHUvnSvZ3nrk3diCwN46Ur5dn",
-            "timestamp": "2018-07-21T18:25:32.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "4F6BnECq4Gr2EqcutrCHRxajUSGyQte4PqFu89WXnCFk",
-            "timestamp": "2018-07-21T18:25:49.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "39yN8Y6AcyCvTkNvXyMUj5GgPfCdysR8qGytLSohCPnQ",
-            "timestamp": "2018-07-21T19:31:59.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "5T4ikW7eoMdz1gqGFqxRFkQvua4q5DhyhGgPhHiE9r61",
-            "timestamp": "2018-07-21T19:32:06.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "Cqy65vYxFGM8QVnCPgaYVUVcYEA9UmrJZHiNpDBGzcSv",
-            "timestamp": "2018-07-21T20:52:49.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "J4KNF7P71V2rKE9CgasyEyoLANYcbnZK51AEgMPmuXug",
-            "timestamp": "2018-07-21T20:58:40.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "Dawpsm8t3JFDABmyxCMdMRsN49udjZZWgFFF617mTYDT",
-            "timestamp": "2018-07-21T20:59:28.000Z",
-            "paidFee": 0.03498,
-            "paidAmount": "231604800000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "A7dXmHScF5UBRPz7pcR2mTmKoTxLbG9rHBGL6v6JHWZT",
-            "timestamp": "2018-07-21T21:00:06.000Z",
-            "paidFee": 0.03498,
-            "paidAmount": "231604800000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2ukWmDQsPkJXz9yEnb78ZrRFKca3xTwpBHcqS6kW3KzC",
-            "timestamp": "2018-07-21T21:48:57.000Z",
-            "paidFee": 0.03498,
-            "paidAmount": "231604800000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2e9RVqeuYy7rwRduERimq99GUjr2d36VnAaDcVmQ9aNq",
-            "timestamp": "2018-07-21T21:49:07.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "88Xgy3673xNUnDZdEWm6r5rWSWGDFYgcYyPixBtpbDqA",
-            "timestamp": "2018-07-21T21:49:37.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "34ygn8jjR5UD63SieY2CKF89VGQv5CAYcdV9NC6piQ7c",
-            "timestamp": "2018-07-22T07:42:47.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "7HK7pD7tHj7yrTbuaM4Xv2QZJKmSUKYiMS8Y2dTWNjZa",
-            "timestamp": "2018-07-22T07:42:50.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DqY9cobRFBMoCoyw7yagFRHsnnGTM7yMQkCLUjQvQoqw",
-            "timestamp": "2018-07-22T07:43:13.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "CbUPqhbX6RyNkNzLqDGn78hAEh3ipCKJaXAe5UEzS9kh",
-            "timestamp": "2018-07-22T07:44:05.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2NwmPaSNwE7eftb9LpJ5arGQwvbHfHhx5KkgDwJDCSas",
-            "timestamp": "2018-07-22T07:44:42.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "4gFDpXLN7wQbxNKqpvy8Uf8KdKnich7Mog4vPea2ZGTk",
-            "timestamp": "2018-07-22T07:44:54.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "6hR8NRU4cVtvqYNiT1uEhaFjCi2yVqjNwqkpwyCezkw4",
-            "timestamp": "2018-07-22T07:48:32.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "9SS6JZ23KWknsFdGVqvxDnNh1SQtw1E2p3UbCVZqaJEq",
-            "timestamp": "2018-07-22T07:48:42.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "HUbBBAxKwss3WqjcDwUyKSSWD4CuxyrQfMoESGdJ97Fm",
-            "timestamp": "2018-07-22T07:49:09.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "85r74fpQZkXQnZp9ZkNm4ecgaJ24A1QH8kxo8AAqMW5y",
-            "timestamp": "2018-07-22T07:51:20.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "7tAQJ8tGDqrYJfX5YU2C13NJEeUMnrAiYyg28tBHsAvK",
-            "timestamp": "2018-07-22T07:51:58.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "dBXMXvWm8iMQtufN5MfaJLYJrzXokt8v9KqqGpdinT8",
-            "timestamp": "2018-07-22T07:55:57.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "7otkSoxWDYPaWfavsX1TsQWfXYoiJmq4oBF4T4D2hizF",
-            "timestamp": "2018-07-22T07:56:59.000Z",
-            "paidFee": 0.03498,
-            "paidAmount": "231604800000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "Gsjrm3Bzsu9xPxanFRHLqbcJkNUvY67qido6YGfkkn82",
-            "timestamp": "2018-07-22T07:58:03.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "6RAEdArMXsqoUbpsZSy2EMhcHcukn21LWVhAP6y2aQLs",
-            "timestamp": "2018-07-22T07:58:13.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "885ZK9d786EBjhDrQ43kmyvCzLZnTLH62X2yqpitGc3u",
-            "timestamp": "2018-07-22T08:01:08.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "EpzABjigoiZjWFQp58xaG4DLFTkhWRxPNDULdcjZGxCd",
-            "timestamp": "2018-07-22T08:01:58.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "5qCDiXBM36WUJq9FrKssJbUmfNcwAgCSi7C5WFqKrmam",
-            "timestamp": "2018-07-22T08:02:29.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "7Ajxf9UBudxwc8vk5s2hwvC4hBs6Z7vV8KogkgxAEYjc",
-            "timestamp": "2018-07-22T08:02:59.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "2Aq4Tt8boJMJE4gFD2a8KxBRTHZtDQ1htRfdVTMc6J7r",
-            "timestamp": "2018-07-22T08:04:44.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "CGVQpWW6JDH2aPXdJCCa3F6vm9ioejjGaeRpYDsxbYjf",
-            "timestamp": "2018-07-22T08:05:51.000Z",
-            "paidFee": 0.035,
-            "paidAmount": "231600000000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DMmBLoGzeujwZQPj5WUtGzxdv3CfYtn9YFGQ9utPzDzm",
-            "timestamp": "2018-07-22T08:06:07.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        },
-        {
-            "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
-            "txid": "DnQutJ3e2S9CTi4ZVwuMk7A9ombCatEEcA97cLx9ei4q",
-            "timestamp": "2018-07-22T08:10:03.000Z",
-            "paidFee": 0.03499,
-            "paidAmount": "231602400000"
-        }
-    ]
+    "H4FPn4X1RfR9RQtmFzY6BRozUAfoR3Ejp": {
+        "minerData": [
+            {
+                "timestamp": "2018-07-21T13:29:00.000Z",
+                "workers": "1",
+                "valid_hashes": "20675",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T13:35:01.000Z",
+                "workers": "2",
+                "valid_hashes": "39509",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T13:40:41.000Z",
+                "workers": "1",
+                "valid_hashes": "10000",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T14:07:28.000Z",
+                "workers": "1",
+                "valid_hashes": "40368",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T17:57:26.000Z",
+                "workers": "1",
+                "valid_hashes": "6017",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T18:25:09.000Z",
+                "workers": "1",
+                "valid_hashes": "3075",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T19:31:59.000Z",
+                "workers": "1",
+                "valid_hashes": "20238",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T20:59:28.000Z",
+                "workers": "1",
+                "valid_hashes": "30881",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T21:00:06.000Z",
+                "workers": "1",
+                "valid_hashes": "10741",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-21T21:48:57.000Z",
+                "workers": "1",
+                "valid_hashes": "34856",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T07:48:32.000Z",
+                "workers": "1",
+                "valid_hashes": "167489",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T07:51:20.000Z",
+                "workers": "1",
+                "valid_hashes": "117249",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T08:04:44.000Z",
+                "workers": "1",
+                "valid_hashes": "162662",
+                "stale_hashes": "0",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T08:10:03.000Z",
+                "workers": "1",
+                "valid_hashes": "20814",
+                "stale_hashes": "117773",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T08:27:05.000Z",
+                "workers": "1",
+                "valid_hashes": "0",
+                "stale_hashes": "96881",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T08:30:10.000Z",
+                "workers": "1",
+                "valid_hashes": "0",
+                "stale_hashes": "136942",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T08:44:21.000Z",
+                "workers": "1",
+                "valid_hashes": "0",
+                "stale_hashes": "97256",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T08:51:43.000Z",
+                "workers": "1",
+                "valid_hashes": "0",
+                "stale_hashes": "153097",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T09:01:32.000Z",
+                "workers": "1",
+                "valid_hashes": "0",
+                "stale_hashes": "232085",
+                "pending_hashes": "0"
+            },
+            {
+                "timestamp": "2018-07-22T09:11:10.000Z",
+                "workers": "1",
+                "valid_hashes": "0",
+                "stale_hashes": "55230",
+                "pending_hashes": "0"
+            }
+        ],
+        "minerPayouts": [
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "FYiDtQFkkAeuC8mG1j8uYsCWcERPR1rnzQgmHP1BgKdB",
+                "timestamp": "2018-07-20T15:39:06.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DLUuqUHnSzWGWNwSUtkknwBgjPM9pZk6fXF7BaFVQGgg",
+                "timestamp": "2018-07-20T15:39:14.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DFEsw4MevYsHvqwjbtV2oNrefHeQQUvfDZdfb4T9UGrM",
+                "timestamp": "2018-07-20T15:40:08.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "32dVrdESHTeXP6S6CrUiendmiFTWtYjQhasBK5DN4vjP",
+                "timestamp": "2018-07-20T15:40:28.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2CWqWHxhneGzk6Cy2Z64Zo7w2XYwSSABvy2HeFZw28cq",
+                "timestamp": "2018-07-20T15:40:50.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "8JfcvTG2wWb3oaFe6E5GVEWTz9EFnXZ86AftqmohNf3a",
+                "timestamp": "2018-07-20T15:42:14.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "GNyAJjCFVXDkoSKExaZ9qbGgkQJCMzjxjpoTcd1UzMRU",
+                "timestamp": "2018-07-20T15:42:39.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "A6xmoqQPcYsaXDHEe8h7Cyfe16aQkz6owLAknqA7BAyc",
+                "timestamp": "2018-07-20T15:43:30.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "CGkGPypUmJTJcAVGEtm5asN4cNvVhAm9pFHgEbvauzWK",
+                "timestamp": "2018-07-20T15:44:02.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DrDGAdL6pCk6sAp2TRagkx4Xm41BiYSvQJkn75Qio5XJ",
+                "timestamp": "2018-07-20T15:44:54.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "BH9fGBfhsUtqZgUpG92VmNSyt7hxZGAMsHWgPg1fvumm",
+                "timestamp": "2018-07-20T15:44:57.000Z",
+                "paidFee": 0.03,
+                "paidAmount": "232800000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "9KcRwLkBCcMobtHMeqtYbNbukVx6m6x4Ar5NqoUsWXaQ",
+                "timestamp": "2018-07-20T15:45:03.000Z",
+                "paidFee": 0.02999,
+                "paidAmount": "232802400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "Hib5YHYyHLHLCQriMFtySRUakCGAbUH7DDSj8qbY669e",
+                "timestamp": "2018-07-20T15:45:48.000Z",
+                "paidFee": 0.02999,
+                "paidAmount": "232802400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2QmbRuq6nfYCoWJjqa2D8mfVb7EQYUq5WaveshWpsjrb",
+                "timestamp": "2018-07-20T15:45:54.000Z",
+                "paidFee": 0.02999,
+                "paidAmount": "232802400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "J5dPc1SsjipkdngY2Swg5DFy8nbeuNUhoUx4y2immoAG",
+                "timestamp": "2018-07-20T15:47:32.000Z",
+                "paidFee": 0.02999,
+                "paidAmount": "232802400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "Cr1RbLRX5Qq7jqqdygfLVhnsjFzfyrNut7hTjTovFUZK",
+                "timestamp": "2018-07-20T15:48:11.000Z",
+                "paidFee": 0.02999,
+                "paidAmount": "232802400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "6Fj6QmB29iNW6CxS4nPnZ6YdeTtfy6qMMQrpNDfQL99h",
+                "timestamp": "2018-07-20T15:48:26.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "C98aeMPs7HsoS6CEYW4kudMXKtFVsSyyhSzby2ntaKfU",
+                "timestamp": "2018-07-21T13:28:28.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "8oZFvMfgRCWYngSjD5jJ8Quv2z5HZm9mRWSD64qELdNN",
+                "timestamp": "2018-07-21T13:29:00.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DMEWuLjxiePGFytRJk2jqFRNub4cNWKbhgmfLjFYeNnr",
+                "timestamp": "2018-07-21T13:30:48.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "GHU3hoa5NS6LMT8rBF7EYreu6jY9hyGVrnj1PFCDuXB2",
+                "timestamp": "2018-07-21T13:35:01.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "6fUExtuabNBj4kLZLtBtvb7kMoM3pkBXznC6tDBj1yK4",
+                "timestamp": "2018-07-21T13:37:09.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "GiTQEtCDcjKzd798NgjDBN5dyt3rAiGuXRMESfThQACQ",
+                "timestamp": "2018-07-21T13:37:19.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2pQxgborbguqh72QWzp4YVg83DFaJjpvLqnFbJ74bExy",
+                "timestamp": "2018-07-21T13:40:41.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "GpwibAQ6uWLpRJMkeS7ZjHgDRFFEudp6orohPAgCzzK",
+                "timestamp": "2018-07-21T14:07:28.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "EWfgPV68rMF1RLSsfjtisLyK9PVv6SehppvRUXmVDACh",
+                "timestamp": "2018-07-21T14:08:00.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "Gqfgo8sksa1D1aUV8gD7VFdFe929AbDEcw63T2hp17jX",
+                "timestamp": "2018-07-21T14:09:12.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DQtrWMnucdq9bE3AfizgA8b3uas3LW8QzDsqNV1uVE53",
+                "timestamp": "2018-07-21T14:09:25.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "EkEkYBGW3UB6QUoQ1qXho9GEqNm6kzRjosUPEDkNJJKC",
+                "timestamp": "2018-07-21T17:57:22.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "6ke85dSUNCQKH9ifa3G8eg6j83556w5VaDkqY9H6GLPs",
+                "timestamp": "2018-07-21T17:57:26.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "6gg4pjwEsY43Fch3hjUvibfw6gTe5dCoQL46bEeoceHv",
+                "timestamp": "2018-07-21T17:57:29.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "4EyW1xGAs8foNFBFREoynsU3nEYCTufgu7kWQHEBEJz5",
+                "timestamp": "2018-07-21T17:57:30.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "9k22StG8gXQkzRRJXejVmdviWvsvcLQ2iH3pxNQhXRze",
+                "timestamp": "2018-07-21T18:25:09.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "93NTsNQXoYaQA7Qu2FgnHUvnSvZ3nrk3diCwN46Ur5dn",
+                "timestamp": "2018-07-21T18:25:32.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "4F6BnECq4Gr2EqcutrCHRxajUSGyQte4PqFu89WXnCFk",
+                "timestamp": "2018-07-21T18:25:49.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "39yN8Y6AcyCvTkNvXyMUj5GgPfCdysR8qGytLSohCPnQ",
+                "timestamp": "2018-07-21T19:31:59.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "5T4ikW7eoMdz1gqGFqxRFkQvua4q5DhyhGgPhHiE9r61",
+                "timestamp": "2018-07-21T19:32:06.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "Cqy65vYxFGM8QVnCPgaYVUVcYEA9UmrJZHiNpDBGzcSv",
+                "timestamp": "2018-07-21T20:52:49.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "J4KNF7P71V2rKE9CgasyEyoLANYcbnZK51AEgMPmuXug",
+                "timestamp": "2018-07-21T20:58:40.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "Dawpsm8t3JFDABmyxCMdMRsN49udjZZWgFFF617mTYDT",
+                "timestamp": "2018-07-21T20:59:28.000Z",
+                "paidFee": 0.03498,
+                "paidAmount": "231604800000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "A7dXmHScF5UBRPz7pcR2mTmKoTxLbG9rHBGL6v6JHWZT",
+                "timestamp": "2018-07-21T21:00:06.000Z",
+                "paidFee": 0.03498,
+                "paidAmount": "231604800000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2ukWmDQsPkJXz9yEnb78ZrRFKca3xTwpBHcqS6kW3KzC",
+                "timestamp": "2018-07-21T21:48:57.000Z",
+                "paidFee": 0.03498,
+                "paidAmount": "231604800000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2e9RVqeuYy7rwRduERimq99GUjr2d36VnAaDcVmQ9aNq",
+                "timestamp": "2018-07-21T21:49:07.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "88Xgy3673xNUnDZdEWm6r5rWSWGDFYgcYyPixBtpbDqA",
+                "timestamp": "2018-07-21T21:49:37.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "34ygn8jjR5UD63SieY2CKF89VGQv5CAYcdV9NC6piQ7c",
+                "timestamp": "2018-07-22T07:42:47.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "7HK7pD7tHj7yrTbuaM4Xv2QZJKmSUKYiMS8Y2dTWNjZa",
+                "timestamp": "2018-07-22T07:42:50.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DqY9cobRFBMoCoyw7yagFRHsnnGTM7yMQkCLUjQvQoqw",
+                "timestamp": "2018-07-22T07:43:13.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "CbUPqhbX6RyNkNzLqDGn78hAEh3ipCKJaXAe5UEzS9kh",
+                "timestamp": "2018-07-22T07:44:05.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2NwmPaSNwE7eftb9LpJ5arGQwvbHfHhx5KkgDwJDCSas",
+                "timestamp": "2018-07-22T07:44:42.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "4gFDpXLN7wQbxNKqpvy8Uf8KdKnich7Mog4vPea2ZGTk",
+                "timestamp": "2018-07-22T07:44:54.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "6hR8NRU4cVtvqYNiT1uEhaFjCi2yVqjNwqkpwyCezkw4",
+                "timestamp": "2018-07-22T07:48:32.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "9SS6JZ23KWknsFdGVqvxDnNh1SQtw1E2p3UbCVZqaJEq",
+                "timestamp": "2018-07-22T07:48:42.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "HUbBBAxKwss3WqjcDwUyKSSWD4CuxyrQfMoESGdJ97Fm",
+                "timestamp": "2018-07-22T07:49:09.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "85r74fpQZkXQnZp9ZkNm4ecgaJ24A1QH8kxo8AAqMW5y",
+                "timestamp": "2018-07-22T07:51:20.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "7tAQJ8tGDqrYJfX5YU2C13NJEeUMnrAiYyg28tBHsAvK",
+                "timestamp": "2018-07-22T07:51:58.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "dBXMXvWm8iMQtufN5MfaJLYJrzXokt8v9KqqGpdinT8",
+                "timestamp": "2018-07-22T07:55:57.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "7otkSoxWDYPaWfavsX1TsQWfXYoiJmq4oBF4T4D2hizF",
+                "timestamp": "2018-07-22T07:56:59.000Z",
+                "paidFee": 0.03498,
+                "paidAmount": "231604800000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "Gsjrm3Bzsu9xPxanFRHLqbcJkNUvY67qido6YGfkkn82",
+                "timestamp": "2018-07-22T07:58:03.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "6RAEdArMXsqoUbpsZSy2EMhcHcukn21LWVhAP6y2aQLs",
+                "timestamp": "2018-07-22T07:58:13.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "885ZK9d786EBjhDrQ43kmyvCzLZnTLH62X2yqpitGc3u",
+                "timestamp": "2018-07-22T08:01:08.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "EpzABjigoiZjWFQp58xaG4DLFTkhWRxPNDULdcjZGxCd",
+                "timestamp": "2018-07-22T08:01:58.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "5qCDiXBM36WUJq9FrKssJbUmfNcwAgCSi7C5WFqKrmam",
+                "timestamp": "2018-07-22T08:02:29.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "7Ajxf9UBudxwc8vk5s2hwvC4hBs6Z7vV8KogkgxAEYjc",
+                "timestamp": "2018-07-22T08:02:59.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "2Aq4Tt8boJMJE4gFD2a8KxBRTHZtDQ1htRfdVTMc6J7r",
+                "timestamp": "2018-07-22T08:04:44.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "CGVQpWW6JDH2aPXdJCCa3F6vm9ioejjGaeRpYDsxbYjf",
+                "timestamp": "2018-07-22T08:05:51.000Z",
+                "paidFee": 0.035,
+                "paidAmount": "231600000000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DMmBLoGzeujwZQPj5WUtGzxdv3CfYtn9YFGQ9utPzDzm",
+                "timestamp": "2018-07-22T08:06:07.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            },
+            {
+                "address": "H2qmbaVNaaDQqwhHwv1fgDE5g5LWGJA4K",
+                "txid": "DnQutJ3e2S9CTi4ZVwuMk7A9ombCatEEcA97cLx9ei4q",
+                "timestamp": "2018-07-22T08:10:03.000Z",
+                "paidFee": 0.03499,
+                "paidAmount": "231602400000"
+            }
+        ]
+    }
 }
