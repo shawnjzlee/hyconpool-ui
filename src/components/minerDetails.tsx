@@ -188,7 +188,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                         }
                     </Grid>
                 </Grid >
-                <Grid container style={{ paddingBottom: "5vh" }}>
+                <Grid container style={{ paddingBottom: "4vh" }}>
                     <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
                         <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
                             <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: this.props.font, fontWeight: 600, margin: "auto 0" }}>
@@ -208,7 +208,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                     return (
                                         <TableRow key={payout.txid} hover>
                                             <TableCell style={{ fontWeight: 600 }}>
-                                                {payout.timestamp}
+                                                {payout.timestamp} UTC
                                             </TableCell>
                                             <TableCell numeric style={{ textOverflow: "ellipsis" }}>
                                                 <code>{payout.txid}</code>
@@ -278,10 +278,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
 
         const timeBegin = this.timestampToSeconds(response.minerData[response.minerData.length - 7].timestamp)
         const timeEnd = this.timestampToSeconds(response.minerData[response.minerData.length - 1].timestamp)
-
-        // console.log(timeBegin)
-        // console.log(timeEnd)
-        // console.log(totalHashes)
 
         this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
         this.setState({ currentFee: (response.minerPayouts[response.minerData.length - 1].paidFee * 100).toFixed(3) })

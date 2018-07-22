@@ -9,9 +9,9 @@ import Typography from "@material-ui/core/Typography"
 import * as React from "react"
 import { Component } from "react"
 import MediaQuery from "react-responsive"
-// import Paper from '@material-ui/core/Paper';
-// tslint:disable-next-line:no-var-requires
+// tslint:disable:no-var-requires
 const WebFont = require("webfontloader")
+const endpoint = require("./data/endpoints.json")
 
 WebFont.load({
     google: {
@@ -19,11 +19,26 @@ WebFont.load({
     },
 })
 
+interface IPoolInfo {
+    poolData: [{ hashrate: number, miners: number, blocks: number }],
+    lastblock: string,
+}
+
 export class PoolDetails extends Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
+            hashrate: 0,
+            miners: 0,
+            blocks: 0,
+            lastblock: "",
         }
+    }
+
+    public async componentDidMount() {
+        await this.loadData()
+
+        this.setState({ mounted: true })
     }
 
     public render() {
@@ -147,4 +162,11 @@ export class PoolDetails extends Component<any, any> {
             </div>
         )
     }
+
+    private async loadData() {
+        const url = endpoint.pool
+        const response: IPoolInfo = await (await fetch(url)).json()
+        this.setState({ lastblock: response.lastblock })
+    }
+
 }
