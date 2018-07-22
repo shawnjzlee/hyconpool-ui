@@ -1,5 +1,6 @@
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
+import CircularProgress from "@material-ui/core/CircularProgress"
 import Grid from "@material-ui/core/Grid"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
@@ -49,10 +50,10 @@ interface IMinerProps {
 
 interface IMinerDetailsState {
     hash: string
-    id: string,
+    workers: number,
     hashrate: number,
-    unpaid: number,
     shares: number,
+    mounted: boolean,
     payouts: [{ id: number, block: string, txHash: string, amount: number }],
 }
 
@@ -62,29 +63,30 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         super(props)
         this.state = {
             hash: props.hash,
-            id: "",
+            workers: 0,
             hashrate: 0,
-            unpaid: 0,
             shares: 0,
+            mounted: false,
             payouts: [{ id: 0, block: "", txHash: "", amount: 0 }],
         }
     }
 
-    public componentWillMount() {
-        const url = "http://localhost:3004/minerData" // + this.state.hash
-        fetch(url).then((res) => res.json()).then((stats) => {
-            for (const stat of stats) {
-                stat.timestamp = stat.timestamp.split("T")[1].slice(0, 5)
-                stat.workers = +stat.workers
-                stat.valid_hashes = +stat.valid_hashes
-                stat.stale_hashes = +stat.stale_hashes
-                stat.pending_hashes = +stat.pending_hashes
-                this.data.push(stat)
-            }
-            console.log(this.data)
-        }).catch((e: Error) => {
-            alert(e)
-        })
+    public async componentWillMount() {
+        const url = "http://localhost:3004/" + this.state.hash
+        const response = await fetch(url)
+        const stats = await response.json()
+
+        for (const stat of stats.minerData) {
+            stat.timestamp = stat.timestamp.split("T")[1].slice(0, 5)
+            stat.workers = +stat.workers
+            stat.valid_hashes = +stat.valid_hashes
+            stat.stale_hashes = +stat.stale_hashes
+            stat.pending_hashes = +stat.pending_hashes
+            this.data.push(stat)
+        }
+
+        // console.log(stats)
+        this.setState({ mounted: true })
     }
 
     public render() {
@@ -113,12 +115,12 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%" }}>
                         <MediaQuery query="(min-device-width: 800px)">
-                            // TODO: hashrate, workers, shares, payout, unpaidbalance
+                            // TODO: hashrate, workers, shares, payout
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["unpaid-balance"] } | <code> {this.state.unpaid} HYC </code>
+                                {this.props.locale["your-workers"]} | <code> {this.state.workers} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
@@ -128,8 +130,8 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["unpaid-balance"] } | <code> {this.state.unpaid} HYC </code>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                                {this.props.locale["your-workers"]} | <code> {this.state.workers} </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 { this.props.locale["total-shares"] } | <code> {this.state.shares} </code>
@@ -137,19 +139,22 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                         </MediaQuery>
                     </Grid>
                     <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF", fontFamily: this.props.font }}>
-                        <ResponsiveContainer width="95%" height={300}>
-                            <LineChart data={this.data}
-                                margin={{ bottom: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="timestamp" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="valid_hashes" stroke="#18FFFF" />
-                                <Line type="monotone" dataKey="stale_hashes" stroke="#E0E0E0" />
-                                <Line type="monotone" dataKey="pending_hashes" stroke="#FFF176" />
-                            </LineChart>
-                        </ResponsiveContainer>
+                        { this.state.mounted ?
+                            <ResponsiveContainer width="95%" height={300}>
+                                <LineChart data={this.data}
+                                    margin={{ bottom: 5 }}>
+                                    <CartesianGrid strokeDasharray="3 3"/>
+                                    <XAxis dataKey="timestamp" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="valid_hashes" stroke="#18FFFF" />
+                                    <Line type="monotone" dataKey="stale_hashes" stroke="#E0E0E0" />
+                                    <Line type="monotone" dataKey="pending_hashes" stroke="#FFF176" />
+                                </LineChart>
+                            </ResponsiveContainer> :
+                            <CircularProgress />
+                        }
                         {/* <ResponsiveContainer width="95%" height={300}>
                             <LineChart data={info}
                                 margin={{ top: 30, bottom: 5 }}>

@@ -22,6 +22,7 @@ export default {
     // minerDetails ---
     "miner-title": "Hello...",
     "your-hashrate": "Your Hashrate",
+    "your-workers": "Your Workers",
     "unpaid-balance": "Unpaid Balance",
     "total-shares": "Total Shares",
     "table-shares": "Shares",

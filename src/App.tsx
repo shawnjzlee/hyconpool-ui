@@ -59,7 +59,7 @@ export class App extends React.Component<any, any> {
     public componentDidMount() {
     }
 
-    public searchAddress(event: any) {
+    public async searchAddress(event: any) {
         const url = "http://localhost:3004/" + this.state.address
         if (this.state.address === "") {
             this.setState({ validAddress: 0 })
@@ -70,14 +70,12 @@ export class App extends React.Component<any, any> {
             return
         }
 
-        fetch(url).then((res: any) => {
-            if (res.status !== 404) {
-                this.setState({ validAddress: 2, redirect: true })
-            } else {
-                event.preventDefault()
-                this.setState({ validAddress: 0, open: true })
-            }
-        })
+        const response = await fetch(url)
+        if (response.status === 404) {
+            this.setState({ validAddress: 0, open: true })
+            return
+        }
+        this.setState({ validAddress: 2, redirect: true })
     }
 
     public handleChange = (prop: any) => (event: any) => {
@@ -100,8 +98,6 @@ export class App extends React.Component<any, any> {
     public languageChange = (event: any) => {
         this.locale = getLocale(event.target.value)
         this.setState({ [event.target.name]: event.target.value })
-        console.log(this.locale)
-        console.log(this.state.language)
     }
     public render() {
         if (this.state.language === "en") {
@@ -211,7 +207,7 @@ export class App extends React.Component<any, any> {
                             <FormControl style={{ flexBasis: 165, marginLeft: 10, textAlign: "center", fontFamily: this.font }}>
                                 <Select
                                     value={this.state.language}
-                                    onChange={this.languageChange.bind(event)}
+                                    onChange={this.languageChange}
                                     inputProps={{
                                         id: "lang_select",
                                         name: "language",
