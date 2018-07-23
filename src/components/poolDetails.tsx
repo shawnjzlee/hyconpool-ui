@@ -57,7 +57,7 @@ export class PoolDetails extends Component<any, any> {
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="display1" style={{ wordWrap: "break-word", color: "#FFEA00", fontFamily: this.props.font, fontWeight: 700 }}>
+                            <Typography gutterBottom variant="headline" style={{ wordWrap: "break-word", color: "#FFEA00", fontFamily: this.props.font, fontWeight: 700 }}>
                                 {this.props.locale["welcome-feature"]}
                             </Typography>
                             <Typography gutterBottom variant="display2" style={{ wordWrap: "break-word", color: "#fff", fontFamily: this.props.font, fontWeight: 700 }}>
