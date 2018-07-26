@@ -48,7 +48,8 @@ interface IMinerPayout {
 
 interface IMinerInfo {
     minerData: IMinerData[],
-    minerPayouts: IMinerPayout[]
+    minerPayouts: IMinerPayout[],
+    minerFee: number
 }
 
 interface IMinerProps {
@@ -179,9 +180,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                     <YAxis />
                                     <Tooltip />
                                     <Legend />
-                                    <Line type="monotone" dataKey="valid_hashes" stroke="#18FFFF" />
-                                    <Line type="monotone" dataKey="stale_hashes" stroke="#E0E0E0" />
-                                    <Line type="monotone" dataKey="pending_hashes" stroke="#FFF176" />
+                                    <Line type="monotone" dataKey="valid_hashes" stroke="#18FFFF" name="Winning Hashes"/>
+                                    <Line type="monotone" dataKey="stale_hashes" stroke="#E0E0E0" name="Submitted Hashes" />
+                                    <Line type="monotone" dataKey="pending_hashes" stroke="#FFF176" name="Pending Hashes" />
                                 </LineChart>
                             </ResponsiveContainer> :
                             <CircularProgress />
@@ -199,6 +200,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
+                                    <TableCell numeric>{this.props.locale["table-to"]}</TableCell>
                                     <TableCell numeric>{this.props.locale["table-txid"]}</TableCell>
                                     <TableCell numeric>{this.props.locale["table-amount"]}</TableCell>
                                 </TableRow>
@@ -209,6 +211,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                         <TableRow key={payout.txid} hover>
                                             <TableCell style={{ fontWeight: 600 }}>
                                                 {payout.timestamp} UTC
+                                            </TableCell>
+                                            <TableCell>
+                                                <code>{payout.address}</code>
                                             </TableCell>
                                             <TableCell numeric style={{ textOverflow: "ellipsis" }}>
                                                 <code>{payout.txid}</code>
@@ -247,6 +252,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     private async loadData(hash: string): Promise<IMinerInfo> {
         const url = endpoint.miner + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
+        const minerFee = response.minerFee
         const minerData: IMinerData[] = []
         for (const row of response.minerData) {
             const stat: IMinerData = {
@@ -280,9 +286,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         const timeEnd = this.timestampToSeconds(response.minerData[response.minerData.length - 1].timestamp)
 
         this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
-        this.setState({ currentFee: (response.minerPayouts[response.minerData.length - 1].paidFee * 100).toFixed(3) })
+        this.setState({ currentFee: (minerFee * 100).toFixed(3) })
         this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
-        return {minerData, minerPayouts}
+        return {minerData, minerPayouts, minerFee}
     }
 
     private timestampToSeconds(timestamp: string) {

@@ -33,6 +33,8 @@ export default {
     "table-timestamp": "Timestamp (UTC)",
     "table-shares": "Shares",
     "table-block": "Block",
+    "table-from": "From",
+    "table-to": "To",
     "table-txid": "Transaction ID",
     "table-amount": "Amount",
     "table-fee": "Fee (%)",

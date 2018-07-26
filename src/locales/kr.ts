@@ -33,6 +33,8 @@ export default {
     "table-timestamp": "Timestamp (UTC)",
     "table-shares": "블록당 지분",
     "table-block": "블록",
+    "table-from": "",
+    "table-to": "",
     "table-txid": "거래(트랜잭션) ID",
     "table-amount": "개수",
     "table-fee": "Fee (%)",
