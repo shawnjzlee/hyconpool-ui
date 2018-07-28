@@ -33,7 +33,7 @@ export default {
     "table-timestamp": "Timestamp (UTC)",
     "table-shares": "Shares",
     "table-block": "Block",
-    "table-blocks": "Mined Blocks",
+    "table-blocks": "Recently Mined Blocks",
     "table-from": "From",
     "table-to": "To",
     "table-txid": "Transaction ID",
