@@ -49,7 +49,8 @@ interface IMinerPayout {
 interface IMinerInfo {
     minerData: IMinerData[],
     minerPayouts: IMinerPayout[],
-    minerFee: number
+    minerFee: number,
+    totalPaid: number
 }
 
 interface IMinerProps {
@@ -63,6 +64,7 @@ interface IMinerDetailsState {
     workers: number,
     hashrate: string,
     currentFee: string,
+    totalPaid: string,
     mounted: boolean,
     page: number,
     rowsPerPage: number,
@@ -79,6 +81,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             workers: 0,
             hashrate: "",
             currentFee: "",
+            totalPaid: "",
             mounted: false,
             page: 0,
             rowsPerPage: 10,
@@ -141,6 +144,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                 {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                                {this.props.locale["total-earned"]} | <code> {this.state.totalPaid} HYC </code>
+                            </Typography>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
                                 <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleChange}>
                                     <TooltipUI title={this.props.locale["whats-this"]} placement="right">
@@ -155,6 +161,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
+                            </Typography>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                                { this.props.locale["total-earned"] } | <code> {this.state.totalPaid} HYC </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
@@ -252,6 +261,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         const url = endpoint.miner + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
         const minerFee = response.minerFee
+        const totalPaid = response.totalPaid
         const minerData: IMinerData[] = []
         for (const row of response.minerData) {
             const stat: IMinerData = {
@@ -286,8 +296,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
 
         this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
         this.setState({ currentFee: (minerFee * 100).toFixed(3) })
+        this.setState({ totalPaid: response.totalPaid.toFixed(4) })
         this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
-        return {minerData, minerPayouts, minerFee}
+        return {minerData, minerPayouts, minerFee, totalPaid}
     }
 
     private timestampToSeconds(timestamp: string) {

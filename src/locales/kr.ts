@@ -40,6 +40,7 @@ export default {
     "table-txid": "거래(트랜잭션) ID",
     "table-amount": "개수",
     "table-fee": "Fee (%)",
+    "total-earned": "총 벌었음",
 
     // footer ---
     // misc ---
