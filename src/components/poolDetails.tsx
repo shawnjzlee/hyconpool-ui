@@ -134,7 +134,7 @@ export class PoolDetails extends Component<any, any> {
                                     return (
                                         <TableRow key={minedBlock.block} hover>
                                             <TableCell style={{ fontWeight: 600 }}>
-                                                {minedBlock.timestamp.split("T")[1].slice(0, 5)} UTC
+                                                {minedBlock.timestamp.replace("T", " ").substring(0, 19)}
                                             </TableCell>
                                             <TableCell>
                                                 <code>{minedBlock.block}</code>
