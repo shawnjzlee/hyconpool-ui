@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography"
 import * as React from "react"
 import { Component } from "react"
 import MediaQuery from "react-responsive"
+import TableHead from "../../node_modules/@material-ui/core/TableHead"
 // tslint:disable:no-var-requires
 const WebFont = require("webfontloader")
 const endpoint = require("../data/endpoints.json")
@@ -27,6 +28,9 @@ export class PoolDetails extends Component<any, any> {
             miners: 0,
             blocks: 0,
             lastblock: "",
+            minedBlocks: [],
+            page: 0,
+            rowsPerPage: 10,
         }
     }
 
@@ -86,7 +90,7 @@ export class PoolDetails extends Component<any, any> {
                                 { this.props.locale["active-miners"] } | <code> {this.state.miners} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                { this.props.locale["blocks-hour"] } | <code> {this.state.blocks} blocks/hr</code>
+                                { this.props.locale["blocks-hour"] } | <code> {this.state.blocks} </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["last-mined"]} | <code>{this.state.lastblock.substring(0, 22)}...</code>
@@ -103,13 +107,44 @@ export class PoolDetails extends Component<any, any> {
                                 {this.props.locale["active-miners"]} | <code> {this.state.miners} </code>
                             </Typography>
                             <Typography gutterBottom variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["blocks-hour"]} | <code style={{ overflow: "none" }}> {this.state.blocks} blocks/hr</code>
+                                {this.props.locale["blocks-hour"]} | <code style={{ overflow: "none" }}> {this.state.blocks}</code>
                             </Typography>
                             <Typography gutterBottom noWrap variant="subheading" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
                                 {this.props.locale["last-mined"]} | <code>{this.state.lastblock.substring(0, 10)}...</code>
                             </Typography>
                         </MediaQuery>
                     </Grid>
+                </Grid>
+                <Grid container style={{ paddingBottom: "4vh" }}>
+                    <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
+                        <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
+                            <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: this.props.font, fontWeight: 600, margin: "auto 0" }}>
+                                { this.props.locale["table-blocks"] }
+                            </Typography>
+                        </CardContent>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
+                                    <TableCell numeric>{this.props.locale["table-block"]}</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                { this.state.minedBlocks.map((minedBlock: any) => {
+                                    return (
+                                        <TableRow key={minedBlock.block} hover>
+                                            <TableCell style={{ fontWeight: 600 }}>
+                                                {minedBlock.timestamp} UTC
+                                            </TableCell>
+                                            <TableCell>
+                                                <code>{minedBlock.block}</code>
+                                            </TableCell>
+                                        </TableRow>
+                                    )})
+                                }
+                            </TableBody>
+                        </Table>
+                    </Card>
                 </Grid>
                 <Grid container
                     style={{
@@ -168,8 +203,9 @@ export class PoolDetails extends Component<any, any> {
         const response = await (await fetch(url)).json()
         this.setState({ hashrate: response.poolData[0].hashrate })
         this.setState({ miners: response.poolData[0].miners })
-        this.setState({ blocks: response.poolData[0].blocks })
+        this.setState({ blocks: response.blocksPerDay })
         this.setState({ lastblock: response.lastblock })
+        this.setState({ minedBlocks: response.minedBlocks })
     }
 
 }
