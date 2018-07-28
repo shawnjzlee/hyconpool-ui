@@ -117,7 +117,7 @@ export class PoolDetails extends Component<any, any> {
                 </Grid>
                 <Grid container style={{ paddingBottom: "4vh" }}>
                     <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
-                        <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
+                        <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #8f44a1 0%,#4a34b2 42%,#99459a 100%)", paddingBottom: 0 }}>
                             <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: this.props.font, fontWeight: 600, margin: "auto 0" }}>
                                 { this.props.locale["table-blocks"] }
                             </Typography>
