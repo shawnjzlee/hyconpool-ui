@@ -40,6 +40,7 @@ export default {
     "table-txid": "Transaction ID",
     "table-amount": "Amount",
     "table-fee": "Fee (%)",
+    "total-earned": "Total Earned",
 
     // footer ---
     // misc ---
