@@ -180,8 +180,8 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                     <Tooltip />
                                     <Legend />
                                     <Bar dataKey="valid_hashes" stackId="a" fill="#18FFFF" name="Winning Hashes"/>
-                                    <Bar dataKey="stale_hashes" stackId="a" fill="#18FFFF" name="Submitted Hashes"/>
-                                    <Bar dataKey="pending_hashes" stackId="a" fill="#18FFFF" name="Pending Hashes"/>
+                                    <Bar dataKey="stale_hashes" stackId="a" fill="#E0E0E0" name="Submitted Hashes"/>
+                                    <Bar dataKey="pending_hashes" stackId="a" fill="FFF176" name="Pending Hashes"/>
                                 </BarChart>
                             </ResponsiveContainer> :
                             <CircularProgress />
