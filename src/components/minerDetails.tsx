@@ -17,11 +17,11 @@ import InfoIcon from "@material-ui/icons/Info"
 import * as React from "react"
 import { Component } from "react"
 import MediaQuery from "react-responsive"
-import { ResponsiveContainer } from "recharts"
+import { Bar, BarChart, ResponsiveContainer } from "recharts"
 import { IText } from "../locales/locales"
 // tslint:disable:no-var-requires
 const WebFont = require("webfontloader")
-const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
+const {XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
 const endpoint = require("../data/endpoints.json")
 
 WebFont.load({
@@ -173,17 +173,16 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF", fontFamily: this.props.font }}>
                         { this.state.mounted ?
                             <ResponsiveContainer width="95%" height={300}>
-                                <LineChart data={this.hashStats}
-                                    margin={{ bottom: 5 }}>
+                                <BarChart data={this.hashStats} margin={{bottom: 5}}>
                                     <CartesianGrid strokeDasharray="3 3"/>
                                     <XAxis dataKey="timestamp" />
                                     <YAxis />
                                     <Tooltip />
                                     <Legend />
-                                    <Line type="monotone" dataKey="valid_hashes" stroke="#18FFFF" name="Winning Hashes"/>
-                                    <Line type="monotone" dataKey="stale_hashes" stroke="#E0E0E0" name="Submitted Hashes" />
-                                    <Line type="monotone" dataKey="pending_hashes" stroke="#FFF176" name="Pending Hashes" />
-                                </LineChart>
+                                    <Bar dataKey="valid_hashes" stackId="a" fill="#18FFFF" name="Winning Hashes"/>
+                                    <Bar dataKey="stale_hashes" stackId="a" fill="#18FFFF" name="Submitted Hashes"/>
+                                    <Bar dataKey="pending_hashes" stackId="a" fill="#18FFFF" name="Pending Hashes"/>
+                                </BarChart>
                             </ResponsiveContainer> :
                             <CircularProgress />
                         }

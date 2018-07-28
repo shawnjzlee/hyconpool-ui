@@ -19,6 +19,7 @@ export default {
     "your-wallet": "Your Hycon Wallet Address",
     "password": "Password",
     "your-password": "Your Worker Label (up to 16 characters)",
+    "contributors": "Contributors",
 
     // minerDetails ---
     "miner-title": "Hello...",
