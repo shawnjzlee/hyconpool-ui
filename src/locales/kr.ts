@@ -9,7 +9,7 @@ export default {
     "welcome-sub": "최초의, 높은 퍼포먼스의 HYCON Pool, 채굴(마이닝) 즉시 지급되는 보상, 익명의 채굴, 정확한 해쉬레이트 리포팅, 모든 과정에 효율적인 채굴(마이닝) 엔진.",
     "pool-details-title": "Pool 세부정보",
     "hashrate": "해쉬레이트",
-    "active-miners": "활동중인 채굴자들",
+    "active-miners": "활동중인 접속",
     "blocks-hour": "블록수 / 일",
     "last-mined": "마지막으로 채굴된 블록",
     "instructions-title": "접속 방법",

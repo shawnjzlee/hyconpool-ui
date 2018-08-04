@@ -9,7 +9,7 @@ export default {
     "welcome-sub": "The first, high performance HYCON pool. Instant payouts, anonymous mining, accurate hashrate reporting, sliding fees, all on an extremely-efficient mining engine.",
     "pool-details-title": "pool details",
     "hashrate": "Hashrate",
-    "active-miners": "Active Miners",
+    "active-miners": "Active Connections",
     "blocks-hour": "Blocks / Day",
     "last-mined": "Last Mined Block",
     "instructions-title": "how to connect",
