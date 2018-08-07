@@ -285,7 +285,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             minerPayouts.push(payout)
         }
 
-        const dataSample = response.minerData.filter((x) => Date.parse(x.timestamp) > (Date.now() - 600000))
+        const dataSample = response.minerData.filter((x) => (Date.now() - Date.parse(x.timestamp + " UTC")) < 600000)
         let totalHashes = 0
         for (const row of dataSample) {
             totalHashes = totalHashes + Number(row.valid_hashes) + Number(row.pending_hashes) + Number(row.stale_hashes)
