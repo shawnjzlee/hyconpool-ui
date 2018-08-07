@@ -291,14 +291,18 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             totalHashes = totalHashes + Number(row.valid_hashes) + Number(row.pending_hashes) + Number(row.stale_hashes)
         }
 
-        const timeBegin = this.timestampToSeconds(dataSample[0].timestamp)
-        const timeEnd = this.timestampToSeconds(dataSample[dataSample.length - 1].timestamp)
-
-        if (timeBegin !== timeEnd) {
-            this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
+        if (dataSample.length > 0) {
+            const timeBegin = this.timestampToSeconds(dataSample[0].timestamp)
+            const timeEnd = this.timestampToSeconds(dataSample[dataSample.length - 1].timestamp)
+            if (timeBegin !== timeEnd) {
+                this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
+            } else {
+                this.setState({hashrate: "0"})
+            }
         } else {
             this.setState({hashrate: "0"})
         }
+
         this.setState({ currentFee: (minerFee * 100).toFixed(3) })
         this.setState({ totalPaid: response.totalPaid.toFixed(4) })
         this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
