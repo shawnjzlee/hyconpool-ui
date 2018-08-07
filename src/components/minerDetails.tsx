@@ -285,18 +285,20 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             minerPayouts.push(payout)
         }
 
-        const sampleStart = Math.min(response.minerData.length, 7)
-        const sampleEnd = Math.max(response.minerData.length - 1, 1)
-        const dataSample = response.minerData.slice(response.minerData.length - sampleStart, sampleEnd)
+        const dataSample = response.minerData.filter((x) => Date.parse(x.timestamp) > (Date.now() - 600000))
         let totalHashes = 0
         for (const row of dataSample) {
             totalHashes = totalHashes + Number(row.valid_hashes) + Number(row.pending_hashes) + Number(row.stale_hashes)
         }
 
-        const timeBegin = this.timestampToSeconds(response.minerData[response.minerData.length - sampleStart].timestamp)
-        const timeEnd = this.timestampToSeconds(response.minerData[sampleEnd].timestamp)
+        const timeBegin = this.timestampToSeconds(dataSample[0].timestamp)
+        const timeEnd = this.timestampToSeconds(dataSample[dataSample.length - 1].timestamp)
 
-        this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
+        if (timeBegin !== timeEnd) {
+            this.setState({ hashrate: (totalHashes / Math.abs(timeBegin - timeEnd)).toFixed(4) })
+        } else {
+            this.setState({hashrate: "0"})
+        }
         this.setState({ currentFee: (minerFee * 100).toFixed(3) })
         this.setState({ totalPaid: response.totalPaid.toFixed(4) })
         this.setState({ workers: response.minerData[response.minerData.length - 1].workers})
