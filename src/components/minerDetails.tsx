@@ -2,8 +2,11 @@ import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import Collapse from "@material-ui/core/Collapse"
+import FormControl from "@material-ui/core/FormControl"
 import Grid from "@material-ui/core/Grid"
 import IconButton from "@material-ui/core/IconButton"
+import Input from "@material-ui/core/Input"
+import InputAdornment from "@material-ui/core/InputAdornment"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -13,7 +16,9 @@ import TablePagination from "@material-ui/core/TablePagination"
 import TableRow from "@material-ui/core/TableRow"
 import TooltipUI from "@material-ui/core/Tooltip"
 import Typography from "@material-ui/core/Typography"
+import GiftCardIcon from "@material-ui/icons/CardGiftcard"
 import InfoIcon from "@material-ui/icons/Info"
+import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn"
 import * as React from "react"
 import { Component } from "react"
 import MediaQuery from "react-responsive"
@@ -68,7 +73,11 @@ interface IMinerDetailsState {
     mounted: boolean,
     page: number,
     rowsPerPage: number,
-    opened: boolean
+    openedPromo: boolean,
+    validPromo: boolean,
+    appliedPromo: boolean,
+    promo: string,
+    openedTip: boolean
 }
 
 export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
@@ -85,7 +94,11 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
             mounted: false,
             page: 0,
             rowsPerPage: 10,
-            opened: false,
+            openedPromo: false,
+            validPromo: true,
+            appliedPromo: false,
+            promo: "",
+            openedTip: false,
         }
     }
 
@@ -97,9 +110,17 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         this.setState({ mounted: true })
     }
 
-    public handleChange = () => {
-        this.setState((state) => ({ opened: !state.opened }))
+    public handleChangePromo = (event: any) => {
+        event.preventDefault()
+        this.setState({ promo: event.target.value })
     }
+    public handleOpenPromo = (event: any) => {
+        this.setState((state) => ({ openedPromo: !state.openedPromo }))
+    }
+    public handleOpenTip = (event: any) => {
+        this.setState((state) => ({ openedTip: !state.openedTip }))
+    }
+
     public handleChangePage = (event: any, page: number) => {
         this.setState({ page })
     }
@@ -147,9 +168,16 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                 {this.props.locale["total-earned"]} | <code> {this.state.totalPaid} HYC </code>
                             </Typography>
                             <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
-                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleChange}>
-                                    <TooltipUI title={this.props.locale["whats-this"]} placement="right">
+                            {this.state.appliedPromo ?
+                                    this.props.locale["promo-fee"] :
+                                    this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
+                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenPromo}>
+                                    <TooltipUI title={this.props.locale["promo-code"]} placement="bottom">
+                                        <GiftCardIcon />
+                                    </TooltipUI>
+                                </IconButton>
+                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenTip}>
+                                    <TooltipUI title={this.props.locale["whats-this"]} placement="bottom">
                                         <InfoIcon/>
                                     </TooltipUI>
                                 </IconButton>
@@ -166,14 +194,58 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                 { this.props.locale["total-earned"] } | <code> {this.state.totalPaid} HYC </code>
                             </Typography>
                             <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
-                                {this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
-                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleChange}>
+                                {this.state.appliedPromo ?
+                                    this.props.locale["promo-fee"] :
+                                    this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
+                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenPromo}>
+                                    <GiftCardIcon />
+                                </IconButton>
+                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenTip}>
                                     <InfoIcon />
                                 </IconButton>
                             </Typography>
                         </MediaQuery>
 
-                        <Collapse in={this.state.opened}>
+                        <Collapse in={this.state.openedPromo}>
+                            <FormControl style={{ minWidth: "40%", borderStyle: "solid", borderWidth: 1, borderColor: "#fff" }}>
+                                {this.state.validPromo ?
+                                    <Input
+                                        id="promo"
+                                        type="text"
+                                        placeholder={this.props.locale["promo-code-prompt"]}
+                                        value={this.state.promo}
+                                        onChange={this.handleChangePromo}
+                                        fullWidth disableUnderline
+                                        style={{ color: "#fff" }}
+                                        onKeyPress={(e: any) => { if (e.key === "Enter") { e.preventDefault(); this.setPromo() } }}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton onClick={this.setPromo.bind(this)}>
+                                                    <KeyboardReturnIcon style={{ color: "#fff" }} />
+                                                </IconButton>
+                                            </InputAdornment>
+                                        } /> :
+                                    <Input
+                                        error
+                                        id="promo"
+                                        type="text"
+                                        placeholder={this.props.locale["promo-code-prompt"]}
+                                        value={this.state.promo}
+                                        onChange={this.handleChangePromo}
+                                        fullWidth
+                                        style={{ color: "#fff" }}
+                                        onKeyPress={(e: any) => { if (e.key === "Enter") { e.preventDefault(); this.setPromo() } }}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton onClick={this.setPromo.bind(this)}>
+                                                    <KeyboardReturnIcon style={{ color: "#fff" }} />
+                                                </IconButton>
+                                            </InputAdornment>
+                                        } />
+                                }
+                            </FormControl>
+                        </Collapse>
+                        <Collapse in={this.state.openedTip}>
                             <Typography gutterBottom style={{ color: "#fff", fontFamily: this.props.font }}>
                                 {this.props.locale["fee-info"]}
                             </Typography>
@@ -312,5 +384,11 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     private timestampToSeconds(timestamp: string) {
         const timeComponents: any = timestamp.split("T")[1].slice(0, 5).split(":")
         return ((timeComponents[0] * 60 * 60) + (timeComponents[1] * 60))
+    }
+
+    private async setPromo() {
+        const url = endpoint.miner + this.state.hash
+        console.log(`Setting promo for: ${url}`)
+        this.setState({ validPromo: false })
     }
 }

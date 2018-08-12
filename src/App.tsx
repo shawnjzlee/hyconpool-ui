@@ -202,7 +202,7 @@ export class App extends React.Component<any, any> {
                                     variant="caption"
                                     style={{ flexBasis: 165, marginLeft: 5, textAlign: "center", fontFamily: this.font }}
                                 >
-                                    © minehycon 2018 | hycon-core release version: 0.0.6-eccentric emu
+                                    © minehycon 2018 | hycon-core release: 0.0.8-gregarious-goose
                                 </Typography>
                             </Grid>
                         </MediaQuery>
