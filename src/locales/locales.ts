@@ -34,6 +34,7 @@ export interface IText {
     "your-wallet": string,
     "password": string,
     "your-password": string,
+    "contributors": string,
 
     // minerDetails ---
     "miner-title": string,
@@ -42,15 +43,22 @@ export interface IText {
     "worker": string,
     "workers": string,
     "unpaid-balance": string,
+    "promo-code-prompt": string,
+    "promo-code": string,
+    "promo-fee": string,
     "current-fee": string,
     "whats-this": string,
     "fee-info": string,
     "table-timestamp": string,
     "table-shares": string,
     "table-block": string,
+    "table-blocks": string,
+    "table-from": string,
+    "table-to": string,
     "table-txid": string,
     "table-amount": string,
     "table-fee": string,
+    "total-earned": string,
 
     // footer ---
     // misc ---

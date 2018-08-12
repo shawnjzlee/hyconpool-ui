@@ -1,4 +1,4 @@
 {
     "pool": "//minehycon.com/pool",
-    "miner": "//minehycon.com/miner/"
+    "miner": "http://localhost:8080/"
 }
