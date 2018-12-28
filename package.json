@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^1.2.0",
-    "@material-ui/icons": "^1.1.0",
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
+    "classnames": "^2.2.6",
+    "highlight.js": "^9.13.1",
     "mysql": "^2.15.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -13,7 +15,7 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
-    "recharts": "^1.1.0",
+    "recharts": "latest",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
@@ -32,9 +34,10 @@
     "@types/react-router": "^4.0.27",
     "@types/react-router-config": "^1.0.7",
     "@types/react-router-dom": "^4.2.7",
-    "@types/recharts": "^1.0.24",
+    "@types/recharts": "*",
     "concurrently": "^3.6.0",
     "json-server": "^0.14.0",
-    "typescript": "^2.9.1"
+    "typescript": "^2.9.2",
+    "react-textfit": "^1.1.0"
   }
 }

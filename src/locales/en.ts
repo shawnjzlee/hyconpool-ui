@@ -12,7 +12,7 @@ export default {
     "active-miners": "Active Connections",
     "blocks-hour": "Blocks / Day",
     "last-mined": "Last Mined Block",
-    "instructions-title": "how to connect",
+    "instructions-title": "How to connect",
     "server": "Server",
     "stratum-port": "Stratum Port",
     "username": "Username",

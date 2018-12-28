@@ -2,11 +2,8 @@ import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import Collapse from "@material-ui/core/Collapse"
-import FormControl from "@material-ui/core/FormControl"
 import Grid from "@material-ui/core/Grid"
 import IconButton from "@material-ui/core/IconButton"
-import Input from "@material-ui/core/Input"
-import InputAdornment from "@material-ui/core/InputAdornment"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -16,24 +13,15 @@ import TablePagination from "@material-ui/core/TablePagination"
 import TableRow from "@material-ui/core/TableRow"
 import TooltipUI from "@material-ui/core/Tooltip"
 import Typography from "@material-ui/core/Typography"
-import GiftCardIcon from "@material-ui/icons/CardGiftcard"
 import InfoIcon from "@material-ui/icons/Info"
-import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn"
 import * as React from "react"
 import { Component } from "react"
 import MediaQuery from "react-responsive"
 import { Bar, BarChart, ResponsiveContainer } from "recharts"
 import { IText } from "../locales/locales"
 // tslint:disable:no-var-requires
-const WebFont = require("webfontloader")
 const {XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
 const endpoint = require("../data/endpoints.json")
-
-WebFont.load({
-    google: {
-      families: ["Open Sans:400,600,700,800"],
-    },
-})
 
 interface IMinerData {
     timestamp: string,
@@ -61,7 +49,6 @@ interface IMinerInfo {
 interface IMinerProps {
     hash: string
     locale: IText
-    font: string
 }
 
 interface IMinerDetailsState {
@@ -110,13 +97,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         this.setState({ mounted: true })
     }
 
-    public handleChangePromo = (event: any) => {
-        event.preventDefault()
-        this.setState({ promo: event.target.value })
-    }
-    public handleOpenPromo = (event: any) => {
-        this.setState((state) => ({ openedPromo: !state.openedPromo }))
-    }
     public handleOpenTip = (event: any) => {
         this.setState((state) => ({ openedTip: !state.openedTip }))
     }
@@ -141,11 +121,11 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                         background: "linear-gradient(122deg, #e5676b 0%,#fac84d 39%,#f6ac4b 100%)",
                     }}>
                     <Grid item xs={12} style={{ margin: "auto 4%"}}>
-                        <Typography style={{ fontFamily: this.props.font, fontWeight: 600 }}>
+                        <Typography style={{ fontWeight: 600 }}>
                             { this.props.locale["miner-title"] }
                         </Typography>
                         <TooltipUI id="payout-addr" title="Your Payout Address" placement="bottom-start">
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 700, wordWrap: "break-word" }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 700, wordWrap: "break-word" }}>
                                 {this.state.hash}
                             </Typography>
                         </TooltipUI>
@@ -158,24 +138,19 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                     }}>
                     <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%" }}>
                         <MediaQuery query="(min-device-width: 800px)">
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
                                 {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
                                 {this.props.locale["total-earned"]} | <code> {this.state.totalPaid} HYC </code>
                             </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
                             {this.state.appliedPromo ?
                                     this.props.locale["promo-fee"] :
                                     this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
-                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenPromo}>
-                                    <TooltipUI title={this.props.locale["promo-code"]} placement="bottom">
-                                        <GiftCardIcon />
-                                    </TooltipUI>
-                                </IconButton>
                                 <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenTip}>
                                     <TooltipUI title={this.props.locale["whats-this"]} placement="bottom">
                                         <InfoIcon/>
@@ -184,74 +159,31 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             </Typography>
                         </MediaQuery>
                         <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
                                 { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
                             </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
                                 {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
                             </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
                                 { this.props.locale["total-earned"] } | <code> {this.state.totalPaid} HYC </code>
                             </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontFamily: this.props.font, fontWeight: 600 }}>
+                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
                                 {this.state.appliedPromo ?
                                     this.props.locale["promo-fee"] :
                                     this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
-                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenPromo}>
-                                    <GiftCardIcon />
-                                </IconButton>
                                 <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenTip}>
                                     <InfoIcon />
                                 </IconButton>
                             </Typography>
                         </MediaQuery>
-
-                        <Collapse in={this.state.openedPromo}>
-                            <FormControl style={{ minWidth: "40%", borderStyle: "solid", borderWidth: 1, borderColor: "#fff" }}>
-                                {this.state.validPromo ?
-                                    <Input
-                                        id="promo"
-                                        type="text"
-                                        placeholder={this.props.locale["promo-code-prompt"]}
-                                        value={this.state.promo}
-                                        onChange={this.handleChangePromo}
-                                        fullWidth disableUnderline
-                                        style={{ color: "#fff" }}
-                                        onKeyPress={(e: any) => { if (e.key === "Enter") { e.preventDefault(); this.setPromo() } }}
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton onClick={this.setPromo.bind(this)}>
-                                                    <KeyboardReturnIcon style={{ color: "#fff" }} />
-                                                </IconButton>
-                                            </InputAdornment>
-                                        } /> :
-                                    <Input
-                                        error
-                                        id="promo"
-                                        type="text"
-                                        placeholder={this.props.locale["promo-code-prompt"]}
-                                        value={this.state.promo}
-                                        onChange={this.handleChangePromo}
-                                        fullWidth
-                                        style={{ color: "#fff" }}
-                                        onKeyPress={(e: any) => { if (e.key === "Enter") { e.preventDefault(); this.setPromo() } }}
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton onClick={this.setPromo.bind(this)}>
-                                                    <KeyboardReturnIcon style={{ color: "#fff" }} />
-                                                </IconButton>
-                                            </InputAdornment>
-                                        } />
-                                }
-                            </FormControl>
-                        </Collapse>
                         <Collapse in={this.state.openedTip}>
-                            <Typography gutterBottom style={{ color: "#fff", fontFamily: this.props.font }}>
+                            <Typography gutterBottom style={{ color: "#fff" }}>
                                 {this.props.locale["fee-info"]}
                             </Typography>
                         </Collapse>
                     </Grid>
-                    <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF", fontFamily: this.props.font }}>
+                    <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF" }}>
                         { this.state.mounted ?
                             <ResponsiveContainer width="95%" height={300}>
                                 <BarChart data={this.hashStats} margin={{bottom: 5}}>
@@ -272,7 +204,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                 <Grid container style={{ paddingBottom: "4vh" }}>
                     <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
                         <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
-                            <Typography style={{ fontSize: "1em", color: "#fff", fontFamily: this.props.font, fontWeight: 600, margin: "auto 0" }}>
+                            <Typography style={{ fontSize: "1em", color: "#fff", fontWeight: 600, margin: "auto 0" }}>
                                 { this.props.locale["table-shares"] }
                             </Typography>
                         </CardContent>
@@ -384,11 +316,5 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     private timestampToSeconds(timestamp: string) {
         const timeComponents: any = timestamp.split("T")[1].slice(0, 5).split(":")
         return ((timeComponents[0] * 60 * 60) + (timeComponents[1] * 60))
-    }
-
-    private async setPromo() {
-        const url = endpoint.miner + this.state.hash
-        console.log(`Setting promo for: ${url}`)
-        this.setState({ validPromo: false })
     }
 }
