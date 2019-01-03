@@ -18,7 +18,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import classnames from "classnames"
 import * as React from "react"
 import { Component } from "react"
-// tslint:disable:no-var-requires
 
 const styles = (theme: Theme) => createStyles({
     card: {
@@ -40,7 +39,6 @@ const styles = (theme: Theme) => createStyles({
         transition: theme.transitions.create("transform", {
             duration: theme.transitions.duration.shortest,
         }),
-        // marginLeft: "auto",
         [theme.breakpoints.up("sm")]: {
             marginRight: -8,
         },
@@ -48,18 +46,17 @@ const styles = (theme: Theme) => createStyles({
     expandOpen: {
         transform: "rotate(180deg)",
     },
+    code: {
+        padding: 20,
+        borderRadius: 5,
+        background: "black",
+    },
 })
+
 class GetStarted extends Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            hashrate: 0,
-            miners: 0,
-            blocks: 0,
-            lastblock: "",
-            minedBlocks: [],
-            page: 0,
-            rowsPerPage: 10,
             expanded: false,
         }
     }
@@ -72,13 +69,12 @@ class GetStarted extends Component<any, any> {
         return (
             <Grid container style={{ flexGrow: 1 }}>
                 <Grid item xs={12} style={{ margin: "auto 4%" }}>
-                    <Card>
+                    <Card style={{ boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)" }}>
                         <CardContent style={{ padding: 0 }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>{this.props.locale["instructions-title"]}</TableCell>
-                                        <TableCell></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -110,26 +106,22 @@ class GetStarted extends Component<any, any> {
                                 onClick={this.handleExpandClick}
                                 aria-expanded={this.state.expanded}
                                 aria-label="Show more"
-                            >
-                                <ExpandMoreIcon />
+                            ><ExpandMoreIcon />
                             </IconButton>
                         </CardActions>
                         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography paragraph>
-                                    <code className="json">
-                                        {`"pools": [
-                                            {
-                                                "url":  "127.0.0.1:9081",
-                                                "user": "userid",
-                                                "pass": "password",
-                                                "keepalive": true,
-                                                "nicehash": false,
-                                                "variant": 1
-                                            }
-                                        ]`}
-                                    </code>
-                                </Typography>
+                                <Typography gutterBottom>Below is an example of <code>"pools"</code> section of your <code>config.json</code>:</Typography>
+                                <CardContent className={this.props.classes.code}>
+                                    <Typography style={{ fontFamily: "monospace" }}>"pools": [&#123;</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"url": "minehycon.com:9081",</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"user": "H3yGUaF38TxQxoFrqCqPdB2pN9jyBHnaj",</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"pass": "worker1",</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"keepalive": true,</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"nicehash": false,</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"variant": 1</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>&#125;]</Typography>
+                                </CardContent>
                             </CardContent>
                         </Collapse>
                     </Card>

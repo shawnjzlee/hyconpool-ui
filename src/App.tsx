@@ -1,5 +1,7 @@
+import { ListItemSecondaryAction } from "@material-ui/core"
 import AppBar from "@material-ui/core/AppBar"
 import Avatar from "@material-ui/core/Avatar"
+import Collapse from "@material-ui/core/Collapse"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
@@ -14,9 +16,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import MenuItem from "@material-ui/core/MenuItem"
 import Snackbar from "@material-ui/core/Snackbar"
+import { withStyles } from "@material-ui/core/styles"
 // import Select from "@material-ui/core/Select"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
-import { withStyles } from "@material-ui/core/styles"
 import { fade } from "@material-ui/core/styles/colorManipulator"
 import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import createStyles from "@material-ui/core/styles/createStyles"
@@ -28,6 +30,8 @@ import AddIcon from "@material-ui/icons/Add"
 import PaymentIcon from "@material-ui/icons/AttachMoneyOutlined"
 import CloseIcon from "@material-ui/icons/CloseOutlined"
 import DashboardIcon from "@material-ui/icons/DashboardOutlined"
+import ExpandLess from "@material-ui/icons/ExpandLess"
+import ExpandMore from "@material-ui/icons/ExpandMore"
 import HelpIcon from "@material-ui/icons/HelpOutlineOutlined"
 import HomeIcon from "@material-ui/icons/HomeOutlined"
 import MenuIcon from "@material-ui/icons/Menu"
@@ -128,6 +132,9 @@ const styles = (theme: Theme) => createStyles({
             marginLeft: permanentDrawerWidth,
         },
     },
+    nested: {
+        paddingLeft: theme.spacing.unit * 4,
+    },
 })
 
 export const routes: RouteConfig[] = [
@@ -160,11 +167,13 @@ export class App extends React.Component<any, any> {
         this.state = {
             users: [],
             address: "",
-            open: false,
+            openSnackbar: false,
             validAddress: 1,
             redirect: false,
             language: navigator.language.split("-")[0],
             mobileOpen: false,
+            openCollapse: false,
+            addressHistory: storage.getItem("address") === null ? [] : storage.getItem("address")!.split(","),
         }
         this.home = ({ match }: RouteComponentProps<{}>) => (
             <Home locale={this.locale} />
@@ -179,6 +188,10 @@ export class App extends React.Component<any, any> {
             <GetStarted locale={this.locale} />
         )
         this.locale = getLocale(navigator.language)
+
+        if (this.state.addressHistory[0] === "") {
+            this.state.addressHistory.shift()
+        }
     }
 
     public componentDidMount() {
@@ -190,23 +203,23 @@ export class App extends React.Component<any, any> {
             this.setState({ validAddress: 0 })
             return
         } else if (!/^[a-zA-Z0-9]+$/.test(this.state.address)) {
-            this.setState({ validAddress: 0, open: true })
+            this.setState({ validAddress: 0, openSnackbar: true })
             return
         }
 
         const response = await fetch(url)
         if (response.status === 404) {
-            this.setState({ validAddress: 0, open: true })
+            this.setState({ validAddress: 0, openSnackbar: true })
             return
         }
         this.setState({ validAddress: 2, redirect: true })
-        console.log(storage.getItem("address"))
         const addresses = storage.getItem("address") === null ? [] : storage.getItem("address")!.split(",")
         addresses.push(this.state.address)
         storage.setItem("address", Array.from(new Set(addresses)).join(","))
     }
 
     public renderDrawer() {
+        console.log(this.state.addressHistory)
         return (
             <List>
                 {window.matchMedia("(max-width: 600px)").matches ?
@@ -229,10 +242,29 @@ export class App extends React.Component<any, any> {
                         <ListItemText primary="Pool Dashboard" />
                     </ListItem>
                 </Link>
-                <ListItem button>
+                <ListItem button onClick={this.handleClick}>
                     <ListItemIcon><DashboardIcon /></ListItemIcon>
                     <ListItemText primary="Miner Dashboard" />
+                    {this.state.addressHistory.length === 0 ? "" : (this.state.openCollapse ? <ExpandLess style={{ color: "white" }}/> : <ExpandMore style={{ color: "white" }}/>)}
                 </ListItem>
+                <Collapse in={this.state.openCollapse} style={{ backgroundColor: "gray" }} timeout="auto" unmountOnExit>
+                    <List disablePadding>
+                        {this.state.addressHistory.map((address: string) =>
+                            <Link to={`/miner/${address}`} style={{ textDecoration: "none" }}>
+                                <ListItem button key={address} className={this.props.classes.nested}>
+                                    <ListItemText
+                                        inset
+                                        disableTypography
+                                        primary={<Typography noWrap variant={"caption"}>{address}</Typography>}
+                                    />
+                                    <ListItemSecondaryAction>
+                                        <IconButton key={address} onClick={this.handleDelete(address)}><CloseIcon/></IconButton>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            </Link>,
+                        )}
+                    </List>
+                </Collapse>
                 <ListItem button>
                     <ListItemIcon><PaymentIcon /></ListItemIcon>
                     <ListItemText primary="Payments" />
@@ -335,9 +367,7 @@ export class App extends React.Component<any, any> {
                         ) : (
                             <Hidden xsDown implementation="css">
                                 <Drawer
-                                    classes={{
-                                        paper: this.props.classes.permanentDrawerPaper,
-                                    }}
+                                    classes={{ paper: this.props.classes.permanentDrawerPaper }}
                                     variant="permanent"
                                     open
                                 >
@@ -365,7 +395,7 @@ export class App extends React.Component<any, any> {
                         vertical: "bottom",
                         horizontal: "left",
                     }}
-                    open={this.state.open}
+                    open={this.state.openSnackbar}
                     autoHideDuration={6000}
                     onClose={this.handleClose}
                     message={<span id="message-id">{this.locale["error-no-address"]}</span>}
@@ -429,13 +459,22 @@ export class App extends React.Component<any, any> {
     //     this.setState({ validAddress: 1 })
     // }
 
+    private handleDelete = (deleteAddress: string) => () => {
+        console.log(deleteAddress)
+        const tmp = this.state.addressHistory.filter((address: string) => address !== deleteAddress)
+        storage.setItem("address", Array.from(new Set(tmp)).join(","))
+        this.setState({ addressHistory: tmp })
+    }
+    private handleClick = () => {
+        this.setState({ openCollapse: !this.state.openCollapse })
+    }
     private handleChange = (prop: any) => (event: any) => {
         event.preventDefault()
         this.setState({ [prop]: event.target.value })
     }
 
     private handleClose = (event: any) => {
-        this.setState({ open: false })
+        this.setState({ openSnackbar: false })
     }
 
     // private handleRedirect() {
