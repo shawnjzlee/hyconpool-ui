@@ -1,11 +1,9 @@
-import { ListItemSecondaryAction } from "@material-ui/core"
 import AppBar from "@material-ui/core/AppBar"
 import Avatar from "@material-ui/core/Avatar"
 import Collapse from "@material-ui/core/Collapse"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
-// import FormControl from "@material-ui/core/FormControl"
 import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
 import InputBase from "@material-ui/core/InputBase"
@@ -13,20 +11,19 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemAvatar from "@material-ui/core/ListItemAvatar"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
-import MenuItem from "@material-ui/core/MenuItem"
 import Snackbar from "@material-ui/core/Snackbar"
 import { withStyles } from "@material-ui/core/styles"
-// import Select from "@material-ui/core/Select"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
 import { fade } from "@material-ui/core/styles/colorManipulator"
 import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import createStyles from "@material-ui/core/styles/createStyles"
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer"
-import TextField from "@material-ui/core/TextField"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import AddIcon from "@material-ui/icons/Add"
+import ArrowForwardIcon from "@material-ui/icons/ArrowForwardOutlined"
 import PaymentIcon from "@material-ui/icons/AttachMoneyOutlined"
 import CloseIcon from "@material-ui/icons/CloseOutlined"
 import DashboardIcon from "@material-ui/icons/DashboardOutlined"
@@ -34,7 +31,10 @@ import ExpandLess from "@material-ui/icons/ExpandLess"
 import ExpandMore from "@material-ui/icons/ExpandMore"
 import HelpIcon from "@material-ui/icons/HelpOutlineOutlined"
 import HomeIcon from "@material-ui/icons/HomeOutlined"
+import DarkIcon from "@material-ui/icons/InvertColors"
+import LightIcon from "@material-ui/icons/InvertColorsOff"
 import MenuIcon from "@material-ui/icons/Menu"
+import MessageIcon from "@material-ui/icons/MessageOutlined"
 import NotificationsIcon from "@material-ui/icons/Notifications"
 import * as React from "react"
 import { Redirect, RouteComponentProps } from "react-router"
@@ -170,7 +170,8 @@ export class App extends React.Component<any, any> {
             openSnackbar: false,
             validAddress: 1,
             redirect: false,
-            language: navigator.language.split("-")[0],
+            language: "en",
+            dark: true,
             mobileOpen: false,
             openCollapse: false,
             addressHistory: storage.getItem("address") === null ? [] : storage.getItem("address")!.split(","),
@@ -213,13 +214,17 @@ export class App extends React.Component<any, any> {
             return
         }
         this.setState({ validAddress: 2, redirect: true })
+
         const addresses = storage.getItem("address") === null ? [] : storage.getItem("address")!.split(",")
+        if (addresses[0] === "") {
+            addresses.shift()
+        }
         addresses.push(this.state.address)
+        this.setState({ addressHistory: addresses })
         storage.setItem("address", Array.from(new Set(addresses)).join(","))
     }
 
     public renderDrawer() {
-        console.log(this.state.addressHistory)
         return (
             <List>
                 {window.matchMedia("(max-width: 600px)").matches ?
@@ -276,6 +281,11 @@ export class App extends React.Component<any, any> {
                     </ListItem>
                     <Divider/>
                 </Link>
+                <ListItem button component="a" target="_blank" href="https://t.me/minehycon">
+                    <ListItemIcon><MessageIcon /></ListItemIcon>
+                    <ListItemText primary="Join Our Telegram" />
+                </ListItem>
+                <Divider />
             </List>
         )
     }
@@ -287,8 +297,16 @@ export class App extends React.Component<any, any> {
         }
 
         theme = createMuiTheme({
+            overrides: {
+                MuiListItem: {
+                    root: {
+                        paddingTop: 15,
+                        paddingBottom: 15,
+                    },
+                },
+            },
             palette: {
-                type: "dark",
+                type: this.state.dark ? "dark" : "light",
             },
             typography,
         })
@@ -328,6 +346,11 @@ export class App extends React.Component<any, any> {
                                         root: this.props.classes.inputRoot,
                                         input: this.props.classes.inputInput,
                                     }}
+                                    endAdornment={
+                                        <IconButton color="inherit" aria-label="Enter" onClick={this.handleSubmit}>
+                                            <ArrowForwardIcon />
+                                        </IconButton>
+                                    }
                                 />
                             </div>
                             <div style={{ display: "flex", alignItems: "center" }}>
@@ -339,10 +362,13 @@ export class App extends React.Component<any, any> {
                                     </span>
                                 </Hidden>
                                 <span>
-                                    <TextField select id="language_select" type="language" value={this.state.language} onChange={this.languageChange}>
+                                    <IconButton color="inherit" onClick={() => {this.setState({ dark: !this.state.dark })}}>
+                                        {this.state.dark ? <DarkIcon /> : <LightIcon />}
+                                    </IconButton>
+                                    {/* <TextField select id="language_select" type="language" value={this.state.language} onChange={this.languageChange}>
                                         <MenuItem value={"en"}>EN</MenuItem>
                                         <MenuItem value={"ko"}>KR</MenuItem>
-                                    </TextField>
+                                    </TextField> */}
                                 </span>
                             </div>
                         </Toolbar>
@@ -405,49 +431,6 @@ export class App extends React.Component<any, any> {
                         </IconButton>
                     }
                 />
-        {/*
-                <Paper style={{ position: "fixed", bottom: 0, height: "40px", paddingTop: 10, width: "100%" }}>
-                    <Grid container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <Grid item>
-                            <a href="https://t.me/minehycon" style={{ flex: 1, textAlign: "left", fontFamily: this.font, textDecoration: "none" }}>
-                                <Typography
-                                    variant="caption"
-                                    color="primary"
-                                    style={{ flexBasis: 165, textAlign: "center", fontFamily: this.font, cursor: "pointer" }}
-                                >
-                                    telegram |
-                                </Typography>
-                            </a>
-                        </Grid>
-                        <MediaQuery query="(min-device-width: 800px)">
-                            <Grid item>
-                                <Typography
-                                    variant="caption"
-                                    style={{ flexBasis: 165, marginLeft: 5, textAlign: "center", fontFamily: this.font }}
-                                >
-                                    © minehycon 2018 | hycon-core release: 0.0.8-gregarious-goose
-                                </Typography>
-                            </Grid>
-                        </MediaQuery>
-                        <Grid item>
-                            <FormControl style={{ flexBasis: 165, marginLeft: 10, textAlign: "center", fontFamily: this.font }}>
-                                <Select
-                                    value={this.state.language}
-                                    onChange={this.languageChange}
-                                    inputProps={{
-                                        id: "lang_select",
-                                        name: "language",
-                                    }}
-                                    style={{ fontSize: 10, cursor: "pointer" }}
-                                    autoWidth
-                                >
-                                    <MenuItem value={"en"}>EN</MenuItem>
-                                    <MenuItem value={"ko"}>KR</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
-                </Paper> */}
             </MuiThemeProvider >
         )
     }
@@ -482,13 +465,12 @@ export class App extends React.Component<any, any> {
     // }
 
     private toggleDrawer = (open: boolean) => () => {
-        // console.log("toggleDrawer: " + open)
         this.setState({ mobileOpen: open})
     }
-    private languageChange = (event: any) => {
-        this.locale = getLocale(event.target.value)
-        this.setState({ language: event.target.value })
-    }
+    // private languageChange = (event: any) => {
+    //     this.locale = getLocale(event.target.value)
+    //     this.setState({ language: event.target.value })
+    // }
 }
 
 export default withStyles(styles, { withTheme: true })(App)

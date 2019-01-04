@@ -49,7 +49,7 @@ const styles = (theme: Theme) => createStyles({
     code: {
         padding: 20,
         borderRadius: 5,
-        background: "black",
+        background: theme.palette.type === "dark" ? "black" : "#eee",
     },
 })
 
@@ -66,6 +66,7 @@ class GetStarted extends Component<any, any> {
     }
 
     public render() {
+        const tab = <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         return (
             <Grid container style={{ flexGrow: 1 }}>
                 <Grid item xs={12} style={{ margin: "auto 4%" }}>
@@ -75,6 +76,7 @@ class GetStarted extends Component<any, any> {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>{this.props.locale["instructions-title"]}</TableCell>
+                                        <TableCell align="right"></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -114,12 +116,12 @@ class GetStarted extends Component<any, any> {
                                 <Typography gutterBottom>Below is an example of <code>"pools"</code> section of your <code>config.json</code>:</Typography>
                                 <CardContent className={this.props.classes.code}>
                                     <Typography style={{ fontFamily: "monospace" }}>"pools": [&#123;</Typography>
-                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"url": "minehycon.com:9081",</Typography>
-                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"user": "H3yGUaF38TxQxoFrqCqPdB2pN9jyBHnaj",</Typography>
-                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"pass": "worker1",</Typography>
-                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"keepalive": true,</Typography>
-                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"nicehash": false,</Typography>
-                                    <Typography style={{ fontFamily: "monospace" }}>&nbsp;&nbsp;&nbsp;&nbsp;"variant": 1</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>{tab}"url": "minehycon.com:9081",</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>{tab}"user": "H3yGUaF38TxQxoFrqCqPdB2pN9jyBHnaj",</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>{tab}"pass": "worker1",</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>{tab}"keepalive": true,</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>{tab}"nicehash": false,</Typography>
+                                    <Typography style={{ fontFamily: "monospace" }}>{tab}"variant": 1</Typography>
                                     <Typography style={{ fontFamily: "monospace" }}>&#125;]</Typography>
                                 </CardContent>
                             </CardContent>

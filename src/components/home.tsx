@@ -41,7 +41,7 @@ class Home extends Component<any, any> {
     public render() {
         return (
             <Grid container style={{ flexGrow: 1 }}>
-                <Grid item xs={12} style={{ margin: "auto 4%" }}>
+                <Grid item xs={12} style={{ margin: "auto 5%" }}>
                     <Typography gutterBottom variant="h2">
                         {this.props.locale["welcome-title"]}
                     </Typography>
