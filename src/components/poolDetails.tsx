@@ -2,6 +2,9 @@ import { Divider } from "@material-ui/core"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import Grid from "@material-ui/core/Grid"
+import { withStyles } from "@material-ui/core/styles"
+import { Theme } from "@material-ui/core/styles/createMuiTheme"
+import createStyles from "@material-ui/core/styles/createStyles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -13,7 +16,13 @@ import { Component } from "react"
 // tslint:disable:no-var-requires
 const endpoint = require("../data/endpoints.json")
 
-export class PoolDetails extends Component<any, any> {
+const styles = (theme: Theme) => createStyles({
+    tableWrapper: {
+        overflowX: "auto",
+    },
+})
+
+class PoolDetails extends Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
@@ -35,11 +44,11 @@ export class PoolDetails extends Component<any, any> {
     public render() {
         return(
             <Grid container style={{ flexGrow: 1 }}>
-                <Grid item xs={12} style={{ margin: window.matchMedia("(max-width: 600px)").matches ? 20 : 60 }}>
+                <Grid item xs={12} style={{ maxWidth: window.matchMedia("(max-width: 600px)").matches ? "calc(100% - 40px)" : "", margin: window.matchMedia("(max-width: 600px)").matches ? 20 : 60 }}>
                     <Typography gutterBottom variant="h2">
                         {this.props.locale["pool-details-title"]}
                     </Typography>
-                    <Typography gutterBottom variant="body2">
+                    <Typography gutterBottom variant="body2" style={{ textAlign: "justify" }}>
                         Our servers are located in South Korea. We guarantee stability, transparency, and minimized risk. We provide an easy to use, informative, and user-friendly web interface so that you can always find out information about new blocks and expect a fair contribution calculation.
                     </Typography>
                     <Divider style={{ margin: "20px 0px"}}/>
@@ -63,19 +72,19 @@ export class PoolDetails extends Component<any, any> {
                             <TableBody>
                                 <TableRow>
                                     <TableCell component="th" scope="row">{this.props.locale.hashrate}</TableCell>
-                                    <TableCell align="right"><Typography variant="h4"><code>{this.state.hashrate}</code><span style={{ fontSize: 12 }}>&nbsp;H/s</span></Typography></TableCell>
+                                    <TableCell align="right"><Typography variant={window.matchMedia("(max-width: 600px").matches ? "h5" : "h4"}><code>{this.state.hashrate}</code><span style={{ fontSize: 12 }}>&nbsp;H/s</span></Typography></TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell component="th" scope="row">{this.props.locale["active-miners"]}</TableCell>
-                                    <TableCell align="right"><Typography variant="h4"><code>{this.state.miners}</code></Typography></TableCell>
+                                    <TableCell align="right"><Typography variant={window.matchMedia("(max-width: 600px").matches ? "h5" : "h4"}><code>{this.state.miners}</code></Typography></TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell component="th" scope="row">{this.props.locale["blocks-hour"]}</TableCell>
-                                    <TableCell align="right"><Typography variant="h4"><code>{this.state.blocks}</code></Typography></TableCell>
+                                    <TableCell align="right"><Typography variant={window.matchMedia("(max-width: 600px").matches ? "h5" : "h4"}><code>{this.state.blocks}</code></Typography></TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell component="th" scope="row">{this.props.locale["last-mined"]}</TableCell>
-                                    <TableCell align="right"><Typography variant="h4" noWrap><code>{this.state.lastblock === "" ? "None" : this.state.lastblock}</code></Typography></TableCell>
+                                    <TableCell align="right"><Typography variant={window.matchMedia("(max-width: 600px").matches ? "body2" : "h4"} noWrap><code>{this.state.lastblock === "" ? "None" : this.state.lastblock.substring(0, 14)}...</code></Typography></TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>
@@ -86,32 +95,34 @@ export class PoolDetails extends Component<any, any> {
                                 { this.props.locale["table-blocks"] }
                             </Typography>
                         </CardContent>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
-                                    <TableCell align="right">{this.props.locale["table-block"]}</TableCell>
-                                    <TableCell align="right">Payees</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                { this.state.minedBlocks.map((minedBlock: any) => {
-                                    return (
-                                        <TableRow key={minedBlock.block} hover>
-                                            <TableCell style={{ fontWeight: 600 }}>
-                                                {minedBlock.timestamp.replace("T", " ").substring(0, 19)}
-                                            </TableCell>
-                                            <TableCell>
-                                                <code>{minedBlock.block}</code>
-                                            </TableCell>
-                                            <TableCell>
-                                                <code>{minedBlock.contributors}</code>
-                                            </TableCell>
-                                        </TableRow>
-                                    )})
-                                }
-                            </TableBody>
-                        </Table>
+                        <div className={this.props.classes.tableWrapper}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
+                                        <TableCell align="right">{this.props.locale["table-block"]}</TableCell>
+                                        <TableCell align="right">Payees</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    { this.state.minedBlocks.map((minedBlock: any) => {
+                                        return (
+                                            <TableRow key={minedBlock.block} hover>
+                                                <TableCell style={{ fontWeight: 600 }}>
+                                                    {minedBlock.timestamp.replace("T", " ").substring(0, 19)}
+                                                </TableCell>
+                                                <TableCell>
+                                                    <code>{minedBlock.block}</code>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <code>{minedBlock.contributors}</code>
+                                                </TableCell>
+                                            </TableRow>
+                                        )})
+                                    }
+                                </TableBody>
+                            </Table>
+                        </div>
                     </Card>
                 </Grid>
             </Grid>
@@ -129,3 +140,5 @@ export class PoolDetails extends Component<any, any> {
     }
 
 }
+
+export default withStyles(styles, { withTheme: true })(PoolDetails)

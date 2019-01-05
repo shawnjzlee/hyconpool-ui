@@ -31,6 +31,12 @@ const styles = (theme: Theme) => createStyles({
         margin: "auto 4%",
         color: theme.palette.type === "dark" ? "white" : "black",
     },
+    tableWrapper: {
+        overflowX: "auto",
+    },
+    smOmitColumn: {
+        display: window.matchMedia("(max-width: 600px)").matches ? "none" : "",
+    },
 })
 
 interface IMinerData {
@@ -121,8 +127,8 @@ class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
 
         return(
             <Grid container style={{ flexGrow: 1 }}>
-                <Grid item xs={12} style={{ margin: window.matchMedia("(max-width: 600px)").matches ? 20 : 60 }}>
-                    <Typography gutterBottom variant={window.matchMedia("(max-width: 600px)").matches ? "h4" : "h3"} style={{ maxWidth: "80%" }}>
+                <Grid item xs={12} style={{ maxWidth: window.matchMedia("(max-width: 600px)").matches ? "calc(100% - 40px)" : "", margin: window.matchMedia("(max-width: 600px)").matches ? 20 : 60 }}>
+                    <Typography gutterBottom noWrap variant={window.matchMedia("(max-width: 600px)").matches ? "h4" : "h3"}>
                         {this.state.hash}
                     </Typography>
                     <Typography gutterBottom variant="body2">
@@ -187,53 +193,55 @@ class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                 { this.props.locale["table-shares"] }
                             </Typography>
                         </CardContent>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
-                                    <TableCell align="right">{this.props.locale["table-to"]}</TableCell>
-                                    <TableCell align="right">{this.props.locale["table-txid"]}</TableCell>
-                                    <TableCell align="right">{this.props.locale["table-amount"]}</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                { this.payouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((payout: any) => {
-                                    return (
-                                        <TableRow key={payout.txid} hover>
-                                            <TableCell style={{ fontWeight: 600 }}>
-                                                {payout.timestamp} UTC
-                                            </TableCell>
-                                            <TableCell>
-                                                <code>{payout.address}</code>
-                                            </TableCell>
-                                            <TableCell align="right" style={{ textOverflow: "ellipsis" }}>
-                                                <code>{payout.txid}</code>
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <code>{payout.paidAmount}</code>
-                                            </TableCell>
-                                        </TableRow>
-                                    )})
-                                }
-                                { emptyRows > 0 && (
-                                    <TableRow style={{ height: 48 * emptyRows }}>
-                                        <TableCell colSpan={3}/>
+                        <div className={this.props.classes.tableWrapper}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
+                                        <TableCell align="right" className={this.props.classes.smOmitColumn}>{this.props.locale["table-to"]}</TableCell>
+                                        <TableCell align="right">{this.props.locale["table-txid"]}</TableCell>
+                                        <TableCell align="right">{this.props.locale["table-amount"]}</TableCell>
                                     </TableRow>
-                                )}
-                            </TableBody>
-                            <TableFooter>
-                                <TableRow>
-                                    <TablePagination
-                                        colSpan={3}
-                                        count={this.payouts.length}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        onChangePage={this.handleChangePage}
-                                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                                    />
-                                </TableRow>
-                            </TableFooter>
-                        </Table>
+                                </TableHead>
+                                <TableBody>
+                                    { this.payouts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((payout: any) => {
+                                        return (
+                                            <TableRow key={payout.txid} hover>
+                                                <TableCell style={{ fontWeight: 600 }}>
+                                                    {payout.timestamp} UTC
+                                                </TableCell>
+                                                <TableCell className={this.props.classes.smOmitColumn}>
+                                                    <code>{payout.address}</code>
+                                                </TableCell>
+                                                <TableCell align="right" style={{ textOverflow: "ellipsis" }}>
+                                                    <code>{payout.txid}</code>
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    <code>{payout.paidAmount}</code>
+                                                </TableCell>
+                                            </TableRow>
+                                        )})
+                                    }
+                                    { emptyRows > 0 && (
+                                        <TableRow style={{ height: 48 * emptyRows }}>
+                                            <TableCell colSpan={3}/>
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                                <TableFooter>
+                                    <TableRow>
+                                        <TablePagination
+                                            colSpan={window.matchMedia("(max-width: 600px)").matches ? 3 : 4}
+                                            count={this.payouts.length}
+                                            rowsPerPage={rowsPerPage}
+                                            page={page}
+                                            onChangePage={this.handleChangePage}
+                                            onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                        />
+                                    </TableRow>
+                                </TableFooter>
+                            </Table>
+                        </div>
                     </Card>
                 </Grid>
             </Grid >
@@ -241,7 +249,7 @@ class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     }
 
     private async loadData(hash: string): Promise<IMinerInfo> {
-        const url = endpoint.miner + this.state.hash
+        const url = endpoint.pool + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
         const minerFee = response.minerFee
         const totalPaid = response.totalPaid
