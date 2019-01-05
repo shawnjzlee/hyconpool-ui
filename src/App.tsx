@@ -1,9 +1,11 @@
+import { ListSubheader } from "@material-ui/core"
 import AppBar from "@material-ui/core/AppBar"
 import Avatar from "@material-ui/core/Avatar"
 import Collapse from "@material-ui/core/Collapse"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
+import Fade from "@material-ui/core/Fade"
 import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
 import InputBase from "@material-ui/core/InputBase"
@@ -13,6 +15,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
+import Paper from "@material-ui/core/Paper"
+import Popper from "@material-ui/core/Popper"
 import Snackbar from "@material-ui/core/Snackbar"
 import { withStyles } from "@material-ui/core/styles"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
@@ -24,7 +28,6 @@ import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import AddIcon from "@material-ui/icons/Add"
 import ArrowForwardIcon from "@material-ui/icons/ArrowForwardOutlined"
-import PaymentIcon from "@material-ui/icons/AttachMoneyOutlined"
 import CloseIcon from "@material-ui/icons/CloseOutlined"
 import DashboardIcon from "@material-ui/icons/DashboardOutlined"
 import ExpandLess from "@material-ui/icons/ExpandLess"
@@ -42,7 +45,7 @@ import { RouteConfig } from "react-router-config"
 import { Link, Route, Switch } from "react-router-dom"
 import GetStarted from "./components/getStarted"
 import Home from "./components/home"
-import { MinerDetails } from "./components/minerDetails"
+import MinerDetails from "./components/minerDetails"
 import { PoolDetails } from "./components/poolDetails"
 import { getLocale, IText } from "./locales/locales"
 // tslint:disable-next-line:no-var-requires
@@ -135,6 +138,9 @@ const styles = (theme: Theme) => createStyles({
     nested: {
         paddingLeft: theme.spacing.unit * 4,
     },
+    notification: {
+        padding: theme.spacing.unit * 2,
+    },
 })
 
 export const routes: RouteConfig[] = [
@@ -168,6 +174,8 @@ export class App extends React.Component<any, any> {
             users: [],
             address: "",
             openSnackbar: false,
+            anchorEl: undefined,
+            openNotification: false,
             validAddress: 1,
             redirect: false,
             language: "en",
@@ -270,10 +278,6 @@ export class App extends React.Component<any, any> {
                         )}
                     </List>
                 </Collapse>
-                <ListItem button>
-                    <ListItemIcon><PaymentIcon /></ListItemIcon>
-                    <ListItemText primary="Payments" />
-                </ListItem>
                 <Link to="/get-started" style={{ textDecoration: "none" }} onClick={() => { this.setState({ address: "", validAddress: 1, redirect: false, mobileOpen: false }) }}>
                     <ListItem button>
                         <ListItemIcon><HelpIcon /></ListItemIcon>
@@ -316,6 +320,8 @@ export class App extends React.Component<any, any> {
             this.toggleDrawer(false)
         }
 
+        const id = this.state.openNotification ? "notification-popper" : undefined
+
         return (
             <MuiThemeProvider theme={theme}>
                 <div className={this.props.classes.root}>
@@ -356,7 +362,7 @@ export class App extends React.Component<any, any> {
                             <div style={{ display: "flex", alignItems: "center" }}>
                                 <Hidden xsDown>
                                     <span style={{ paddingRight: theme.spacing.unit }}>
-                                        <IconButton color="inherit">
+                                        <IconButton aria-describedby={id} color="inherit" onClick={this.handleNotification}>
                                             <NotificationsIcon />
                                         </IconButton>
                                     </span>
@@ -410,12 +416,45 @@ export class App extends React.Component<any, any> {
                                     (<Redirect to={`/miner/${this.state.address}`} />) :
                                     (<Home locale={this.locale} />)
                             )} />
-                            <Route exact path="/pool-details" component={this.poolDetails} />
+                            <Route exact path="/pool-details" render={() => (
+                                this.state.redirect ?
+                                    (<Redirect to={`/miner/${this.state.address}`} />) :
+                                    (<PoolDetails locale={this.locale} />)
+                            )} />
                             <Route exact path="/miner/:hash" component={this.minerDetails} />
-                            <Route exact path="/get-started" component={this.getStarted} />
+                            <Route exact path="/get-started" render={() => (
+                                this.state.redirect ?
+                                    (<Redirect to={`/miner/${this.state.address}`} />) :
+                                    (<GetStarted locale={this.locale} />)
+                            )} />
+                            {/* <Route exact path="/pool-details" component={this.poolDetails} />
+                            <Route exact path="/miner/:hash" component={this.minerDetails} />
+                            <Route exact path="/get-started" component={this.getStarted} /> */}
                         </Switch>
                     </main>
                 </div>
+                <Popper id={id} open={this.state.openNotification} anchorEl={this.state.anchorEl} style={{ zIndex: 999999 }} transition>
+                    {({ TransitionProps }) => (
+                        <Fade {...TransitionProps} timeout={350}>
+                            <Paper>
+                                <List dense subheader={<ListSubheader component="div">News &amp; Notifications</ListSubheader>}>
+                                    <ListItem>
+                                        <ListItemText primary="Brand new dashboard!" secondary="Jan. 6, '19" />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemText primary="Maintenance: Payout stability upgrades" secondary="Dec. 27, '18" />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemText primary="Update: Using hycon-core v0.2.0" secondary="Dec. 6, '18" />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemText primary="Update: Starting fee decreased to 1%" secondary="Nov. 28, '18" />
+                                    </ListItem>
+                                </List>
+                            </Paper>
+                        </Fade>
+                    )}
+                </Popper>
                 <Snackbar
                     anchorOrigin={{
                         vertical: "bottom",
@@ -438,9 +477,6 @@ export class App extends React.Component<any, any> {
     private handleSubmit = () => {
         this.searchAddress()
     }
-    // private homePage() {
-    //     this.setState({ validAddress: 1 })
-    // }
 
     private handleDelete = (deleteAddress: string) => () => {
         console.log(deleteAddress)
@@ -460,9 +496,13 @@ export class App extends React.Component<any, any> {
         this.setState({ openSnackbar: false })
     }
 
-    // private handleRedirect() {
-    //     this.setState({ redirect: false })
-    // }
+    private handleNotification = (event: any) => {
+        const { currentTarget } = event
+        this.setState({
+            anchorEl: currentTarget,
+            openNotification: !this.state.openNotification,
+        })
+    }
 
     private toggleDrawer = (open: boolean) => () => {
         this.setState({ mobileOpen: open})

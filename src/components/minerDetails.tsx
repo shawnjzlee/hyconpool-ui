@@ -4,6 +4,9 @@ import CircularProgress from "@material-ui/core/CircularProgress"
 import Collapse from "@material-ui/core/Collapse"
 import Grid from "@material-ui/core/Grid"
 import IconButton from "@material-ui/core/IconButton"
+import { withStyles, WithStyles } from "@material-ui/core/styles"
+import { Theme } from "@material-ui/core/styles/createMuiTheme"
+import createStyles from "@material-ui/core/styles/createStyles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -11,17 +14,24 @@ import TableFooter from "@material-ui/core/TableFooter"
 import TableHead from "@material-ui/core/TableHead"
 import TablePagination from "@material-ui/core/TablePagination"
 import TableRow from "@material-ui/core/TableRow"
-import TooltipUI from "@material-ui/core/Tooltip"
 import Typography from "@material-ui/core/Typography"
-import InfoIcon from "@material-ui/icons/Info"
+import InfoIcon from "@material-ui/icons/InfoOutlined"
 import * as React from "react"
 import { Component } from "react"
-import MediaQuery from "react-responsive"
 import { Bar, BarChart, ResponsiveContainer } from "recharts"
 import { IText } from "../locales/locales"
+
 // tslint:disable:no-var-requires
 const {XAxis, YAxis, CartesianGrid, Tooltip, Legend}  = require("recharts")
 const endpoint = require("../data/endpoints.json")
+
+const styles = (theme: Theme) => createStyles({
+    graph: {
+        padding: "5% 0",
+        margin: "auto 4%",
+        color: theme.palette.type === "dark" ? "white" : "black",
+    },
+})
 
 interface IMinerData {
     timestamp: string,
@@ -46,7 +56,7 @@ interface IMinerInfo {
     totalPaid: number
 }
 
-interface IMinerProps {
+interface IMinerProps extends WithStyles<typeof styles> {
     hash: string
     locale: IText
 }
@@ -67,7 +77,7 @@ interface IMinerDetailsState {
     openedTip: boolean
 }
 
-export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
+class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     private hashStats: any = []
     private payouts: any = []
     constructor(props: any) {
@@ -97,10 +107,6 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         this.setState({ mounted: true })
     }
 
-    public handleOpenTip = (event: any) => {
-        this.setState((state) => ({ openedTip: !state.openedTip }))
-    }
-
     public handleChangePage = (event: any, page: number) => {
         this.setState({ page })
     }
@@ -114,97 +120,70 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.payouts.length - page * rowsPerPage)
 
         return(
-            <div style={{overflow: "hidden" }}>
-                <Grid container
-                    style={{
-                        height: "40vh",
-                        background: "linear-gradient(122deg, #e5676b 0%,#fac84d 39%,#f6ac4b 100%)",
-                    }}>
-                    <Grid item xs={12} style={{ margin: "auto 4%"}}>
-                        <Typography style={{ fontWeight: 600 }}>
-                            { this.props.locale["miner-title"] }
-                        </Typography>
-                        <TooltipUI id="payout-addr" title="Your Payout Address" placement="bottom-start">
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 700, wordWrap: "break-word" }}>
-                                {this.state.hash}
+            <Grid container style={{ flexGrow: 1 }}>
+                <Grid item xs={12} style={{ margin: window.matchMedia("(max-width: 600px)").matches ? 20 : 60 }}>
+                    <Typography gutterBottom variant={window.matchMedia("(max-width: 600px)").matches ? "h4" : "h3"} style={{ maxWidth: "80%" }}>
+                        {this.state.hash}
+                    </Typography>
+                    <Typography gutterBottom variant="body2">
+                        miner (your payout address)
+                    </Typography>
+                    <Card style={{ marginTop: "5%", boxShadow: "0 3px 5px 2px rgba(250, 200, 77, .3)" }}>
+                        <CardContent style={{ height: 80, background: "linear-gradient(122deg, rgb(229, 103, 107) 0%, rgb(250, 200, 77) 39%, rgb(246, 172, 75) 100%)", paddingBottom: 0 }}>
+                            <Typography variant="h6">
+                                Statistics
                             </Typography>
-                        </TooltipUI>
-                    </Grid>
-                </Grid>
-                <Grid container
-                    style={{
-                        minHeight: "30vh",
-                        backgroundColor: "#000",
-                    }}>
-                    <Grid item xs={12} style={{ padding: "5% 0", margin: "auto 4%" }}>
-                        <MediaQuery query="(min-device-width: 800px)">
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
-                                { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
-                            </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
-                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
-                            </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
-                                {this.props.locale["total-earned"]} | <code> {this.state.totalPaid} HYC </code>
-                            </Typography>
-                            <Typography gutterBottom variant="display1" style={{ color: "#fff", fontWeight: 600 }}>
-                            {this.state.appliedPromo ?
-                                    this.props.locale["promo-fee"] :
-                                    this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
-                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenTip}>
-                                    <TooltipUI title={this.props.locale["whats-this"]} placement="bottom">
-                                        <InfoIcon/>
-                                    </TooltipUI>
-                                </IconButton>
-                            </Typography>
-                        </MediaQuery>
-                        <MediaQuery query="(max-device-width: 799px)">
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
-                                { this.props.locale["your-hashrate"] } | <code> {this.state.hashrate} H/s </code>
-                            </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
-                                {this.props.locale["your-workers"]} | <code> {this.state.workers} {this.state.workers > 1 ? this.props.locale.workers : this.props.locale.worker} </code>
-                            </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
-                                { this.props.locale["total-earned"] } | <code> {this.state.totalPaid} HYC </code>
-                            </Typography>
-                            <Typography gutterBottom variant="headline" style={{ color: "#fff", fontWeight: 600 }}>
-                                {this.state.appliedPromo ?
-                                    this.props.locale["promo-fee"] :
-                                    this.props.locale["current-fee"]} | <code> {this.state.currentFee}% </code>
-                                <IconButton style={{ fontSize: 8, color: "#fff" }} onClick={this.handleOpenTip}>
-                                    <InfoIcon />
-                                </IconButton>
-                            </Typography>
-                        </MediaQuery>
-                        <Collapse in={this.state.openedTip}>
-                            <Typography gutterBottom style={{ color: "#fff" }}>
-                                {this.props.locale["fee-info"]}
-                            </Typography>
+                        </CardContent>
+                        <Table>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">{this.props.locale["your-hashrate"]}</TableCell>
+                                    <TableCell align="right"><Typography variant="h4"><code>{this.state.hashrate}</code><span style={{ fontSize: 12 }}>&nbsp;H/s</span></Typography></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">{this.props.locale["your-workers"]}</TableCell>
+                                    <TableCell align="right"><Typography variant="h4"><code>{this.state.workers}</code><span style={{ fontSize: 12 }}>&nbsp;{this.state.workers === 1 ? "worker" : "workers"}</span></Typography></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">{this.props.locale["total-earned"]}</TableCell>
+                                    <TableCell align="right"><Typography variant="h4"><code>{this.state.totalPaid}</code><span style={{ fontSize: 12 }}>&nbsp;HYC</span></Typography></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">{this.props.locale["current-fee"]}<IconButton onClick={() => {this.setState({ openedTip: !this.state.openedTip })}}><InfoIcon /></IconButton></TableCell>
+                                    <TableCell align="right"><Typography variant="h4" noWrap><code>{this.state.currentFee}</code><span style={{ fontSize: 12 }}>&nbsp;%</span></Typography></TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                        <Collapse in={this.state.openedTip} timeout="auto" unmountOnExit>
+                            <Table>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>Your fee decreases while you're mining in this pool! The fee starts at 1.0% and slides down to 0.25%. Your rate decreases by 0.1% every 12 hours until you reach 0.25%. If you aren't mining in the pool for an extended period of time, the fee will reset to 1.0%.</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
                         </Collapse>
-                    </Grid>
-                    <Grid item xs={12} style={{ paddingBottom: "5%", margin: "auto 4%", color: "#FFF" }}>
-                        { this.state.mounted ?
-                            <ResponsiveContainer width="95%" height={300}>
-                                <BarChart data={this.hashStats} margin={{bottom: 5}}>
-                                    <CartesianGrid strokeDasharray="3 3"/>
-                                    <XAxis dataKey="timestamp" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Bar dataKey="valid_hashes" stackId="a" fill="#18FFFF" name="Winning Hashes"/>
-                                    <Bar dataKey="stale_hashes" stackId="a" fill="#E0E0E0" name="Submitted Hashes"/>
-                                    <Bar dataKey="pending_hashes" stackId="a" fill="#FFF176" name="Pending Hashes"/>
-                                </BarChart>
-                            </ResponsiveContainer> :
-                            <CircularProgress />
-                        }
-                    </Grid>
-                </Grid >
-                <Grid container style={{ paddingBottom: "4vh" }}>
-                    <Card style={{ margin: "auto auto", width: "100%", overflow: "auto" }}>
-                        <CardContent style={{ minHeight: "6vh", background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
-                            <Typography style={{ fontSize: "1em", color: "#fff", fontWeight: 600, margin: "auto 0" }}>
+                        <Grid item xs={12} className={this.props.classes.graph}>
+                            { this.state.mounted ?
+                                <ResponsiveContainer width="95%" height={300}>
+                                    <BarChart data={this.hashStats} margin={{bottom: 5}}>
+                                        <CartesianGrid strokeDasharray="3 3"/>
+                                        <XAxis dataKey="timestamp" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="valid_hashes" stackId="a" fill="#18FFFF" name="Winning Hashes"/>
+                                        <Bar dataKey="stale_hashes" stackId="a" fill="#E0E0E0" name="Submitted Hashes"/>
+                                        <Bar dataKey="pending_hashes" stackId="a" fill="#FFF176" name="Pending Hashes"/>
+                                    </BarChart>
+                                </ResponsiveContainer> :
+                                <CircularProgress />
+                            }
+                        </Grid>
+                    </Card>
+                    <Card style={{ marginTop: "5%", boxShadow: "0 3px 5px 2px rgba(142, 41, 179, .3)" }}>
+                        <CardContent style={{ height: 80, background: "linear-gradient(45deg, #ca002e 0%,#8e29b3 62%,#fcb2d5 100%)", paddingBottom: 0 }}>
+                            <Typography variant="h6">
                                 { this.props.locale["table-shares"] }
                             </Typography>
                         </CardContent>
@@ -212,9 +191,9 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>{ this.props.locale["table-timestamp"] }</TableCell>
-                                    <TableCell numeric>{this.props.locale["table-to"]}</TableCell>
-                                    <TableCell numeric>{this.props.locale["table-txid"]}</TableCell>
-                                    <TableCell numeric>{this.props.locale["table-amount"]}</TableCell>
+                                    <TableCell align="right">{this.props.locale["table-to"]}</TableCell>
+                                    <TableCell align="right">{this.props.locale["table-txid"]}</TableCell>
+                                    <TableCell align="right">{this.props.locale["table-amount"]}</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -227,10 +206,10 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                                             <TableCell>
                                                 <code>{payout.address}</code>
                                             </TableCell>
-                                            <TableCell numeric style={{ textOverflow: "ellipsis" }}>
+                                            <TableCell align="right" style={{ textOverflow: "ellipsis" }}>
                                                 <code>{payout.txid}</code>
                                             </TableCell>
-                                            <TableCell numeric>
+                                            <TableCell align="right">
                                                 <code>{payout.paidAmount}</code>
                                             </TableCell>
                                         </TableRow>
@@ -257,7 +236,7 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
                         </Table>
                     </Card>
                 </Grid>
-            </div >
+            </Grid >
         )
     }
 
@@ -318,3 +297,5 @@ export class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
         return ((timeComponents[0] * 60 * 60) + (timeComponents[1] * 60))
     }
 }
+
+export default withStyles(styles, { withTheme: true })(MinerDetails)

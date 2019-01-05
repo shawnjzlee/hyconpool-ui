@@ -69,14 +69,13 @@ class GetStarted extends Component<any, any> {
         const tab = <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         return (
             <Grid container style={{ flexGrow: 1 }}>
-                <Grid item xs={12} style={{ margin: "auto 4%" }}>
-                    <Card style={{ boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)" }}>
+                <Grid item xs={12} style={{ maxWidth: 800, margin: "auto auto" }}>
+                    <Card style={{ margin: "0 4%", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)" }}>
                         <CardContent style={{ padding: 0 }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>{this.props.locale["instructions-title"]}</TableCell>
-                                        <TableCell align="right"></TableCell>
+                                        <TableCell colSpan={2}>{this.props.locale["instructions-title"]}</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>

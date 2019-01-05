@@ -16,6 +16,7 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
+    "react-textfit": "^1.1.0",
     "recharts": "latest",
     "webfontloader": "^1.6.28"
   },
