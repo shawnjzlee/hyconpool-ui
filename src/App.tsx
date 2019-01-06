@@ -179,7 +179,7 @@ export class App extends React.Component<any, any> {
             validAddress: 1,
             redirect: false,
             language: "en",
-            dark: true,
+            dark: storage.getItem("dark") === null ? "dark" : (storage.getItem("dark") === "true"),
             mobileOpen: false,
             openCollapse: false,
             addressHistory: storage.getItem("address") === null ? [] : storage.getItem("address")!.split(","),
@@ -368,7 +368,7 @@ export class App extends React.Component<any, any> {
                                     </span>
                                 </Hidden>
                                 <span>
-                                    <IconButton color="inherit" onClick={() => {this.setState({ dark: !this.state.dark })}}>
+                                    <IconButton color="inherit" onClick={this.handleTheme}>
                                         {this.state.dark ? <DarkIcon /> : <LightIcon />}
                                     </IconButton>
                                     {/* <TextField select id="language_select" type="language" value={this.state.language} onChange={this.languageChange}>
@@ -474,6 +474,10 @@ export class App extends React.Component<any, any> {
         )
     }
 
+    private handleTheme = () => {
+        this.setState({ dark: !this.state.dark })
+        storage.setItem("dark", (!this.state.dark).toString())
+    }
     private handleSubmit = () => {
         this.searchAddress()
     }
