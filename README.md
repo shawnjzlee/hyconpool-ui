@@ -1,6 +1,7 @@
 <h1 align="center">minehycon.com (Frontend)</h1>
 
 <div align="center">
+  
 [![Dependencies](https://img.shields.io/david/shawnjzlee/hyconpool-ui.svg)](https://david-dm.org/shawnjzlee/hyconpool-ui)
 [![DevDependencies](https://img.shields.io/david/dev/shawnjzlee/hyconpool-ui.svg)](https://david-dm.org/shawnjzlee/hyconpool-ui?type=dev)
 </div>
@@ -11,7 +12,7 @@
 
 Clone the repository.
 
-Enter the `demo` branch (e.g. `git checkout demo`)
+Checkout `demo` branch (e.g. `git checkout demo`)
 
 Install dependencies and run the app: `npm i && npm run dev`
 
