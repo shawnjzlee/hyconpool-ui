@@ -249,7 +249,7 @@ class MinerDetails extends Component<IMinerProps, IMinerDetailsState> {
     }
 
     private async loadData(hash: string): Promise<IMinerInfo> {
-        const url = endpoint.pool + this.state.hash
+        const url = endpoint.miner + this.state.hash
         const response: IMinerInfo = await (await fetch(url)).json()
         const minerFee = response.minerFee
         const totalPaid = response.totalPaid

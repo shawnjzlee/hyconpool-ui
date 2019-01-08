@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography"
 import * as React from "react"
 import { Component } from "react"
 // tslint:disable:no-var-requires
-const endpoint = require("../data/endpoints.json")
+// const endpoint = require("../data/endpoints.json")
 
 const styles = (theme: Theme) => createStyles({
     tableWrapper: {
@@ -130,8 +130,9 @@ class PoolDetails extends Component<any, any> {
     }
 
     private async loadData() {
-        const url = endpoint.pool
-        const response = await (await fetch(url)).json()
+        // const url = endpoint.pool
+        // const response = await (await fetch(url)).json()
+        const response = { poolData: [{ hashrate: 117202.7483, miners: 149, blocks: 6 }], lastblock: "DiyyKqbc4PsrxNFX15TXjp8AYC43HetUdVPBooXgapTy", minedBlocks: [{ block: "DMx5xBZypcwpVDFFjjtW7FiRb46RTjYwEL3FEq9zPCF7", timestamp: "2019-01-08T06:30:28.000Z", contributors: "45" }, { block: "6unYbUeGraZPoPnfK4NBebwjLWFvQoRCnvh5BZEe2WcK", timestamp: "2019-01-08T06:20:47.000Z", contributors: "44" }, { block: "DjCixvMHV7azVBv4aa9CcuhUDqR7pQymmhYbTowRkW4Y", timestamp: "2019-01-08T05:45:04.000Z", contributors: "85" }, { block: "9Dc5P9ayyEQxoR69o3kDYAovJP5by8wxbdWcyv96JWk4", timestamp: "2019-01-08T05:43:04.000Z", contributors: "32" }, { block: "AkYKiepT9iXG7WvZKDxLJR7kp8GU9psC6NnaqT3QQsSc", timestamp: "2019-01-08T05:42:03.000Z", contributors: "30" }, { block: "9r4a3Krn9oqUN6uhu3ijopkyfhegYhQ6mScNrTBZhLBT", timestamp: "2019-01-08T05:39:11.000Z", contributors: "38" }, { block: "4i8oNQnbYM4X9dFoygkDNzmbDXhu6mWnTc67PyiLFx3x", timestamp: "2019-01-08T05:38:01.000Z", contributors: "31" }, { block: "Fg2Macs5de3pvdQ3ibhJzr3LvuAieB4WizhWa7VPhEjU", timestamp: "2019-01-08T05:35:20.000Z", contributors: "28" }, { block: "7dQWoBJcfDmrj1NLB6HztiLPsemuVMM5BmqYCkBet1kM", timestamp: "2019-01-08T05:25:15.000Z", contributors: "42" }, { block: "6b9iHpPPEPCDHoMkEo232vJf4Bv9WUXJ5t9HRGRpyo4z", timestamp: "2019-01-08T05:17:50.000Z", contributors: "44" }], blocksPerDay: 148 }
         this.setState({ hashrate:  response.poolData[0].hashrate })
         this.setState({ miners:  response.poolData[0].miners })
         this.setState({ blocks:  response.blocksPerDay })
